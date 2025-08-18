@@ -1,11 +1,11 @@
-/* _layout/_page.css */
+/* _layout/_pages.css */
 
 .page-container {
     display: flex;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 40px 20px;
-    gap: 30px;
+    padding: 40px 120px;
+    gap: 50px; /* 사이드바와 콘텐츠 간격 조정 */
 }
 
 /* 왼쪽 사이드바 (LNB) */
@@ -15,32 +15,39 @@
 }
 
 .left-sidebar h2 {
-    font-size: 20px;
+    font-size: 22px;
     margin-top: 0;
+    margin-bottom: 20px;
     padding-bottom: 15px;
-    border-bottom: 2px solid #333;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .left-sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 20px 0 0 0;
+    margin: 0;
 }
 
 .left-sidebar a {
     display: block;
     padding: 12px 15px;
+    margin-bottom: 4px;
     text-decoration: none;
     color: #555;
     border-radius: 6px;
     font-size: 15px;
+    border-left: 3px solid transparent; /* 비활성 상태의 테두리 */
 }
 
-.left-sidebar li.active a,
 .left-sidebar a:hover {
+    background-color: #f8f9fa;
+}
+
+.left-sidebar li.active a {
     background-color: #f0f5fa;
     color: #006EBC;
     font-weight: bold;
+    border-left: 3px solid #006EBC; /* KRDS 스타일 활성 표시 */
 }
 
 /* 중앙 콘텐츠 영역 */
@@ -60,45 +67,61 @@
 }
 
 .page-content h1 {
-    font-size: 32px;
+    font-size: 36px;
     margin-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+}
+
+.page-content .description {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 40px;
 }
 
 .page-content h2 {
     font-size: 24px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-    margin-top: 0;
-    margin-bottom: 20px;
+    margin-top: 40px;
+    margin-bottom: 16px;
 }
+
+.page-content p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+}
+
 
 /* 오른쪽 목차 사이드바 (TOC) */
 .right-toc-sidebar {
     width: 200px;
     flex-shrink: 0;
+    position: sticky;
+    top: 120px; /* 헤더 높이만큼 여유 공간 */
+    height: fit-content;
 }
 
 .right-toc-sidebar h3 {
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: bold;
     color: #333;
     margin-top: 0;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .right-toc-sidebar ul {
     list-style: none;
     padding: 0;
-    margin: 15px 0 0 0;
-    border-left: 2px solid #e0e0e0;
+    margin: 0;
 }
 
 .right-toc-sidebar a {
     display: block;
-    padding: 8px 15px;
+    padding: 8px 0;
     text-decoration: none;
     color: #777;
     font-size: 14px;
-    transition: all 0.2s;
+    border-left: 3px solid transparent;
 }
 
 .right-toc-sidebar a:hover {
@@ -108,6 +131,6 @@
 .right-toc-sidebar li.active a {
     color: #006EBC;
     font-weight: bold;
-    border-left: 2px solid #006EBC;
-    margin-left: -2px;
+    border-left: 3px solid #006EBC;
+    padding-left: 12px;
 }

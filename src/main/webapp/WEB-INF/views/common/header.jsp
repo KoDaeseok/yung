@@ -1,21 +1,21 @@
 <!-- views\common\header.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <header class="krds-style-header">
-    <!-- <div class="header-top">
+    <div class="header-top">
         <div class="header-top-inner">
             <div class="login-buttons">
                 <a href="#">로그인</a> | <a href="#">회원가입</a>
             </div>
-            <!-- <div class="main-buttons">
+            <div class="main-buttons">
                 <a href="#" class="btn-util">정보교류</a>
                 <a href="#" class="btn-util btn-primary">Web-EDI</a>
-            </div> -->
+            </div>
         </div>
     </div>
     <div class="header-main">
         <div class="header-main-inner">
             <div class="logo">
-                <img src="/static/images/bg_infoex_logo.png" alt="경찰공제회 로고">
+                <a href="/"><img src="/static/images/bg_infoex_logo.png" alt="경찰공제회 로고"></a>
             </div>
             <div class="main-menu">
                 <nav>
