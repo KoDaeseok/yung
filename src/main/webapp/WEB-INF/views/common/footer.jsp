@@ -1,5 +1,6 @@
-<footer>
-    <div class="footer-content">
-        <p>Copyright © 경찰공제회 All Rights Reserved.</p>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+    <footer>
+        <div class="footer-content">
+            <p>Copyright © 경찰공제회 All Rights Reserved.</p>
         </div>
-</footer>
+    </footer>

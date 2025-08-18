@@ -1,0 +1,30 @@
+/* _base/_typography.css */
+
+/* 웹사이트 전체에 적용될 기본 글꼴 및 크기 */
+body {
+    font-family: 'Malgun Gothic', '맑은 고딕', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* 제목 태그(h1~h6) 스타일 */
+h1, h2, h3, h4, h5, h6 {
+    margin: 1.2em 0 0.5em; /* 상하 여백 설정 */
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.75rem; }
+
+/* 링크(a 태그) 스타일 */
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
