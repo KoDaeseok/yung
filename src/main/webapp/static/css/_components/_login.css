@@ -1,29 +1,15 @@
 /* _components/_login.css */
 
-/* 전체 로그인 영역을 감싸는 컨테이너 */
-.login-container {
-    display: flex;
-    justify-content: center; /* 가로 중앙 정렬 */
-    align-items: center;   /* 세로 중앙 정렬 */
-    flex-grow: 1; /* 헤더와 푸터를 제외한 모든 수직 공간 차지 */
-    margin: 0 120px;
-    
-    background-image: url('/static/images/cont_bg.png'); /* 배경 이미지 */
-    background-size: cover; /* 이미지가 영역을 꽉 채우도록 설정 */
-    background-position: center; /* 이미지를 중앙에 위치 */
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-}
-
 /* 로그인 폼이 담길 카드 */
 .login-card {
-    width: 100%;
-    max-width: 400px; /* 카드의 최대 너비 약간 줄임 */
-    padding: 30px; /* 내부 패딩 약간 줄임 */
-    background-color: rgba(255, 255, 255, 0.95); /* 살짝 투명한 흰색 배경 */
+    position: relative;
+    width: 580px;
+    max-width: 580px; /* 화면 너비를 고려한 적절한 최대 너비로 재조정 */
+    padding: 45px; /* 내부 패딩 재조정 */
+    background-color: rgba(255, 255, 255, 0.98); /* 배경을 약간 더 불투명하게 조정 */
     border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px); /* 배경 블러 효과 (지원 브라우저) */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-sizing: border-box;
 }
@@ -31,41 +17,43 @@
 /* 로그인 카드 상단 헤더 */
 .login-header {
     text-align: center;
-    margin-bottom: 25px; /* 마진 약간 줄임 */
+    margin-bottom: 35px; /* 하단 마진 재조정 */
 }
 
 .login-header h1 {
-    font-size: 22px; /* 폰트 크기 약간 줄임 */
-    font-weight: 600;
+    font-size: 28px; /* 제목 폰트 크기 재조정 */
+    font-weight: 700; /* 폰트 굵기 추가 */
     margin: 0;
     color: #2c3e50;
 }
 
 .login-header p {
-    margin-top: 6px; /* 마진 약간 줄임 */
-    color: #7f8c8d;
-    font-size: 14px; /* 폰트 크기 약간 줄임 */
+    margin-top: 12px; /* 상단 마진 재조정 */
+    color: #556372; /* 텍스트 색상 가독성 개선 */
+    font-size: 16px; /* 설명 폰트 크기 재조정 */
+    line-height: 1.5;
 }
 
 /* 로그인 폼 그룹 */
 .form-group {
-    margin-bottom: 18px; /* 마진 약간 줄임 */
+    margin-bottom: 25px; /* 하단 마진 재조정 */
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 6px; /* 마진 약간 줄임 */
-    font-weight: 500;
+    margin-bottom: 10px; /* 하단 마진 재조정 */
+    font-weight: 600; /* 폰트 굵기 추가 */
     color: #34495e;
-    font-size: 15px; /* 폰트 크기 약간 줄임 */
+    font-size: 16px;
 }
 
 .form-group input {
     width: 100%;
-    padding: 10px 12px; /* 패딩 약간 줄임 */
-    border: 1px solid #bdc3c7;
+    height: 50px; /* 입력 필드 높이 명시적으로 지정 */
+    padding: 0 15px; /* 좌우 패딩 재조정 */
+    border: 1px solid #dcdfe6; /* 테두리 색상 변경 */
     border-radius: 8px;
-    font-size: 15px; /* 폰트 크기 약간 줄임 */
+    font-size: 16px;
     box-sizing: border-box;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
@@ -73,21 +61,25 @@
 .form-group input:focus {
     outline: none;
     border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
 }
 
 /* 로그인 버튼 */
 .btn-login {
     width: 100%;
-    padding: 12px; /* 패딩 약간 줄임 */
+    height: 52px; /* 버튼 높이 명시적으로 지정 */
+    padding: 0 15px; /* 좌우 패딩 재조정 */
     border: none;
     background-color: #3498db;
     color: white;
-    font-size: 15px; /* 폰트 크기 약간 줄임 */
+    font-size: 17px;
     font-weight: 600;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-login:hover {
@@ -99,14 +91,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 15px; /* 마진 약간 줄임 */
-    font-size: 13px; /* 폰트 크기 약간 줄임 */
+    margin-top: 25px; /* 상단 마진 재조정 */
+    font-size: 15px;
     color: #7f8c8d;
 }
 
 .login-options a {
     color: #34495e;
     text-decoration: none;
+    font-weight: 500;
 }
 
 .login-options a:hover {
@@ -116,5 +109,19 @@
 .login-options .checkbox-group {
     display: flex;
     align-items: center;
-    gap: 6px; /* 간격 약간 줄임 */
+    gap: 8px;
+}
+
+/* 추가: 오류 메시지 스타일 */
+.error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 6px;
+    height: 16px; /* 메시지가 없을 때도 공간을 차지하여 레이아웃이 흔들리지 않게 함 */
+}
+
+/* 추가: 오류 발생 시 input 테두리 스타일 */
+.form-group input.error {
+    border-color: #e74c3c;
 }

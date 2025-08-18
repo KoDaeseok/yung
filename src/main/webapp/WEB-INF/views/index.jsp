@@ -1,3 +1,4 @@
+<!-- views/index.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -10,38 +11,19 @@
     <%-- 헤더 영역 포함 --%>
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-    <%-- 메인 로그인 콘텐츠 --%>
-    <main class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <h1>로그인</h1>
-                <p>처음 방문하신 분은 아이디 요청 후<br>로그인하시기 바랍니다.</p>
-            </div>
-
-            <form class="login-form">
-                <div class="form-group">
-                    <label for="username">아이디</label>
-                    <input type="text" id="username" name="username">
-                </div>
-                <div class="form-group">
-                    <label for="password">비밀번호</label>
-                    <input type="password" id="password" name="password">
-                </div>
-                <button type="submit" class="btn-login">로그인</button>
-            </form>
-
-            <div class="login-options">
-                <div class="checkbox-group">
-                    <input type="checkbox" id="remember-id">
-                    <label for="remember-id">아이디저장</label>
-                </div>
-                <a href="#">회원가입</a>
-            </div>
+    <%-- 메인 콘텐츠 --%>
+    <main class="main-bg-container">
+        <div class="main-bg-container-inner">
+            <h1>더 큰 행복을 위해<br>
+                경찰공제회가 함께합니다.</h1>
+            <p>경찰공제회 정보교류시스템에 오신 것을 환영합니다.</p>
         </div>
     </main>
 
     <%-- 푸터 영역 포함 --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
-
+    
+    <%-- 로그인/인증 스크립트만 로드 --%>
+    <script src="/static/js/auth.js"></script>
 </body>
 </html>

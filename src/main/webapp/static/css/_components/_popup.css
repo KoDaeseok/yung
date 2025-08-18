@@ -1,0 +1,37 @@
+/* _components/_popup.css */
+
+.popup-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.popup-modal-content {
+    position: relative;
+    background-color: transparent;
+}
+
+/* 닫기 버튼 스타일 */
+.popup-modal-close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #888; /* 기본 색상을 더 진하게 하여 항상 보이도록 수정 */
+    font-size: 30px;
+    font-weight: normal; /* 너무 굵지 않게 조정 */
+    line-height: 1;
+    cursor: pointer;
+    z-index: 10; /* 다른 요소들 위에 표시되도록 z-index 추가 */
+    transition: color 0.2s ease;
+}
+
+.popup-modal-close:hover {
+    color: #000; /* 마우스 오버 시 검은색으로 변경 */
+}

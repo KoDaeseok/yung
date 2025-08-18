@@ -1,3 +1,4 @@
+<!-- views/organization.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%-- JSTL 사용을 위한 taglib 선언 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -82,9 +83,11 @@
         </aside>
     </div>
 
-    <%-- 푸터 영역 포함 --%>
+    <%-- 푸터 영역 --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
-    <script src="/static/js/main.js"></script>
+    <%-- script --%>
+    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/organization.js"></script>
 </body>
 </html>
