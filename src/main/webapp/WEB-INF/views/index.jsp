@@ -2,39 +2,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PMAA 메인 페이지</title>
+    <title>경찰공제회</title>
     <link rel="stylesheet" href="/static/css/style.css">
-    <script src="/static/js/script.js"></script>
-</head>
+    </head>
 <body>
-    <header>
-        <div class="logo">
-            <a href="/"><h1>PMAA 로고</h1></a>
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#">협회소개</a></li>
-                <li><a href="#">사업안내</a></li>
-            </ul>
-        </nav>
-    </header>
+    <%-- 헤더 영역 포함 --%>
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-    <main>
-        <section class="main-slider">
-            <p>메인 슬라이드 이미지</p>
-        </section>
-        <section class="main-content-section">
-            <div class="content-box">
-                <h2>공지사항</h2>
-            </div>
-            <div class="content-box">
-                <h2>갤러리</h2>
-            </div>
-        </section>
-    </main>
+    <div class="container">
+        <main class="main-content">
+            <section class="hero">
+                <p>신화-행복을 주는 경찰공제회</p>
+                <h1>즐거운 여름</h1>
+            </section>
+            <section class="info-section">
+                </section>
+        </main>
 
-    <footer>
-        <p>&copy; 2024 PMAA All Rights Reserved.</p>
-    </footer>
+        <aside class="right-sidebar">
+            <jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
+        </aside>
+    </div>
+
+    <%-- 푸터 영역 포함 --%>
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+    <script src="/static/js/script.js"></script>
 </body>
 </html>
