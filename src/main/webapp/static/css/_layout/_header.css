@@ -1,54 +1,28 @@
 /* _layout/_header.css */
+
+/* 최상위 헤더 컨테이너 */
 .krds-style-header {
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.header-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
+/* 헤더 상단 유틸리티 바 */
+.header-top {
+    background-color: #f8f8f8;
+    padding: 8px 20px 0px 20px;
+    /* border-bottom: 1px solid #e0e0e0; */
+}
+
+.header-top-inner {
     max-width: 1200px;
     margin: 0 auto;
-}
-
-.logo img {
-    height: 40px;
-}
-
-.main-menu {
-    flex-grow: 1; /* 남은 공간을 메뉴가 차지하도록 하여 중앙으로 밀어줌 */
-    text-align: center;
-}
-
-.main-menu ul {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.main-menu a {
-    color: #555;
-    font-weight: bold;
-    font-size: 16px;
-    padding: 5px 0;
-    transition: color 0.3s;
-}
-
-.main-menu a:hover {
-    color: #007bff;
-}
-
-.header-utility {
-    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
     align-items: center;
     gap: 15px;
+    font-size: 13px;
 }
 
 .login-buttons {
-    font-size: 14px;
     color: #888;
 }
 
@@ -79,4 +53,39 @@
 .btn-util.btn-primary {
     background-color: #007bff;
     color: #fff;
+}
+
+/* 메인 헤더 영역 */
+.header-main {
+    background-color: #fff;
+    padding: 10px 20px;
+}
+
+.header-main-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.main-menu ul {
+    display: flex;
+    gap: 20px;
+}
+
+.main-menu a {
+    font-weight: bold;
+    color: #555;
+    font-size: 16px;
+    padding: 5px 0;
+    transition: color 0.3s;
+}
+
+.main-menu a:hover {
+    color: #007bff;
 }
