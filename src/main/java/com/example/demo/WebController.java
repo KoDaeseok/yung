@@ -10,4 +10,9 @@ public class WebController {
     public String home() {
         return "index"; // src/main/webapp/WEB-INF/views/index.jsp 호출
     }
+
+    @GetMapping("/organization")
+    public String organization() {
+        return "organization";
+    }
 }

@@ -20,7 +20,7 @@
             <div class="main-menu">
                 <nav>
                     <ul>
-                        <li><a href="#">자산운용조직소개</a></li>
+                        <li><a href="/organization">자산운용조직소개</a></li>
                         <li><a href="#">공지/건의</a></li>
                         <li><a href="#">투자제안</a></li>
                         <li><a href="#">금리제안</a></li>

@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>경찰공제회 - 로그인</title>
+    <title>[test]경찰공제회 정보교류시스템</title>
     <link rel="stylesheet" href="/static/css/main.css">
 </head>
 <body>

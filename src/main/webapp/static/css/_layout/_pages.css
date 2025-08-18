@@ -1,0 +1,113 @@
+/* _layout/_page.css */
+
+.page-container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    gap: 30px;
+}
+
+/* 왼쪽 사이드바 (LNB) */
+.left-sidebar {
+    width: 220px;
+    flex-shrink: 0;
+}
+
+.left-sidebar h2 {
+    font-size: 20px;
+    margin-top: 0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #333;
+}
+
+.left-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.left-sidebar a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #555;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.left-sidebar li.active a,
+.left-sidebar a:hover {
+    background-color: #f0f5fa;
+    color: #006EBC;
+    font-weight: bold;
+}
+
+/* 중앙 콘텐츠 영역 */
+.page-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.breadcrumb {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 30px;
+}
+
+.page-content section {
+    margin-bottom: 60px;
+}
+
+.page-content h1 {
+    font-size: 32px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.page-content h2 {
+    font-size: 24px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* 오른쪽 목차 사이드바 (TOC) */
+.right-toc-sidebar {
+    width: 200px;
+    flex-shrink: 0;
+}
+
+.right-toc-sidebar h3 {
+    font-size: 16px;
+    color: #333;
+    margin-top: 0;
+}
+
+.right-toc-sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+    border-left: 2px solid #e0e0e0;
+}
+
+.right-toc-sidebar a {
+    display: block;
+    padding: 8px 15px;
+    text-decoration: none;
+    color: #777;
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.right-toc-sidebar a:hover {
+    color: #006EBC;
+}
+
+.right-toc-sidebar li.active a {
+    color: #006EBC;
+    font-weight: bold;
+    border-left: 2px solid #006EBC;
+    margin-left: -2px;
+}
