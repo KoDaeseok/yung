@@ -35,7 +35,7 @@
                     <input type="checkbox" id="remember-id">
                     <label for="remember-id">아이디저장</label>
                 </div>
-                <a href="#">아이디요청</a>
+                <a href="#">회원가입</a>
             </div>
         </div>
     </main>

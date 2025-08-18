@@ -4,12 +4,14 @@
     <div class="header-top">
         <div class="header-top-inner">
             <div class="login-buttons">
-                <a href="#">로그인</a> | <a href="#">회원가입</a>
+                <a href="#" class="top-btn-login">로그인</a>
+                <span>|</span>
+                <a href="#" class="top-btn-signup">회원가입</a>
             </div>
-            <div class="main-buttons">
+            <!-- <div class="main-buttons">
                 <a href="#" class="btn-util">정보교류</a>
                 <a href="#" class="btn-util btn-primary">Web-EDI</a>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="header-main">
