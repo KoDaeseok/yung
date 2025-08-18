@@ -3,13 +3,7 @@
     <div class="footer-menu">
         <ul>
             <li><a href="https://www.pmaa.or.kr/">경찰공제회 바로가기</a></li>
-            <!-- <li><a href="#">이메일무단수집거부</a></li>
-            <li><a href="#">운영자메일</a></li>
-            <li><a href="#">오시는 길</a></li>
-            <li><a href="#">이용안내</a></li>
-            <li><a href="#">사이트맵</a></li>
-            <li><a href="#">부패신고센터</a></li> -->
-        </ul>
+            </ul>
     </div>
     <div class="footer-info">
         <div class="info-logo">

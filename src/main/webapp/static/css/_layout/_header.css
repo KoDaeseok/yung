@@ -1,29 +1,31 @@
 /* _layout/_header.css */
 
-/* 최상위 헤더 컨테이너 */
+/* 헤더 전체 컨테이너 */
 .krds-style-header {
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    position: sticky; /* 스크롤 시 상단에 고정 */
+    top: 0;
+    left: auto;
+    right: 0;
+    width: 100%;
+    z-index: 1100; /* 다른 요소들 위에 오도록 설정 */
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #e0e0e0; /* 하단 구분선 */
+    padding: 10px 120px; /* 좌우 여백 */
+    box-sizing: border-box; /* 패딩을 너비에 포함 */
 }
 
-/* 헤더 상단 유틸리티 바 */
+/* 헤더 상단 영역 (로그인, 회원가입 등) */
 .header-top {
-    background-color: #f8f8f8;
-    padding: 8px 20px 0px 20px;
-    /* border-bottom: 1px solid #e0e0e0; */
-}
-
-.header-top-inner {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
-    justify-content: flex-end; /* 오른쪽 정렬 */
-    align-items: center;
-    gap: 15px;
+    justify-content: flex-end;
+    padding: 8px 0;
     font-size: 13px;
 }
 
-.login-buttons {
-    color: #888;
+.header-top-inner {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 .login-buttons a {
@@ -39,7 +41,7 @@
 .btn-util {
     background-color: #f0f0f0;
     color: #333;
-    padding: 8px 12px;
+    padding: 5px 10px;
     border-radius: 4px;
     font-size: 14px;
     text-decoration: none;
@@ -55,37 +57,54 @@
     color: #fff;
 }
 
-/* 메인 헤더 영역 */
+
+/* 메인 헤더 영역 (로고, 주 메뉴) */
 .header-main {
-    background-color: #fff;
-    padding: 10px 20px;
+    padding: 0;
 }
 
 .header-main-inner {
-    max-width: 1200px;
-    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* 양쪽 끝으로 요소 정렬 */
     align-items: center;
+    height: 60px; /* 헤더 높이 지정 */
 }
 
 .logo img {
-    height: 40px;
+    height: 35px; /* 로고 크기 조정 */
+}
+
+/* 주 메뉴 네비게이션 */
+.main-menu {
+    flex-grow: 1; /* 남은 공간을 모두 차지 */
+    display: flex;
+    justify-content: right; /* 메뉴를 중앙에 배치 */
 }
 
 .main-menu ul {
     display: flex;
-    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu li {
+    position: relative;
 }
 
 .main-menu a {
+    display: block;
+    /* 상하, 좌우 여백을 주어 클릭 영역 확장 */
+    padding: 30px 25px;
     font-weight: bold;
-    color: #555;
+    color: #333; /* 기본 텍스트 색상 */
     font-size: 16px;
-    padding: 5px 0;
+    text-decoration: none;
     transition: color 0.3s;
 }
 
-.main-menu a:hover {
-    color: #007bff;
+/* li에 마우스를 올렸을 때 스타일 */
+.main-menu li:hover a {
+    color: #006EBC; /* 호버 시 텍스트 색상 변경 */
+    border-bottom: 3px solid #006EBC;
 }
