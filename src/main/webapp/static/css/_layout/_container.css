@@ -1,1 +1,87 @@
 /* _layout/_container.css */
+
+/* html과 body를 Flexbox 컨테이너로 설정 */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 메인 콘텐츠 영역이 남은 공간을 모두 차지하도록 설정 */
+.container {
+    display: flex;
+    flex-grow: 1; /* 남은 수직 공간을 모두 확장 */
+    gap: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+}
+
+.main-content {
+    flex: 1; /* 남은 공간을 모두 차지 */
+    min-width: 0;
+}
+
+.right-sidebar {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.hero {
+    background-color: #e9ecef;
+    padding: 50px 20px;
+    text-align: center;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    height: 250px; /* 높이 설정 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-sidebar {
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: fit-content; /* 내용에 맞춰 높이 자동 조절 */
+}
+
+/* 추가: 정보 섹션 컨테이너 스타일 */
+.info-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개의 열로 나눔 */
+    gap: 20px;
+}
+
+
+.sidebar-box {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+}
+
+/* 화면 너비가 768px 이하일 때 적용되는 스타일 */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* 메인 콘텐츠와 사이드바를 세로로 정렬 */
+    }
+
+    .right-sidebar {
+        width: 100%; /* 사이드바의 너비를 100%로 설정 */
+    }
+
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+}
