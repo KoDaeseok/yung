@@ -34,7 +34,7 @@ public class WebController {
         List<Map<String, Object>> lnb = new ArrayList<>();
         lnb.add(Map.of("label", "자산운용조직 소개", "url", "#section-intro", "isActive", true)); // 현재 활성화된 메뉴
         lnb.add(Map.of("label", "조직도", "url", "#section-history", "isActive", false));
-        lnb.add(Map.of("label", "찾아오시는 길길", "url", "#", "isActive", false));
+        lnb.add(Map.of("label", "찾아오시는 길", "url", "#", "isActive", false));
         model.addAttribute("lnbItems", lnb);
 
 

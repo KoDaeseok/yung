@@ -73,7 +73,7 @@
 
         <%-- 오른쪽 목차 사이드바 (TOC) - 동적 생성 --%>
         <aside class="right-toc-sidebar">
-            <h3>On this page</h3>
+            <h3>${pageTitle}</h3>
             <ul>
                 <c:forEach var="item" items="${tocItems}">
                     <li><a href="${item.url}">${item.label}</a></li>
