@@ -18,28 +18,4 @@
 @import url('_components/_popup.css');
 @import url('_components/_search-modal.css');
 @import url('_components/_signup.css');
-
-/* 메인 배경 컨테이너 */
-.main-bg-container {
-    display: flex;
-    align-items: center;   /* 세로 중앙 정렬 */
-    flex-grow: 1; /* 헤더와 푸터를 제외한 모든 수직 공간 차지 */
-    text-align: center;
-    justify-content: center;
-    margin: 0 120px;
-    
-    background-image: url('/static/images/bg_img.png'); /* 배경 이미지 */
-    background-size: cover;
-    background-position: center; /* 이미지를 중앙에 위치 */
-    background-repeat: no-repeat;
-    box-sizing: border-box;
-}
-.main-bg-container-inner {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    text-align: center;
-    color: #fff;
-}
+@import url('_components/_card-layout.css');

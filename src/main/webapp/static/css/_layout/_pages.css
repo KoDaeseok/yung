@@ -245,59 +245,6 @@
 .bus-green { color: #368204; }  
 .bus-orange { color: #dacb25; }
 
-/* _layout/_pages.css 파일 하단에 추가 */
-
-/* ----------------------------- */
-/* 자산운용조직 소개 페이지 스타일 */
-/* ----------------------------- */
-
-/* 텍스트와 이미지를 감싸는 flex 컨테이너 */
-.intro-container {
-    display: flex;
-    align-items: flex-start; /* 상단 정렬 */
-    gap: 60px; /* 텍스트와 이미지 사이 간격 */
-    margin-top: 20px;
-}
-
-.introduce {
-    background: url('/static/images/bg_info.jpg') no-repeat;
-    height: 230px;
-}
-
-.introduce-title {
-    padding-top: 20px;
-    color: #565656;
-    font-size: 30px;
-    line-height: 38px;
-    letter-spacing: -1px;
-    font-weight: bold;
-}
-
-.introduce-desc {
-    padding: 20px 0;
-    font-size: 18px;
-    line-height: 26px;
-    color: #333333;
-    letter-spacing: -1px;
-}
-
-/* 왼쪽 텍스트 영역 */
-.intro-text {
-    padding-top: 20px;
-    flex: 1.5; /* 이미지보다 텍스트 영역이 더 넓은 비율을 차지하도록 설정 */
-}
-
-/* 오른쪽 이미지 영역 */
-.intro-image {
-    flex: 1;
-    text-align: center;
-}
-
-.intro-image img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-}
 
 /* 메인 인사말 스타일 */
 .intro-greeting {
@@ -329,6 +276,78 @@
     color: #333;
     margin-bottom: 24px; 
 } */
+
+/* 기존 h2, p 태그 스타일이 소개 페이지에 과하게 적용되는 것을 방지 */
+#section-intro .description,
+#section-intro > h2,
+#section-intro > p {
+    display: none;
+}
+
+/* ----------------------------- */
+/* 자산운용조직 소개 페이지 스타일 */
+/* ----------------------------- */
+
+/* 텍스트와 이미지를 감싸는 flex 컨테이너 */
+.intro-container {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 60px; /* 텍스트와 이미지 사이 간격 */
+    margin-top: 10px;
+}
+
+/* 왼쪽 텍스트 영역 */
+.intro-text {
+    flex: 2; /* 텍스트 영역이 이미지보다 2배의 공간을 차지 */
+}
+
+/* 오른쪽 이미지 영역 */
+.intro-image {
+    flex: 1;
+    text-align: center;
+}
+
+.intro-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px; /* 이미지 모서리를 둥글게 */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.1); /* 입체감 있는 그림자 */
+}
+
+/* 기존 background로 처리했던 클래스는 이제 필요 없으므로 제거하거나 비워둡니다. */
+.introduce {
+    /* background-image 속성 제거 */
+    height: auto; /* auto로 변경 */
+}
+
+.introduce-title {
+    border-top: 1px solid #565656;
+    padding-top: 20px; 
+    color: #333;
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+.introduce-desc {
+    padding: 20px 0;
+    font-size: 18px;
+    line-height: 26px;
+    color: #555;
+    letter-spacing: -1px;
+    border-bottom: 1px solid #565656;
+}
+
+.contents {
+    padding: 20px 0;
+    font-size: 15px;
+    line-height: 1.8; /* 줄 간격 조정 */
+    letter-spacing: 0px;
+    color: #333333;
+    width: 100%; /* 너비를 100%로 변경하여 flex item에 맞춤 */
+}
+
 
 /* 기존 h2, p 태그 스타일이 소개 페이지에 과하게 적용되는 것을 방지 */
 #section-intro .description,
