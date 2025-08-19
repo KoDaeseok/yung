@@ -1,8 +1,14 @@
 package com.example.demo;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model; // Model import 추가
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,11 +18,17 @@ import java.util.Map;
 @Controller
 public class WebController {
 
+    /**
+     * 홈 페이지를 위한 GET 메소드
+     */
     @GetMapping("/")
     public String home() {
         return "index";
     }
 
+    /**
+     * 조직소개 페이지를 위한 GET 메소드
+     */
     @GetMapping("/organization")
     public String organization(Model model) { // Model 파라미터 추가
 
@@ -47,9 +59,53 @@ public class WebController {
         return "organization";
     }
 
+    /**
+     * 회원가입 페이지를 위한 GET 메소드
+     */
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("pageTitle", "아이디요청");
+        model.addAttribute("isSignupPage", true); 
         return "signup";
+    }
+
+    /**
+     * 로그인 처리를 위한 POST 메소드
+     */
+    @PostMapping("/login")
+    @ResponseBody
+    public Map<String, Object> loginProcess(@RequestParam("username") String username,
+                                           @RequestParam("password") String password,
+                                           HttpServletRequest request) {
+        Map<String, Object> response = new HashMap<>();
+
+        // 테스트용 계정 정보
+        String testUsername = "testuser";
+        String testPassword = "Testpass1!";
+        String testName = "테스트";
+
+        if (testUsername.equals(username) && testPassword.equals(password)) {
+            // 로그인 성공
+            HttpSession session = request.getSession();
+            session.setAttribute("userName", testName); // 세션에 사용자 이름 저장
+            response.put("success", true);
+        } else {
+            // 로그인 실패
+            response.put("success", false);
+            response.put("message", "아이디 또는 비밀번호가 일치하지 않습니다.");
+        }
+        return response;
+    }
+
+    /**
+     * 로그아웃 처리를 위한 GET 메소드
+     */
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate(); // 세션 무효화
+        }
+        return "redirect:/"; // 홈으로 리다이렉트
     }
 }

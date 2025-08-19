@@ -21,3 +21,7 @@ body {
 ol, ul {
     list-style: none;
 }
+
+html {
+    overflow-y: scroll;
+}

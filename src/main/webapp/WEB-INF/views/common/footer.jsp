@@ -20,3 +20,6 @@
         </div>
     </div>
 </footer>
+
+<%-- 로그아웃 스크립트 로드 --%>
+<script src="/static/js/logout.js"></script>

@@ -123,3 +123,43 @@
     color: #006EBC;
     border-bottom-color: #006EBC;
 }
+
+.login-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 간격 미세 조정 */
+}
+
+.login-buttons a {
+    color: #555; /* 색상 통일 */
+    text-decoration: none;
+}
+
+.login-buttons span {
+    color: #ccc; /* 구분자 색상 */
+}
+
+/* [수정] 로그인된 경우 사용자 이름 스타일 */
+.login-buttons .user-name {
+    color: #333;
+    font-weight: 600;
+}
+
+/* [수정] 로그아웃 버튼 스타일 */
+.btn-logout {
+    background-color: #ffffff; /* 흰색 배경 */
+    color: #333; /* 기본 글자색 */
+    border: 1px solid #ddd;    /* 연한 회색 테두리 */
+    padding: 5px 12px;         /* 패딩 조정 */
+    font-size: 13px;           /* 폰트 크기 조정 */
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 4px;        /* 약간 둥근 모서리 */
+    transition: all 0.2s ease; /* 부드러운 전환 효과 */
+}
+
+.btn-logout:hover {
+    background-color: #f8f9fa; /* 마우스 오버 시 아주 연한 회색으로 변경 */
+    border-color: #ccc;
+    color: #000;
+}

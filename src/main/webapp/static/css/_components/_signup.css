@@ -122,3 +122,23 @@
     background-color: #7f8c8d;
     color: white;
 }
+
+/* 오류 메시지 스타일 */
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+    height: 14px;
+}
+
+/* 오류 발생 시 input, select 테두리 스타일 */
+.signup-table input.error,
+.signup-table select.error {
+    border-color: #e74c3c;
+}
+
+.form-buttons .btn-secondary {
+    background-color: #7f8c8d;
+    color: white;
+}

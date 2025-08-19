@@ -1,13 +1,29 @@
 <!-- views/common/header.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <header class="krds-style-header">
     <div class="header-top">
         <div class="header-top-inner">
-            <div class="login-buttons">
-                <a href="#" class="top-btn-login" id="login-popup-btn">로그인</a>
-                <span>|</span>
-                <a href="/signup" class="top-btn-signup">회원가입</a>
-            </div>
+            <%-- 로그인 상태에 따라 분기 처리 --%>
+            <c:choose>
+                <%-- 1. 로그인된 경우 --%>
+                <c:when test="${not empty sessionScope.userName}">
+                    <div class="login-buttons">
+                        <span class="user-name">${sessionScope.userName}님</span>
+                        <button type="button" class="btn-logout">로그아웃</button>
+                    </div>
+                </c:when>
+                <%-- 2. 로그아웃된 경우 & 회원가입 페이지가 아닌 경우 --%>
+                <c:otherwise>
+                    <c:if test="${!isSignupPage}">
+                        <div class="login-buttons">
+                            <a href="#" class="top-btn-login" id="login-popup-btn">로그인</a>
+                            <span>|</span>
+                            <a href="/signup" class="top-btn-signup">회원가입</a>
+                        </div>
+                    </c:if>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
     <div class="header-main">

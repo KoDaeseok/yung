@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         loginPopupModal.style.display = 'none';
     });
     
-    // [수정] 아이디 저장 체크박스 변경 시 즉시 localStorage에 반영
+    // 아이디 저장 체크박스 변경 시 즉시 localStorage에 반영
     rememberIdCheckbox.addEventListener('change', () => {
         if (!rememberIdCheckbox.checked) {
             // 체크 해제 시 바로 저장된 아이디 삭제
@@ -92,8 +92,26 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             localStorage.removeItem('rememberedUsername');
         }
+
+        const formData = new FormData(loginForm);
         
-        alert('로그인 성공!');
-        loginPopupModal.style.display = 'none';
+        // 서버로 로그인 요청
+        fetch('/login', {
+            method: 'POST',
+            body: new URLSearchParams(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // 로그인 성공 시 페이지 새로고침
+                window.location.reload();
+            } else {
+                // 로그인 실패 시 에러 메시지 표시
+                usernameError.textContent = data.message;
+                usernameInput.classList.add('error');
+                passwordInput.classList.add('error');
+            }
+        })
+        .catch(error => console.error('Error:', error));
     });
 });
