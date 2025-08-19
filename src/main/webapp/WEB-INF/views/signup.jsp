@@ -20,11 +20,11 @@
                         <th><label for="org-code"><span class="required">*</span> 소속기관</label></th>
                         <td colspan="3">
                             <div class="input-with-button">
-                                <input type="text" id="org-code" name="orgCode" class="org-code">
-                                <button type="button" class="btn-search">
+                                <input type="text" id="org-code" name="orgCode" class="org-code" readonly>
+                                <button type="button" class="btn-search" id="open-org-search-btn">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
-                                <input type="text" id="org-name" name="orgName" class="org-name">
+                                <input type="text" id="org-name" name="orgName" class="org-name" readonly>
                             </div>
                         </td>
                     </tr>
@@ -102,7 +102,7 @@
             <p class="notice">※ 내부규정에 의거 분쟁거래만 가능한점 양지 바랍니다.</p>
             <div class="form-buttons">
                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 등록</button>
-                <button type="button" class="btn btn-secondary"><i class="fa-solid fa-times"></i> 취소</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='/'"><i class="fa-solid fa-times"></i> 취소</button>
             </div>
         </form>
     </main>
@@ -113,6 +113,6 @@
     <%-- 푸터 영역 포함 --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <script src="/static/js/auth.js"></script>
+    <script src="/static/js/signup.js"></script>
 </body>
 </html>

@@ -12,6 +12,7 @@
                     <option value="org-name">기관명</option>
                 </select>
                 <input type="text" placeholder="검색어를 입력하세요">
+                <%-- 조회 버튼을 검색창 안으로 이동 --%>
                 <button type="button" class="btn-search-action">조회</button>
             </div>
             <table class="results-table">
@@ -22,28 +23,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%-- 검색 결과 예시 데이터 --%>
-                    <tr data-code="2282871" data-name="(주)KH투자증권">
-                        <td>국내증권사</td>
-                        <td>(주)KH투자증권</td>
-                    </tr>
-                    <tr data-code="1112222" data-name="경찰공제회위탁보관미래에셋투자회사">
-                        <td>금융기타(증권금융)</td>
-                        <td>경찰공제회위탁보관미래에셋투자회사</td>
-                    </tr>
-                    <%-- ... (추가적인 예시 데이터) ... --%>
                 </tbody>
             </table>
-            <div class="pagination">
-                <a href="#" class="arrow disabled">&laquo;</a>
-                <a href="#" class="arrow disabled">&lsaquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#" class="arrow">&rsaquo;</a>
-                <a href="#" class="arrow">&raquo;</a>
+            <%-- 하단 푸터 구조 수정 --%>
+            <div class="search-modal-footer">
+                <div class="pagination-wrapper">
+                    <div class="pagination">
+                    </div>
+                </div>
+                <div class="item-counter">
+                </div>
             </div>
         </div>
     </div>

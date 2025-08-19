@@ -36,7 +36,7 @@
 
 /* 로그인 폼 그룹 */
 .form-group {
-    margin-bottom: 25px; /* 하단 마진 재조정 */
+    margin-bottom: 20px; /* 하단 마진 재조정 */
 }
 
 .form-group label {
