@@ -12,17 +12,9 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
     <div class="page-container">
-        
-        <aside class="left-sidebar">
-            <h2>자산운용조직</h2>
-            <ul>
-                <c:forEach var="item" items="${lnbItems}">
-                    <li class="${item.isActive ? 'active' : ''}">
-                        <a href="${item.url}">${item.label}</a>
-                    </li>
-                </c:forEach>
-            </ul>
-        </aside>
+
+        <%-- 사이드바 --%>
+        <jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
 
         <main class="page-content">
         
@@ -44,10 +36,6 @@
                     </c:choose>
                 </c:forEach>
             </div>
-
-            <%-- ================================================= --%>
-            <%-- ▼▼▼ 탭에 따라 다른 콘텐츠를 표시하는 영역 ▼▼▼ --%>
-            <%-- ================================================= --%>
 
             <%-- 1. '소개' 탭 콘텐츠 --%>
             <c:if test="${currentTab == 'intro'}">

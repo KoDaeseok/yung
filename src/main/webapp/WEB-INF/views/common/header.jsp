@@ -34,13 +34,13 @@
             <div class="main-menu">
                 <nav>
                     <ul>
-                        <li><a href="/organization">자산운용조직소개</a></li>
-                        <li><a href="#">공지/건의</a></li>
-                        <li><a href="#">투자제안</a></li>
-                        <li><a href="#">금리제안</a></li>
-                        <li><a href="#">운용관리</a></li>
-                        <li><a href="#">세미나/미팅제안</a></li>
-                        <li><a href="#">요청/리서치자료</a></li>
+                        <li><a href="/organization" class="${activeMenu == 'organization' ? 'active' : ''}">자산운용조직소개</a></li>
+                        <li><a href="#" class="${activeMenu == 'notice' ? 'active' : ''}">공지/건의</a></li>
+                        <li><a href="#" class="${activeMenu == 'proposal' ? 'active' : ''}">투자제안</a></li>
+                        <li><a href="#" class="${activeMenu == 'interest' ? 'active' : ''}">금리제안</a></li>
+                        <li><a href="#" class="${activeMenu == 'management' ? 'active' : ''}">운용관리</a></li>
+                        <li><a href="#" class="${activeMenu == 'seminar' ? 'active' : ''}">세미나/미팅제안</a></li>
+                        <li><a href="#" class="${activeMenu == 'research' ? 'active' : ''}">요청/리서치자료</a></li>
                     </ul>
                 </nav>
             </div>

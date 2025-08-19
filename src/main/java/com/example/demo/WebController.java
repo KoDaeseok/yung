@@ -20,7 +20,8 @@ public class WebController {
 
     // ... (home, signup, login, logout 메소드는 그대로 유지)
     @GetMapping("/")
-    public String home() {
+    public String home(Model model) { // Model 추가
+        model.addAttribute("activeMenu", "home"); // 홈 메뉴 활성화
         return "index";
     }
 
@@ -29,8 +30,10 @@ public class WebController {
     public String organization(Model model, @RequestParam(value = "tab", defaultValue = "intro") String tab) {
 
         model.addAttribute("pageTitle", "자산운용조직 소개");
+        model.addAttribute("sidebarTitle", "자산운용조직"); // [추가] 사이드바 제목
+        model.addAttribute("activeMenu", "organization"); // [추가] organization 메뉴 활성화
         model.addAttribute("pageDescription", "경찰공제회 자산운용부문은 회원의 소중한 자산을 더욱 투명하고 효율적으로 운용하기 위해 전문화된 조직체계를 갖추고 있습니다.");
-        model.addAttribute("currentTab", tab); // 현재 활성화된 탭 정보 전달
+        model.addAttribute("currentTab", tab);
 
         // 이동 경로 (Breadcrumb) 데이터 생성
         List<Map<String, String>> breadcrumbs = new ArrayList<>();
@@ -60,12 +63,14 @@ public class WebController {
         model.addAttribute("tocItems", toc);
         return "organization";
     }
+
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("pageTitle", "아이디요청");
         model.addAttribute("isSignupPage", true); 
         return "signup";
     }
+    
     @PostMapping("/login")
     @ResponseBody
     public Map<String, Object> loginProcess(@RequestParam("username") String username,

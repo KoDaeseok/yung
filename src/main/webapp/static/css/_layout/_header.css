@@ -119,7 +119,8 @@
 
 
 /* li에 마우스를 올렸을 때 스타일 */
-.main-menu li:hover a {
+.main-menu a:hover,
+.main-menu a.active {
     color: #006EBC;
     border-bottom-color: #006EBC;
 }
