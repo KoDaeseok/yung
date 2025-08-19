@@ -27,3 +27,7 @@ a {
 a:hover {
     text-decoration: none;
 }
+
+div, p {
+    word-break: break-all;
+}

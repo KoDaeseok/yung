@@ -47,12 +47,9 @@ public class WebController {
         lnb.add(Map.of("label", "찾아오시는 길", "url", "/organization?tab=location", "isActive", "location".equals(tab)));
         model.addAttribute("lnbItems", lnb);
 
-        // 오른쪽 목차 (TOC) 데이터 동적 생성
+        // [수정] 오른쪽 목차 (TOC) 데이터 동적 생성: 'intro' 탭일 경우 데이터를 생성하지 않음
         List<Map<String, String>> toc = new ArrayList<>();
-        if ("intro".equals(tab)) {
-            toc.add(Map.of("label", "소개", "url", "#section-intro"));
-            toc.add(Map.of("label", "연혁", "url", "#section-history"));
-        } else if ("chart".equals(tab)) {
+        if ("chart".equals(tab)) {
             toc.add(Map.of("label", "조직도", "url", "#section-chart"));
             toc.add(Map.of("label", "조직업무 소개", "url", "#section-members"));
         } else if ("location".equals(tab)) {
@@ -74,8 +71,8 @@ public class WebController {
     @PostMapping("/login")
     @ResponseBody
     public Map<String, Object> loginProcess(@RequestParam("username") String username,
-                                           @RequestParam("password") String password,
-                                           HttpServletRequest request) {
+                                            @RequestParam("password") String password,
+                                            HttpServletRequest request) {
         Map<String, Object> response = new HashMap<>();
 
         // 테스트용 계정 정보

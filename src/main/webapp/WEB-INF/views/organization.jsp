@@ -21,7 +21,7 @@
             <div class="breadcrumb">
                 <c:forEach var="crumb" items="${breadcrumbs}" varStatus="status">
                     <c:if test="${not status.first}">
-                        <span>&gt;</span>
+                        <span>></span>
                     </c:if>
                     <c:choose>
                         <c:when test="${not empty crumb.url}">
@@ -48,19 +48,19 @@
                         <div class="intro-text">
                             <div class="introduce">
                                 <p class="introduce-title">안녕하십니까.<br>
-                                    <span style="color:#1b7fca">경찰공제회입니다.</span>
+                                    <span style="color:#006EBC">경찰공제회입니다.</span>
                                 </p>
-                                <p class="introduce-desc">경찰공제회 정보교류시스템 홈페이지를 찾아주셔서<br> 대단히 감사합니다.</p>
+                                <p class="introduce-desc">경찰공제회 정보교류시스템 홈페이지를 찾아주셔서<br>대단히 감사합니다.</p>
                             </div>
-                            <p>경찰공제회는 전국 경찰공무원의 생활안정과 복지증진을 도모하기 위한 목적으로 설립되었고 지속적인 발전을 거듭하며 자산 3조원 시대를 넘어 새로운 도약을 준비하고 있습니다.</p>
-                            <p>이를 달성하기 위해 공제회는 투자제안의 문턱을 낮추고 투자 지역 및 대상 다변화를 적극 추진하며, 공제회 투자자산에 대해 기관 간 정보공유 협업을 이루고자 정보교류시스템 홈페이지를 개설하였습니다.</p>
-                            <p>많은 관심과 참여를 부탁드리며, 우리 공제회와 자본시장 참여자의 성공을 위해 함께 노력해 나가겠습니다.</p>
-                            <p>감사합니다.</p>
+                            <div class="contents">
+                                경찰공제회는 전국 경찰공무원의 생활안정과 복지증진을 도모하기 위한 목적으로 설립하였고 지속적인 발전을 거듭하며<br>
+                                자산 3조원 시대를 넘어 새로운 도약을 준비하고 있습니다.<br><br>
+                                이를 달성하기 위해 공제회는 투자제안의 문턱을 낮추고 투자 지역 및 대상 다변화를 적극 추진하며, 공제회 투자자산에<br>
+                                대해 기관 간 정보공유 협업을 이루고자 정보교류시스템 홈페이지를 개설하였습니다.<br><br>
+                                많은 관심과 참여를 부탁드리며, 우리 공제회와 자본시장 참여자의 성공을 위해 함께 노력해 나가겠습니다.<br><br>
+                                감사합니다.                                
+                            </div>
                         </div>
-                        <%-- 오른쪽: 이미지 영역 --%>
-                        <!-- <div class="intro-image">
-                            <img src="/static/images/bg_info.jpg" alt="자산 운용 소개 이미지">
-                        </div> -->
                     </div>
                 </section>
             </c:if>
@@ -139,15 +139,18 @@
             </c:if>
 
         </main>
-
-        <aside class="right-toc-sidebar">
-            <h3>자산운용조직</h3>
-            <ul>
-                <c:forEach var="item" items="${tocItems}">
-                    <li><a href="${item.url}">${item.label}</a></li>
-                </c:forEach>
-            </ul>
-        </aside>
+        
+        <%-- [수정] tocItems가 비어있지 않을 때만 오른쪽 목차를 표시 --%>
+        <c:if test="${not empty tocItems}">
+            <aside class="right-toc-sidebar">
+                <h3>자산운용조직</h3>
+                <ul>
+                    <c:forEach var="item" items="${tocItems}">
+                        <li><a href="${item.url}">${item.label}</a></li>
+                    </c:forEach>
+                </ul>
+            </aside>
+        </c:if>
     </div>
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -6,7 +6,6 @@
     max-width: 1400px;
     margin: 0; /* 중앙 정렬 */
     padding: 40px 120px; /* 헤더/푸터와 좌우 여백 통일 */
-    gap: 50px; /* LNB, 콘텐츠, TOC 사이의 간격 */
 }
 
 /* ----------------------------- */
@@ -15,6 +14,7 @@
 .left-sidebar {
     width: 220px;
     flex-shrink: 0; /* 컨테이너가 줄어들어도 너비 유지 */
+    margin-right: 50px;
 }
 
 .left-sidebar h2 {
@@ -110,22 +110,31 @@
     padding-bottom: 10px;
     border-bottom: 1px solid #eee;
 }
-
+/* 
 .page-content p {
     font-size: 16px;
     line-height: 1.8;
     color: #333;
+} */
+
+.contents {
+    font-size: 14px;
+    line-height: 24px;
+    letter-spacing: 0px;
+    color: #333333;
+    width: 830px;
 }
 
 /* ----------------------------- */
 /* 오른쪽 목차 사이드바 (TOC) */
 /* ----------------------------- */
 .right-toc-sidebar {
-    width: 200px;
+    width: 120px;
     flex-shrink: 0;
     position: sticky; /* 스크롤 따라다니는 효과 */
     top: 120px; /* 헤더 높이(80px) + 여유공간(40px) */
     height: fit-content; /* 내용물 높이에 맞춤 */
+    margin-left: 50px;
 }
 
 .right-toc-sidebar h3 {
@@ -247,11 +256,34 @@
     display: flex;
     align-items: flex-start; /* 상단 정렬 */
     gap: 60px; /* 텍스트와 이미지 사이 간격 */
-    margin-top: 40px;
+    margin-top: 20px;
+}
+
+.introduce {
+    background: url('/static/images/bg_info.jpg') no-repeat;
+    height: 230px;
+}
+
+.introduce-title {
+    padding-top: 20px;
+    color: #565656;
+    font-size: 30px;
+    line-height: 38px;
+    letter-spacing: -1px;
+    font-weight: bold;
+}
+
+.introduce-desc {
+    padding: 20px 0;
+    font-size: 18px;
+    line-height: 26px;
+    color: #333333;
+    letter-spacing: -1px;
 }
 
 /* 왼쪽 텍스트 영역 */
 .intro-text {
+    padding-top: 20px;
     flex: 1.5; /* 이미지보다 텍스트 영역이 더 넓은 비율을 차지하도록 설정 */
 }
 
@@ -291,12 +323,12 @@
 }
 
 /* 본문 단락 스타일 */
-.intro-text p {
+/* .intro-text p {
     font-size: 16px;
     line-height: 1.9;
     color: #333;
-    margin-bottom: 24px; /* 단락 간 간격 */
-}
+    margin-bottom: 24px; 
+} */
 
 /* 기존 h2, p 태그 스타일이 소개 페이지에 과하게 적용되는 것을 방지 */
 #section-intro .description,
