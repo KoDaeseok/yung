@@ -6,7 +6,7 @@
             <div class="login-buttons">
                 <a href="#" class="top-btn-login" id="login-popup-btn">로그인</a>
                 <span>|</span>
-                <a href="#" class="top-btn-signup">회원가입</a>
+                <a href="/signup" class="top-btn-signup">회원가입</a>
             </div>
         </div>
     </div>
@@ -33,4 +33,4 @@
 </header>
 
 <%-- 로그인 팝업 모달 포함 --%>
-<jsp:include page="/WEB-INF/views/common/loginPopup.jsp" />
+<jsp:include page="/WEB-INF/views/popup/loginPopup.jsp" />

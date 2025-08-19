@@ -46,4 +46,10 @@ public class WebController {
 
         return "organization";
     }
+
+    @GetMapping("/signup")
+    public String signup(Model model) {
+        model.addAttribute("pageTitle", "아이디요청");
+        return "signup";
+    }
 }

@@ -3,8 +3,8 @@
 /* 로그인 폼이 담길 카드 */
 .login-card {
     position: relative;
-    width: 580px;
-    max-width: 580px; /* 화면 너비를 고려한 적절한 최대 너비로 재조정 */
+    width: 500px;
+    max-width: 500px; /* 화면 너비를 고려한 적절한 최대 너비로 재조정 */
     padding: 45px; /* 내부 패딩 재조정 */
     background-color: rgba(255, 255, 255, 0.98); /* 배경을 약간 더 불투명하게 조정 */
     border-radius: 12px;

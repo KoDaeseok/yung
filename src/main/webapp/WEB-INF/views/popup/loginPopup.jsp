@@ -1,4 +1,4 @@
-<!-- views/common/loginPopup.jsp -->
+<!-- views/popup/loginPopup.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%-- 로그인 팝업 모달 --%>
 <div id="login-popup-modal" class="popup-modal-overlay" style="display: none;">
@@ -29,7 +29,7 @@
                     <input type="checkbox" id="remember-id">
                     <label for="remember-id">아이디저장</label>
                 </div>
-                <a href="#">회원가입</a>
+                <a href="/signup">회원가입</a>
             </div>
         </div>
     </div>
