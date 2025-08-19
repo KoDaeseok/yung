@@ -54,6 +54,7 @@ public class WebController {
             toc.add(Map.of("label", "조직업무 소개", "url", "#section-members"));
         } else if ("location".equals(tab)) {
             toc.add(Map.of("label", "오시는 길", "url", "#section-location"));
+            toc.add(Map.of("label", "교통편 안내", "url", "#section-transport"));
         }
 
         model.addAttribute("breadcrumbs", breadcrumbs);

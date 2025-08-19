@@ -91,8 +91,10 @@
                     <div class="map-container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.5602510702565!2d126.94756761531083!3d37.54186217980247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98a6615ef543%3A0xc1f036b7b1502b59!2z7ISc7Jq47Yq567OE7IucIOuniO2PrOq1rCDrj4TtmZTrj5kg66eI7Y-s64yA66GcIDc4!5e0!3m2!1sko!2skr!4v1572826994748!5m2!1sko!2skr" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                     </div>
-
-                    <%-- 상세 교통 정보 테이블 --%>
+                </section>
+                
+                <%-- 상세 교통 정보 테이블 --%>
+                <section id="section-transport">
                     <table class="location-details">
                         <tbody>
                             <tr>
@@ -135,9 +137,8 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-                </section>
-            </c:if>
+                    </table>                
+                </c:if>
 
         </main>
         
