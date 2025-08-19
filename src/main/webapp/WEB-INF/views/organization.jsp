@@ -41,15 +41,27 @@
             <c:if test="${currentTab == 'intro'}">
                 <section id="section-intro">
                     <h1>자산운용조직 소개</h1>
-                    <p class="description">${pageDescription}</p>
-                    <h2>안녕하십니까. 경찰공제회입니다.</h2>
-                    <p>경찰공제회 정보교류시스템 홈페이지를 찾아주셔서 대단히 감사합니다. 저희 경찰공제회는 자산운용의 전문성, 투명성, 효율성을 제고하여 회원의 신뢰를 구축하고 안정적인 수익 창출에 기여하고자 자산운용 정보교류 시스템 홈페이지를 개편하였습니다.</p>
-                    <div class="content-box">소개 관련 콘텐츠 영역</div>
-                </section>
-                <section id="section-history">
-                    <h2>연혁</h2>
-                    <p>주요 투자 결정은 독립적인 위원회를 통해 이루어지며, 리스크 관리와 투자 심의를 강화하고 있습니다.</p>
-                    <div class="content-box">연혁 관련 콘텐츠 영역 (표, 연대표 등)</div>
+
+                    <%-- 이미지와 같이 텍스트와 이미지를 좌우로 나누는 컨테이너 --%>
+                    <div class="intro-container">
+                        <%-- 왼쪽: 텍스트 영역 --%>
+                        <div class="intro-text">
+                            <div class="introduce">
+                                <p class="introduce-title">안녕하십니까.<br>
+                                    <span style="color:#1b7fca">경찰공제회입니다.</span>
+                                </p>
+                                <p class="introduce-desc">경찰공제회 정보교류시스템 홈페이지를 찾아주셔서<br> 대단히 감사합니다.</p>
+                            </div>
+                            <p>경찰공제회는 전국 경찰공무원의 생활안정과 복지증진을 도모하기 위한 목적으로 설립되었고 지속적인 발전을 거듭하며 자산 3조원 시대를 넘어 새로운 도약을 준비하고 있습니다.</p>
+                            <p>이를 달성하기 위해 공제회는 투자제안의 문턱을 낮추고 투자 지역 및 대상 다변화를 적극 추진하며, 공제회 투자자산에 대해 기관 간 정보공유 협업을 이루고자 정보교류시스템 홈페이지를 개설하였습니다.</p>
+                            <p>많은 관심과 참여를 부탁드리며, 우리 공제회와 자본시장 참여자의 성공을 위해 함께 노력해 나가겠습니다.</p>
+                            <p>감사합니다.</p>
+                        </div>
+                        <%-- 오른쪽: 이미지 영역 --%>
+                        <!-- <div class="intro-image">
+                            <img src="/static/images/bg_info.jpg" alt="자산 운용 소개 이미지">
+                        </div> -->
+                    </div>
                 </section>
             </c:if>
 

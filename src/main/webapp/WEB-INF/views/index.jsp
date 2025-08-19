@@ -13,11 +13,11 @@
 
     <%-- 메인 콘텐츠 --%>
     <main class="main-bg-container">
-        <div class="main-bg-container-inner">
+        <!-- <div class="main-bg-container-inner">
             <h1>더 큰 행복을 위해<br>
                 경찰공제회가 함께합니다.</h1>
             <p>경찰공제회 정보교류시스템에 오신 것을 환영합니다.</p>
-        </div>
+        </div> -->
     </main>
 
     <%-- 푸터 영역 포함 --%>

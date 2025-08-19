@@ -21,10 +21,9 @@ h3 { font-size: 1.75rem; }
 
 /* 링크(a 태그) 스타일 */
 a {
-    /* color: #007bff; */
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
