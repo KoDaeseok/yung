@@ -1,8 +1,10 @@
 /* _components/_signup.css */
+
+/* 페이지 좌우 여백을 다른 페이지와 통일 */
 .signup-container {
-    max-width: 960px;
-    margin: 30px auto;
-    padding: 0 15px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 120px;
 }
 
 .signup-container h1 {
@@ -10,6 +12,12 @@
     margin-bottom: 20px;
     padding-bottom: 15px;
     border-bottom: 2px solid #333;
+}
+
+/* 폼이 너무 넓어지지 않도록 최대 너비 지정 및 중앙 정렬 */
+.signup-form {
+    max-width: 960px;
+    margin: 0 auto;
 }
 
 .signup-table {
@@ -53,19 +61,17 @@
 .input-with-button {
     display: flex;
     align-items: center;
-    gap: 5px; /* 요소들 사이의 간격 추가 */
+    gap: 5px;
 }
 
-/* [수정] 소속기관 코드 입력란 */
 .input-with-button .org-code {
-    width: 220px; /* 코드 입력란 너비 고정 */
+    width: 120px;
     flex-shrink: 0;
 }
 
-/* [수정] 소속기관명 입력란 */
 .input-with-button .org-name {
-    flex-grow: 1; /* 남은 공간을 모두 차지하도록 설정 */
-    width: 100px; /* flex-grow가 작동하도록 기본 너비 설정 */
+    flex-grow: 1;
+    width: 100px;
 }
 
 .btn-search {
@@ -74,7 +80,7 @@
     border: 1px solid #ccc;
     background-color: #eee;
     cursor: pointer;
-    flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 설정 */
+    flex-shrink: 0;
 }
 
 .email-group, .phone-group {
@@ -84,7 +90,7 @@
 }
 
 .email-group input, .phone-group input {
-    width: 220px;
+    width: 120px;
 }
 
 .phone-group select {
@@ -136,9 +142,4 @@
 .signup-table input.error,
 .signup-table select.error {
     border-color: #e74c3c;
-}
-
-.form-buttons .btn-secondary {
-    background-color: #7f8c8d;
-    color: white;
 }

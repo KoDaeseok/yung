@@ -18,60 +18,56 @@ import java.util.Map;
 @Controller
 public class WebController {
 
-    /**
-     * 홈 페이지를 위한 GET 메소드
-     */
+    // ... (home, signup, login, logout 메소드는 그대로 유지)
     @GetMapping("/")
     public String home() {
         return "index";
     }
 
-    /**
-     * 조직소개 페이지를 위한 GET 메소드
-     */
+    // 조직소개 페이지를 위한 GET 메소드
     @GetMapping("/organization")
-    public String organization(Model model) { // Model 파라미터 추가
+    public String organization(Model model, @RequestParam(value = "tab", defaultValue = "intro") String tab) {
 
-        // 1. 페이지 제목과 설명 데이터 추가
         model.addAttribute("pageTitle", "자산운용조직 소개");
         model.addAttribute("pageDescription", "경찰공제회 자산운용부문은 회원의 소중한 자산을 더욱 투명하고 효율적으로 운용하기 위해 전문화된 조직체계를 갖추고 있습니다.");
+        model.addAttribute("currentTab", tab); // 현재 활성화된 탭 정보 전달
 
-        // 2. 이동 경로 (Breadcrumb) 데이터 생성
+        // 이동 경로 (Breadcrumb) 데이터 생성
         List<Map<String, String>> breadcrumbs = new ArrayList<>();
         breadcrumbs.add(Map.of("label", "홈", "url", "/"));
-        breadcrumbs.add(Map.of("label", "자산운용조직 소개", "url", "")); // 현재 페이지는 url 없음
-        model.addAttribute("breadcrumbs", breadcrumbs);
-
-        // 3. 왼쪽 사이드바 (LNB) 메뉴 데이터 생성
+        breadcrumbs.add(Map.of("label", "자산운용조직 소개", "url", "/organization"));
+        
+        // 왼쪽 사이드바 (LNB) 메뉴 데이터 동적 생성
         List<Map<String, Object>> lnb = new ArrayList<>();
-        lnb.add(Map.of("label", "자산운용조직 소개", "url", "#section-intro", "isActive", true)); // 현재 활성화된 메뉴
-        lnb.add(Map.of("label", "조직도", "url", "#section-history", "isActive", false));
-        lnb.add(Map.of("label", "찾아오시는 길", "url", "#", "isActive", false));
+        lnb.add(Map.of("label", "자산운용조직 소개", "url", "/organization?tab=intro", "isActive", "intro".equals(tab)));
+        lnb.add(Map.of("label", "조직도", "url", "/organization?tab=chart", "isActive", "chart".equals(tab)));
+        lnb.add(Map.of("label", "찾아오시는 길", "url", "/organization?tab=location", "isActive", "location".equals(tab)));
         model.addAttribute("lnbItems", lnb);
 
-
-        // 4. 오른쪽 목차 (TOC) 데이터 생성
+        // 오른쪽 목차 (TOC) 데이터 동적 생성
         List<Map<String, String>> toc = new ArrayList<>();
-        toc.add(Map.of("label", "소개", "url", "#section-intro"));
-        toc.add(Map.of("label", "연혁", "url", "#section-history"));
+        if ("intro".equals(tab)) {
+            breadcrumbs.add(Map.of("label", "소개", "url", ""));
+            toc.add(Map.of("label", "소개", "url", "#section-intro"));
+            toc.add(Map.of("label", "연혁", "url", "#section-history"));
+        } else if ("chart".equals(tab)) {
+            breadcrumbs.add(Map.of("label", "조직도", "url", ""));
+            toc.add(Map.of("label", "조직도", "url", "#section-chart"));
+            toc.add(Map.of("label", "조직업무 소개", "url", "#section-members"));
+        } else if ("location".equals(tab)) {
+            breadcrumbs.add(Map.of("label", "찾아오시는 길", "url", ""));
+            toc.add(Map.of("label", "오시는 길", "url", "#section-location"));
+        }
         model.addAttribute("tocItems", toc);
 
         return "organization";
     }
-
-    /**
-     * 회원가입 페이지를 위한 GET 메소드
-     */
     @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("pageTitle", "아이디요청");
         model.addAttribute("isSignupPage", true); 
         return "signup";
     }
-
-    /**
-     * 로그인 처리를 위한 POST 메소드
-     */
     @PostMapping("/login")
     @ResponseBody
     public Map<String, Object> loginProcess(@RequestParam("username") String username,
@@ -96,10 +92,6 @@ public class WebController {
         }
         return response;
     }
-
-    /**
-     * 로그아웃 처리를 위한 GET 메소드
-     */
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

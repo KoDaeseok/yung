@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const itemCounter = modal.querySelector('.item-counter');
         const searchInput = modal.querySelector('.search-bar input');
         const searchButton = modal.querySelector('.btn-search-action');
-        
+
         const allData = [
             { code: "A001", type: "국내증권사", name: "(구)NH투자증권" },
             { code: "B002", type: "금융기타(증금등)", name: "(주)생보제일호위탁관리부동산투자회사" },
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const updatePagination = (totalPages) => {
             paginationContainer.innerHTML = '';
             if (totalPages === 0) return;
-            
+
             const maxPagesToShow = 5;
             let startPage = Math.floor((currentPage - 1) / maxPagesToShow) * maxPagesToShow + 1;
             let endPage = startPage + maxPagesToShow - 1;
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${currentPage + 1}">&rsaquo;</a>`;
             paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${totalPages}">&raquo;</a>`;
-            
+
             if (currentPage === 1) {
                 paginationContainer.querySelector('[data-page="1"]').classList.add('disabled');
                 paginationContainer.querySelector(`[data-page="${currentPage - 1}"]`).classList.add('disabled');
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         };
-        
+
         const performSearch = () => {
             const searchTerm = searchInput.value.toLowerCase();
             currentData = allData.filter(item => item.name.toLowerCase().includes(searchTerm));
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const signupForm = document.getElementById('signup-form');
     if (signupForm) {
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        
+
         const validatePassword = (password) => {
             if (password.length < 9) return '비밀번호는 최소 9자 이상이어야 합니다.';
             const hasLetter = /[a-zA-Z]/.test(password);
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return null;
         };
-        
+
         const clearError = (input) => {
             const errorDiv = document.querySelector(`.error-message[data-for="${input.id.replace(/\d/g, '')}"]`);
             input.classList.remove('error');
@@ -214,9 +214,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         signupForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            
+
             let isValid = true;
-            
+
             // 모든 에러 메시지 초기화
             document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
             document.querySelectorAll('.signup-table input, .signup-table select').forEach(el => el.classList.remove('error'));
@@ -226,12 +226,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 const input = document.getElementById(id);
                 if (input.value.trim() === '') {
                     const errorDiv = document.querySelector(`.error-message[data-for="${groupFor || id}"]`);
-                    if(errorDiv && !errorDiv.textContent) errorDiv.textContent = message; // 에러 메시지가 없을 때만 표시
+                    if (errorDiv && !errorDiv.textContent) errorDiv.textContent = message; // 에러 메시지가 없을 때만 표시
                     input.classList.add('error');
                     isValid = false;
                 }
             };
-            
+
             checkField('org-code', '소속기관을 검색해주세요.');
             checkField('user-id', '아이디를 입력해주세요.');
             checkField('user-name', '이름을 입력해주세요.');
@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const emailIdInput = document.getElementById('email-id');
             const emailDomainInput = document.getElementById('email-domain');
             const emailErrorDiv = document.querySelector('.error-message[data-for="email-id"]');
-            if(emailIdInput.value.trim() === '' || emailDomainInput.value.trim() === ''){
+            if (emailIdInput.value.trim() === '' || emailDomainInput.value.trim() === '') {
                 emailErrorDiv.textContent = '이메일을 모두 입력해주세요.';
                 emailIdInput.classList.add('error');
                 emailDomainInput.classList.add('error');
@@ -256,11 +256,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // [수정] 회사번호 검사 로직
             checkField('company-phone2', '회사번호를 모두 입력해주세요.', 'company-phone1');
             checkField('company-phone3', '회사번호를 모두 입력해주세요.', 'company-phone1');
-            
+
             // [수정] 비밀번호 검사 로직
             const passwordInput = document.getElementById('password');
             const passwordErrorDiv = document.querySelector('.error-message[data-for="password"]');
-            if(passwordInput.value.trim() === ''){
+            if (passwordInput.value.trim() === '') {
                 passwordErrorDiv.textContent = '비밀번호를 입력해주세요.';
                 passwordInput.classList.add('error');
                 isValid = false;
