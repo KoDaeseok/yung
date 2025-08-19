@@ -4,7 +4,7 @@
 .page-container {
     display: flex;
     max-width: 1400px;
-    margin: 0 auto; /* 중앙 정렬 */
+    margin: 0; /* 중앙 정렬 */
     padding: 40px 120px; /* 헤더/푸터와 좌우 여백 통일 */
     gap: 50px; /* LNB, 콘텐츠, TOC 사이의 간격 */
 }
@@ -175,3 +175,63 @@
     margin-top: 20px;
     color: #888;
 }
+
+.page-container * {
+    box-sizing: border-box;
+}
+
+/* [추가] 찾아오시는 길 페이지 스타일 */
+.map-container {
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+
+.location-details {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    border-top: 2px solid #333;
+}
+
+.location-details th, .location-details td {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.location-details th {
+    width: 120px;
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+    vertical-align: top;
+}
+
+.location-details th i {
+    margin-right: 8px;
+    color: #555;
+}
+
+.location-details td strong {
+    color: #006EBC;
+    font-weight: 600;
+}
+
+/* 찾아오시는 길 교통편 색상 스타일 */
+.location-details strong {
+    font-weight: 600;
+}
+
+/* 지하철 노선 색상 */
+.line-5 { color: #9966CC; } /* 5호선 */
+.line-6 { color: #CD7C2F; } /* 6호선 */
+.line-kj { color: #77C4A3; } /* 경의중앙선 */
+.line-ar { color: #0090D2; } /* 공항철도 */
+
+/* 버스 종류 색상 */
+.bus-blue { color: #027cc1; }
+.bus-red { color: #cd4747; }    
+.bus-green { color: #368204; }  
+.bus-orange { color: #dacb25; }

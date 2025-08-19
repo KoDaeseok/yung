@@ -47,19 +47,17 @@ public class WebController {
         // 오른쪽 목차 (TOC) 데이터 동적 생성
         List<Map<String, String>> toc = new ArrayList<>();
         if ("intro".equals(tab)) {
-            breadcrumbs.add(Map.of("label", "소개", "url", ""));
             toc.add(Map.of("label", "소개", "url", "#section-intro"));
             toc.add(Map.of("label", "연혁", "url", "#section-history"));
         } else if ("chart".equals(tab)) {
-            breadcrumbs.add(Map.of("label", "조직도", "url", ""));
             toc.add(Map.of("label", "조직도", "url", "#section-chart"));
             toc.add(Map.of("label", "조직업무 소개", "url", "#section-members"));
         } else if ("location".equals(tab)) {
-            breadcrumbs.add(Map.of("label", "찾아오시는 길", "url", ""));
             toc.add(Map.of("label", "오시는 길", "url", "#section-location"));
         }
-        model.addAttribute("tocItems", toc);
 
+        model.addAttribute("breadcrumbs", breadcrumbs);
+        model.addAttribute("tocItems", toc);
         return "organization";
     }
     @GetMapping("/signup")
@@ -76,8 +74,8 @@ public class WebController {
         Map<String, Object> response = new HashMap<>();
 
         // 테스트용 계정 정보
-        String testUsername = "testuser";
-        String testPassword = "Testpass1!";
+        String testUsername = "test";
+        String testPassword = "1111";
         String testName = "테스트";
 
         if (testUsername.equals(username) && testPassword.equals(password)) {
