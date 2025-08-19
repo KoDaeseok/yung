@@ -48,7 +48,7 @@
                         <div class="intro-text">
                             <div class="introduce">
                                 <p class="introduce-title">안녕하십니까.<br>
-                                    <span style="color:#006EBC">경찰공제회입니다.</span>
+                                    <span style="color:var(--primary-color)">경찰공제회입니다.</span>
                                 </p>
                                 <p class="introduce-desc">경찰공제회 정보교류시스템 홈페이지를 찾아주셔서<br>대단히 감사합니다.</p>
                             </div>

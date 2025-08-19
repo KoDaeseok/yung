@@ -50,9 +50,9 @@
 /* 활성화된 LNB 메뉴 스타일 */
 .left-sidebar li.active a {
     background-color: #f0f5fa;
-    color: #006EBC;
+    color: var(--primary-color);
     font-weight: bold;
-    border-left: 3px solid #006EBC; /* KRDS 스타일 활성 표시 */
+    border-left: 3px solid var(--primary-color); /* KRDS 스타일 활성 표시 */
 }
 
 /* ----------------------------- */
@@ -81,7 +81,7 @@
 }
 
 .breadcrumb a:hover {
-    color: #006EBC;
+    color: var(--primary-color);
     text-decoration: underline;
 }
 
@@ -162,15 +162,15 @@
 }
 
 .right-toc-sidebar a:hover {
-    color: #006EBC;
+    color: var(--primary-color);
     background-color: #f8f9fa;
 }
 
 /* 활성화된 TOC 메뉴 스타일 */
 .right-toc-sidebar li.active a {
-    color: #006EBC;
+    color: var(--primary-color);
     font-weight: 600;
-    border-left: 2px solid #006EBC;
+    border-left: 2px solid var(--primary-color);
 }
 
 .content-box {
@@ -224,7 +224,7 @@
 }
 
 .location-details td strong {
-    color: #006EBC;
+    color: var(--primary-color);
     font-weight: 600;
 }
 
@@ -312,7 +312,7 @@
 /* '경찰공제회입니다' 부분 스타일 */
 .intro-greeting span {
     font-weight: 700; /* 굵게 표시 */
-    color: #006EBC; /* 경찰공제회 메인 색상 */
+    color: var(--primary-color); /* 경찰공제회 메인 색상 */
 }
 
 /* 서브 인사말 스타일 */

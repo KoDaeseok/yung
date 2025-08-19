@@ -3,6 +3,7 @@
 /* 기본 스타일 */
 @import url('_base/_reset.css');
 @import url('_base/_typography.css');
+@import url('_base/_variables.css');
 
 /* 레이아웃 스타일 */
 @import url('_layout/_header.css');

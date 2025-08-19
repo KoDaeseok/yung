@@ -8,8 +8,8 @@
     right: 0;
     width: 100%;
     z-index: 1100;
-    background-color: #FFFFFF;
-    border-bottom: 1px solid #e0e0e0;
+    background-color: var(--background-color-white);
+    border-bottom: 1px solid var(--border-color-light);
     padding: 10px 120px;
     box-sizing: border-box;
     /* margin-bottom: 10px; */
@@ -36,12 +36,12 @@
 }
 
 .login-buttons a {
-    color: #888;
+    color: var(--text-color-subtle);
     text-decoration: none;
 }
 
 .login-buttons span {
-    color: #888;
+    color: var(--text-color-subtle);
     text-decoration: none;
 }
 
@@ -122,8 +122,8 @@
 /* li에 마우스를 올렸을 때 스타일 */
 .main-menu a:hover,
 .main-menu a.active {
-    color: #006EBC;
-    border-bottom-color: #006EBC;
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
 }
 
 .login-buttons {
