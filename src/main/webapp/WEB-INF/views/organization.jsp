@@ -37,7 +37,7 @@
                 </c:forEach>
             </div>
 
-            <%-- [수정] 1. '소개' 탭 콘텐츠 --%>
+            <%-- 1. '소개' 탭 콘텐츠 --%>
             <c:if test="${currentTab == 'intro'}">
                 <section id="section-intro">
                     <h1>자산운용조직 소개</h1>
@@ -95,7 +95,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <%-- [수정] 부서/파트 셀 병합 --%>
+                                <%-- 부서/파트 셀 병합 --%>
                                 <td colspan="2" class="department-cell">투자전략팀</td>
                                 <td>투자전략 및 자산배분 등</td>
                                 <td rowspan="9" class="contact full-height">* 경찰공제회 홈페이지 참고</td>
@@ -128,12 +128,12 @@
                                 <td>국내·외 대체투자(부동산) 투자 및 관리</td>
                             </tr>
                             <tr>
-                                <%-- [수정] 부서/파트 셀 병합 --%>
+                                <%-- 부서/파트 셀 병합 --%>
                                 <td colspan="2" class="department-cell">투자심사팀</td>
                                 <td>신규투자 리스크심사</td>
                             </tr>
                             <tr>
-                                <%-- [수정] 부서/파트 셀 병합 --%>
+                                <%-- 부서/파트 셀 병합 --%>
                                 <td colspan="2" class="department-cell">리스크관리팀</td>
                                 <td>투자자산 리스크관리</td>
                             </tr>
@@ -203,7 +203,7 @@
 
         </main>
         
-        <%-- [수정] tocItems가 비어있지 않을 때만 오른쪽 목차를 표시 --%>
+        <%-- tocItems가 비어있지 않을 때만 오른쪽 목차를 표시 --%>
         <c:if test="${not empty tocItems}">
             <aside class="right-toc-sidebar">
                 <h3>자산운용조직</h3>

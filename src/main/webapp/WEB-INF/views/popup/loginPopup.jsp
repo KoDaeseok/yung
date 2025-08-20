@@ -22,7 +22,8 @@
                     <input type="password" id="popup-password" name="password">
                     <div class="error-message" id="password-error"></div>
                 </div>
-                <button type="submit" class="btn-login">로그인</button>
+                <!-- <button type="submit" class="btn-login">로그인</button> -->
+                <button type="submit" class="btn btn-primary btn-block">로그인</button>
             </form>
             <div class="login-options">
                 <div class="checkbox-group">

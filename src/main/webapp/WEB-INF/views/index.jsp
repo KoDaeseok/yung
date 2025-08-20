@@ -12,7 +12,7 @@
     <%-- 헤더 영역 포함 --%>
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-    <%-- [수정] 메인 콘텐츠 구조 변경 --%>
+    <%-- 메인 콘텐츠 --%>
     <main class="main-container">
         <div class="card-section-container">
             <h2 class="card-section-title">더 큰 행복을 위해<br>경찰공제회가 함께합니다.</h2>

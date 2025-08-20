@@ -14,7 +14,7 @@
     <main class="signup-container">
         <h1>${pageTitle}</h1>
         <form class="signup-form" id="signup-form">
-            <table class="signup-table">
+            <table class="form-table">
                 <tbody>
                     <tr>
                         <th><label for="org-code"><span class="required">*</span> 소속기관</label></th>

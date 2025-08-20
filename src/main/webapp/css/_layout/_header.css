@@ -32,7 +32,7 @@
 .login-buttons {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 20px;
 }
 
 .login-buttons a {
@@ -42,6 +42,11 @@
 
 .login-buttons span {
     color: var(--border-color-default);
+}
+
+.login-buttons .user-name {
+    color: var(--text-color-normal);
+    font-weight: 600;
 }
 
 .main-buttons {
@@ -123,35 +128,4 @@
 .main-menu a.active {
     color: var(--primary-color);
     border-bottom-color: var(--primary-color);
-}
-
-.login-buttons {
-    display: flex;
-    align-items: center;
-    gap: 8px; /* 간격 미세 조정 */
-}
-
-/* [수정] 로그인된 경우 사용자 이름 스타일 */
-.login-buttons .user-name {
-    color: var(--text-color-normal);
-    font-weight: 600;
-}
-
-/* [수정] 로그아웃 버튼 스타일 */
-.btn-logout {
-    background-color: var(--background-color-white);
-    color: var(--text-color-normal);
-    border: 1px solid var(--border-color-light);
-    padding: 5px 12px;
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: var(--border-radius-tiny);
-    transition: all 0.2s ease;
-}
-
-.btn-logout:hover {
-    background-color: var(--background-color-hover);
-    border-color: var(--border-color-default);
-    color: var(--text-color-dark);
 }

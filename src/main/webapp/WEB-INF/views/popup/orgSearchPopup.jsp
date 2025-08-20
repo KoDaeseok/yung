@@ -7,13 +7,20 @@
             <button type="button" class="modal-close-btn">&times;</button>
         </div>
         <div class="search-modal-body">
-            <div class="search-bar">
+            <!-- <div class="search-bar">
                 <select name="search-condition">
                     <option value="org-name">기관명</option>
                 </select>
                 <input type="text" placeholder="검색어를 입력하세요">
                 <%-- 조회 버튼을 검색창 안으로 이동 --%>
                 <button type="button" class="btn-search-action">조회</button>
+            </div> -->
+            <div class="search-bar">
+                <select name="search-condition">
+                    <option value="org-name">기관명</option>
+                </select>
+                <input type="text" placeholder="검색어를 입력하세요">
+                <button type="button" class="btn btn-dark">조회</button>
             </div>
             <table class="results-table">
                 <thead>
