@@ -62,7 +62,7 @@
 /* ----------------------------- */
 .page-content {
     flex-grow: 1;
-    min-width: 0;
+    min-width: 800px;
 }
 
 .breadcrumb {
