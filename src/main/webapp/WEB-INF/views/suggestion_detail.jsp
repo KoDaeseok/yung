@@ -42,31 +42,27 @@
                     <tbody>
                         <tr>
                             <th>제목</th>
-                            <td colspan="3">${notice.title}</td>
+                            <td colspan="3">${suggestion.title}</td>
                         </tr>
                         <tr>
-                            <th>공지기간</th>
-                            <td>${notice.period}</td>
-                            <th>담당자</th>
-                            <td>${notice.manager}</td>
+                            <th>담당부서</th>
+                            <td>${suggestion.department}</td>
+                            <th>공개여부</th>
+                            <td>${suggestion.isPublic}</td>
                         </tr>
                         <tr>
-                            <th>첨부파일</th>
-                            <td colspan="3">
-                                <c:forEach var="file" items="${notice.files}">
-                                    <a href="#" class="file-link">
-                                        <i class="fa-solid fa-download"></i> ${file}
-                                    </a><br>
-                                </c:forEach>
-                            </td>
+                            <th>공제회 담당팀</th>
+                            <td colspan="3">${suggestion.pmaaTeam}</td>
                         </tr>
                     </tbody>
                 </table>
+
                 <div class="content-body">
-                    ${notice.content}
+                    ${suggestion.content}
                 </div>
+                
                 <div class="button-container">
-                    <button type="button" class="btn btn-outline" onclick="location.href='/notice'">
+                    <button type="button" class="btn btn-outline" onclick="location.href='/suggestion'">
                         <i class="fa-solid fa-list"></i> 목록
                     </button>
                 </div>

@@ -202,7 +202,8 @@ public class WebController {
         breadcrumbs.add(Map.of("label", "홈", "url", "/"));
         breadcrumbs.add(Map.of("label", "공지/건의", "url", "/notice"));
         breadcrumbs.add(Map.of("label", "건의사항", "url", "/suggestion"));
-        breadcrumbs.add(Map.of("label", "등록", "url", null));
+        // [수정] null 값을 빈 문자열 ""로 변경하여 NullPointerException 해결
+        breadcrumbs.add(Map.of("label", "등록", "url", ""));
         model.addAttribute("breadcrumbs", breadcrumbs);
 
         // LNB 데이터 (suggestion.jsp와 동일하게)
@@ -212,6 +213,39 @@ public class WebController {
         model.addAttribute("lnbItems", lnb);
 
         return "suggestion_form";
+    }
+
+    // [추가] 건의사항 상세 페이지
+    @GetMapping("/suggestion/detail")
+    public String suggestionDetail(Model model, @RequestParam(value="id", required = false) String id) {
+        model.addAttribute("pageTitle", "건의사항");
+        model.addAttribute("sidebarTitle", "공지/건의");
+        model.addAttribute("activeMenu", "notice");
+
+        // Breadcrumb 데이터
+        List<Map<String, String>> breadcrumbs = new ArrayList<>();
+        breadcrumbs.add(Map.of("label", "홈", "url", "/"));
+        breadcrumbs.add(Map.of("label", "공지/건의", "url", "/notice"));
+        breadcrumbs.add(Map.of("label", "건의사항", "url", "/suggestion"));
+        breadcrumbs.add(Map.of("label", "상세", "url", ""));
+        model.addAttribute("breadcrumbs", breadcrumbs);
+
+        // LNB 데이터
+        List<Map<String, Object>> lnb = new ArrayList<>();
+        lnb.add(Map.of("label", "공지사항", "url", "/notice", "isActive", false));
+        lnb.add(Map.of("label", "건의사항", "url", "/suggestion", "isActive", true));
+        model.addAttribute("lnbItems", lnb);
+
+        // 상세 페이지 테스트 데이터
+        Map<String, Object> suggestionDetail = new HashMap<>();
+        suggestionDetail.put("title", "질문입니다");
+        suggestionDetail.put("department", "정보시스템부");
+        suggestionDetail.put("isPublic", "공개");
+        suggestionDetail.put("pmaaTeam", "기금운용전략팀");
+        suggestionDetail.put("content", "질문입니다");
+        model.addAttribute("suggestion", suggestionDetail);
+        
+        return "suggestion_detail";
     }
 
     // 회원가입
