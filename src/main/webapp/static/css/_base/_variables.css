@@ -12,6 +12,9 @@
     --text-color-medium: #556372;
     --text-color-light: #666;
     --text-color-subtle: #888;
+
+    --text-color-white: #fff;
+    --text-color-medium-white: #eee;
     
     --border-color-strong: #333;
     --border-color-default: #dcdfe6;
