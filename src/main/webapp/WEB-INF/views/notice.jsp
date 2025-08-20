@@ -47,24 +47,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%-- 데이터가 없을 경우 --%>
-                        <tr>
-                            <td colspan="3" class="no-data">
-                                <div class="no-data-content">데이터가 없습니다.</div>
-                            </td>
-                        </tr>
+                        <%-- [수정] 데이터 유무에 따라 분기 처리 --%>
+                        <c:choose>
+                            <c:when test="${not empty noticeList}">
+                                <c:forEach var="item" items="${noticeList}">
+                                    <tr>
+                                        <td>${item.type}</td>
+                                        <td style="text-align: left;">
+                                            <%-- 상세 페이지로 이동하는 링크 --%>
+                                            <a href="/notice/detail?id=${item.id}" style="text-decoration:none; color: #333;">${item.title}</a>
+                                        </td>
+                                        <td>${item.date}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <td colspan="3" class="no-data">
+                                        <div class="no-data-content">데이터가 없습니다.</div>
+                                    </td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
                     </tbody>
                 </table>
                 
                 <div class="table-footer">
-                    <div class="item-counter">0-0 of 0</div>
-                    <div class="pagination">
-                        <a href="#" class="arrow disabled">&laquo;</a>
-                        <a href="#" class="arrow disabled">&lsaquo;</a>
-                        <a href="#" class="active">1</a>
-                        <a href="#" class="arrow disabled">&rsaquo;</a>
-                        <a href="#" class="arrow disabled">&raquo;</a>
+                    <div class="pagination-wrapper">
+                        <div class="pagination">
+                            <a href="#" class="arrow disabled">&laquo;</a>
+                            <a href="#" class="arrow disabled">&lsaquo;</a>
+                            <a href="#" class="active">1</a>
+                            <a href="#" class="arrow disabled">&rsaquo;</a>
+                            <a href="#" class="arrow disabled">&raquo;</a>
+                        </div>
                     </div>
+                    <%-- 카운트 정보 동적으로 표시 --%>
+                    <div class="item-counter">1 - ${noticeList.size()} of ${noticeList.size()}</div>
                 </div>
             </div>
 

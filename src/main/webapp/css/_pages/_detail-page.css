@@ -1,0 +1,54 @@
+/* _pages/_detail-page.css */
+
+.page-content h1 i {
+    font-size: 28px;
+    margin-right: 12px;
+    color: var(--primary-color);
+}
+
+.detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid var(--primary-color);
+    table-layout: fixed;
+}
+
+.detail-table th, .detail-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid var(--border-color-light);
+    font-size: 14px;
+    text-align: left;
+}
+
+.detail-table th {
+    background-color: var(--background-color-light);
+    font-weight: 600;
+    width: 120px;
+}
+
+.file-link {
+    color: var(--text-color-medium);
+    text-decoration: none;
+    line-height: 1.8;
+}
+
+.file-link:hover {
+    text-decoration: underline;
+}
+
+.file-link i {
+    margin-right: 5px;
+}
+
+.content-body {
+    padding: 30px 15px;
+    min-height: 200px;
+    border-bottom: 1px solid var(--border-color-light);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.button-container {
+    text-align: right;
+    margin-top: 20px;
+}

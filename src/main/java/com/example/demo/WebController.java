@@ -120,15 +120,53 @@ public class WebController {
         
         model.addAttribute("breadcrumbs", breadcrumbs);
         model.addAttribute("lnbItems", getNoticeLnb("notice"));
+        
+        // [수정] 공지사항 테스트 데이터에 id 추가
+        List<Map<String, String>> noticeList = new ArrayList<>();
+        noticeList.add(Map.of("id", "1", "type", "일반", "title", "정보교류시스템 오픈 안내", "date", "2025-08-20"));
+        noticeList.add(Map.of("id", "2", "type", "중요", "title", "개인정보처리방침 개정 안내", "date", "2025-08-15"));
+        noticeList.add(Map.of("id", "3", "type", "일반", "title", "서비스 점검 안내 (09/01)", "date", "2025-08-12"));
+        noticeList.add(Map.of("id", "4", "type", "일반", "title", "자산운용 부문 조직 개편 안내", "date", "2025-08-10"));
+
+        model.addAttribute("noticeList", noticeList);
+        
         return "notice";
     }
+
+     // [추가] 공지사항 상세 페이지
+     @GetMapping("/notice/detail")
+     public String noticeDetail(Model model, @RequestParam(value="id", required = false) String id) {
+         model.addAttribute("pageTitle", "공지사항");
+         model.addAttribute("sidebarTitle", "공지/건의");
+         model.addAttribute("activeMenu", "notice");
+ 
+         List<Map<String, String>> breadcrumbs = new ArrayList<>();
+         breadcrumbs.add(Map.of("label", "홈", "url", "/"));
+         breadcrumbs.add(Map.of("label", "공지/건의", "url", "/notice"));
+         breadcrumbs.add(Map.of("label", "공지사항", "url", ""));
+         
+         model.addAttribute("breadcrumbs", breadcrumbs);
+         model.addAttribute("lnbItems", getNoticeLnb("notice"));
+         
+         // [추가] 상세 페이지 테스트 데이터
+         Map<String, Object> noticeDetail = new HashMap<>();
+         noticeDetail.put("title", "정보교류시스템 오픈 안내");
+         noticeDetail.put("period", "2025-08-20 ~ 2025-12-31");
+         noticeDetail.put("manager", "황희정");
+         noticeDetail.put("files", List.of("시스템 매뉴얼.xlsx", "이용 가이드.doc"));
+         noticeDetail.put("content", "경찰공제회 정보교류시스템이 새롭게 오픈했습니다.<br>회원 여러분의 많은 관심과 참여 부탁드립니다.<br>감사합니다.");
+ 
+         model.addAttribute("notice", noticeDetail);
+ 
+         return "notice_detail";
+     }
 
     // 건의사항 페이지
     @GetMapping("/suggestion")
     public String suggestion(Model model) {
         model.addAttribute("pageTitle", "건의사항");
         model.addAttribute("sidebarTitle", "공지/건의");
-        model.addAttribute("activeMenu", "notice"); // '공지/건의' 메뉴 활성화를 위해 동일하게 설정
+        model.addAttribute("activeMenu", "notice");
 
         List<Map<String, String>> breadcrumbs = new ArrayList<>();
         breadcrumbs.add(Map.of("label", "홈", "url", "/"));
@@ -137,6 +175,15 @@ public class WebController {
 
         model.addAttribute("breadcrumbs", breadcrumbs);
         model.addAttribute("lnbItems", getNoticeLnb("suggestion"));
+        
+        // 건의사항 테스트 데이터 생성
+        List<Map<String, String>> suggestionList = new ArrayList<>();
+        suggestionList.add(Map.of("type", "시스템", "title", "모바일 화면 최적화 관련 건의", "date", "2025-08-19", "status", "답변완료"));
+        suggestionList.add(Map.of("type", "투자제안", "title", "신규 투자 상품 제안 프로세스 문의", "date", "2025-08-18", "status", "답변완료"));
+        suggestionList.add(Map.of("type", "기타", "title", "세미나 자료실 개설 건의", "date", "2025-08-17", "status", "검토중"));
+        
+        model.addAttribute("suggestionList", suggestionList);
+
         return "suggestion";
     }
 

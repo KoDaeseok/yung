@@ -1,0 +1,6 @@
+notice - 공지/건의
+propvest - 투자제안
+prorate - 금리제안
+finops - 운용관리
+investtalk - 세미나/미팅제안
+dms - 요청/리서치자료

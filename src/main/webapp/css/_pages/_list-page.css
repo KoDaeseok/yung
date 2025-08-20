@@ -23,14 +23,11 @@
     font-weight: 600;
 }
 
-/* [수정] td.no-data에서는 padding을 제거합니다. */
 .data-table td.no-data {
     padding: 0;
     color: var(--text-color-light);
     font-size: 15px;
 }
-
-/* [추가] 내부 div의 높이를 직접 제어하여 공간을 확실하게 확보합니다. */
 .no-data-content {
     height: 350px; /* 원하는 최소 높이로 설정 */
     display: flex;
@@ -38,14 +35,34 @@
     justify-content: center;
 }
 
+/* 답변 상태 스타일 */
+.status-completed {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.status-pending {
+    color: var(--text-color-light);
+}
+
 .table-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: relative;
     margin-top: 20px;
+    height: 32px; /* 자식 요소의 position 기준이 될 높이 지정 */
+}
+
+.pagination-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .table-footer .item-counter {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 13px;
     color: var(--text-color-subtle);
 }
