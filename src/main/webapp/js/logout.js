@@ -1,4 +1,4 @@
-// static/js/logout.js
+// /js/logout.js
 document.addEventListener('DOMContentLoaded', () => {
     const logoutButton = document.querySelector('.btn-logout');
 

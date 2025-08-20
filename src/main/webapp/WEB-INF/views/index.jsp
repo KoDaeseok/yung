@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>[test]경찰공제회 정보교류시스템</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <%-- [추가] Font Awesome 아이콘 라이브러리 --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
@@ -56,6 +56,6 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
     <%-- 로그인/인증 스크립트만 로드 --%>
-    <script src="/static/js/auth.js"></script>
+    <script src="/js/auth.js"></script>
 </body>
 </html>

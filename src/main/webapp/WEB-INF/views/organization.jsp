@@ -5,7 +5,7 @@
 <html>
 <head>
     <title>경찰공제회 - ${pageTitle}</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -49,6 +49,11 @@
                                 <span style="color:var(--primary-color)">경찰공제회입니다.</span>
                             </p>
                             <p class="introduce-desc">경찰공제회 정보교류시스템 홈페이지를 찾아주셔서<br>대단히 감사합니다.</p>
+
+                            <!-- <div class="intro-image">
+                                <img src="/images/bg_info.jpg" alt="자산 운용 소개 이미지">
+                            </div> -->
+
                             <div class="contents">
                                 경찰공제회는 전국 경찰공무원의 생활안정과 복지증진을 도모하기 위한 목적으로 설립하였고 지속적인 발전을 거듭하며<br>
                                 자산 3조원 시대를 넘어 새로운 도약을 준비하고 있습니다.<br><br>
@@ -58,10 +63,8 @@
                                 감사합니다.
                             </div>
                         </div>
-                        <!-- <%-- 오른쪽: 이미지 영역 --%>
-                        <div class="intro-image">
-                            <img src="/static/images/bg_info.jpg" alt="자산 운용 소개 이미지">
-                        </div> -->
+                        <%-- 오른쪽: 이미지 영역 --%>
+                        
                     </div>
                 </section>
             </c:if>
@@ -72,7 +75,7 @@
                     <h1>조직도</h1>
                     <div class="content-box">
                         <a href="https://www.pmaa.or.kr/www/1461128249370/orgcht.do" target="new" style="width:100%; height:auto;">
-                            <img src="/static/images/bg_organization.png" alt="조직도 이미지" style="width:100%; height:auto;">
+                            <img src="/images/bg_organization.png" alt="조직도 이미지" style="width:100%; height:auto;">
                         </a>
                     </div>
                     <div>
@@ -215,7 +218,7 @@
 
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
-    <script src="/static/js/auth.js"></script>
-    <script src="/static/js/organization.js"></script>
+    <script src="/js/auth.js"></script>
+    <script src="/js/organization.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-// static/js/organization.js
+// js/organization.js
 document.addEventListener('DOMContentLoaded', () => {
     const tocLinks = document.querySelectorAll('.right-toc-sidebar a');
     const sections = document.querySelectorAll('.page-content section');

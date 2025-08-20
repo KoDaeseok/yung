@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>경찰공제회 - ${pageTitle}</title>
-    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
@@ -131,6 +131,6 @@
     <%-- 푸터 영역 포함 --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
-    <script src="/static/js/signup.js"></script>
+    <script src="/js/signup.js"></script>
 </body>
 </html>

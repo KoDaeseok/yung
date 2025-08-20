@@ -29,7 +29,7 @@
     <div class="header-main">
         <div class="header-main-inner">
             <div class="logo">
-                <a href="/"><img src="/static/images/bg_infoex_logo.png" alt="경찰공제회 로고"></a>
+                <a href="/"><img src="/images/bg_infoex_logo.png" alt="경찰공제회 로고"></a>
             </div>
             <div class="main-menu">
                 <nav>

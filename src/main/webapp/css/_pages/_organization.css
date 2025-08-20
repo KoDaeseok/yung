@@ -7,7 +7,7 @@
 /* 텍스트와 이미지를 감싸는 flex 컨테이너 */
 .intro-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start; 
     gap: 60px;
     margin-top: 10px;
 }
@@ -21,6 +21,7 @@
 .intro-image {
     flex: 1;
     text-align: center;
+    margin-top: 20px; 
 }
 
 .intro-image img {

@@ -1,4 +1,4 @@
-// static/js/signup.js
+// js/signup.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- 기관 검색 팝업 관련 코드 (기존과 동일) ---
     const openModalBtn = document.getElementById('open-org-search-btn');

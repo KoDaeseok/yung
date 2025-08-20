@@ -1,4 +1,4 @@
-// static/js/auth.js
+// js/auth.js
 document.addEventListener('DOMContentLoaded', () => {
     const loginPopupBtn = document.getElementById('login-popup-btn');
     const loginPopupModal = document.getElementById('login-popup-modal');
