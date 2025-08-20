@@ -19,6 +19,7 @@
 @import url('_components/_search-modal.css');
 @import url('_components/_signup.css');
 @import url('_components/_card-layout.css');
+@import url('_components/_table.css');
 
 /* 페이지별 스타일 */
 @import url('_pages/_organization.css');
