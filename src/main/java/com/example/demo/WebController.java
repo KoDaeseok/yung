@@ -24,51 +24,131 @@ public class WebController {
         model.addAttribute("activeMenu", "home"); // 홈 메뉴 활성화
         return "index";
     }
-
-    // 조직소개 페이지를 위한 GET 메소드
-    @GetMapping("/organization")
-    public String organization(Model model, @RequestParam(value = "tab", defaultValue = "intro") String tab) {
-
-        model.addAttribute("pageTitle", "자산운용조직 소개");
-        model.addAttribute("sidebarTitle", "자산운용조직"); // [추가] 사이드바 제목
-        model.addAttribute("activeMenu", "organization"); // [추가] organization 메뉴 활성화
-        model.addAttribute("pageDescription", "경찰공제회 자산운용부문은 회원의 소중한 자산을 더욱 투명하고 효율적으로 운용하기 위해 전문화된 조직체계를 갖추고 있습니다.");
-        model.addAttribute("currentTab", tab);
-
-        // 이동 경로 (Breadcrumb) 데이터 생성
-        List<Map<String, String>> breadcrumbs = new ArrayList<>();
-        breadcrumbs.add(Map.of("label", "홈", "url", "/"));
-        breadcrumbs.add(Map.of("label", "자산운용조직 소개", "url", "/organization"));
-        
-        // 왼쪽 사이드바 (LNB) 메뉴 데이터 동적 생성
+    
+    // 공통 LNB 데이터 생성 메소드
+    private List<Map<String, Object>> getOrganizationLnb(String activeTab) {
         List<Map<String, Object>> lnb = new ArrayList<>();
-        lnb.add(Map.of("label", "자산운용조직 소개", "url", "/organization?tab=intro", "isActive", "intro".equals(tab)));
-        lnb.add(Map.of("label", "조직도", "url", "/organization?tab=chart", "isActive", "chart".equals(tab)));
-        lnb.add(Map.of("label", "찾아오시는 길", "url", "/organization?tab=location", "isActive", "location".equals(tab)));
-        model.addAttribute("lnbItems", lnb);
-
-        // [수정] 오른쪽 목차 (TOC) 데이터 동적 생성: 'intro' 탭일 경우 데이터를 생성하지 않음
-        List<Map<String, String>> toc = new ArrayList<>();
-        if ("chart".equals(tab)) {
-            toc.add(Map.of("label", "조직도", "url", "#section-chart"));
-            toc.add(Map.of("label", "조직업무 소개", "url", "#section-members"));
-        } else if ("location".equals(tab)) {
-            toc.add(Map.of("label", "오시는 길", "url", "#section-location"));
-            toc.add(Map.of("label", "교통편 안내", "url", "#section-transport"));
-        }
-
-        model.addAttribute("breadcrumbs", breadcrumbs);
-        model.addAttribute("tocItems", toc);
-        return "organization";
+        lnb.add(Map.of("label", "자산운용조직 소개", "url", "/organization/intro", "isActive", "intro".equals(activeTab)));
+        lnb.add(Map.of("label", "조직도", "url", "/organization/chart", "isActive", "chart".equals(activeTab)));
+        lnb.add(Map.of("label", "찾아오시는 길", "url", "/organization/location", "isActive", "location".equals(activeTab)));
+        return lnb;
+    }
+    // 공지/건의 LNB 데이터 생성 메소드
+    private List<Map<String, Object>> getNoticeLnb(String activeTab) {
+        List<Map<String, Object>> lnb = new ArrayList<>();
+        lnb.add(Map.of("label", "공지사항", "url", "/notice", "isActive", "notice".equals(activeTab)));
+        lnb.add(Map.of("label", "건의사항", "url", "/suggestion", "isActive", "suggestion".equals(activeTab)));
+        return lnb;
     }
 
+    // 자산운용조직 소개
+    // 1. 자산운용조직 소개 페이지
+    @GetMapping("/organization/intro")
+    public String organizationIntro(Model model) {
+        model.addAttribute("pageTitle", "자산운용조직 소개");
+        model.addAttribute("sidebarTitle", "자산운용조직");
+        model.addAttribute("activeMenu", "organization");
+        model.addAttribute("pageDescription", "경찰공제회 자산운용부문은 회원의 소중한 자산을 더욱 투명하고 효율적으로 운용하기 위해 전문화된 조직체계를 갖추고 있습니다.");
+
+        List<Map<String, String>> breadcrumbs = new ArrayList<>();
+        breadcrumbs.add(Map.of("label", "홈", "url", "/"));
+        breadcrumbs.add(Map.of("label", "자산운용조직 소개", "url", "/organization/intro"));
+        
+        model.addAttribute("breadcrumbs", breadcrumbs);
+        model.addAttribute("lnbItems", getOrganizationLnb("intro"));
+        model.addAttribute("tocItems", new ArrayList<>()); // 소개 페이지에는 TOC 없음
+        return "organization_intro";
+    }
+
+    // 2. 조직도 페이지
+    @GetMapping("/organization/chart")
+    public String organizationChart(Model model) {
+        model.addAttribute("pageTitle", "조직도");
+        model.addAttribute("sidebarTitle", "자산운용조직");
+        model.addAttribute("activeMenu", "organization");
+
+        List<Map<String, String>> breadcrumbs = new ArrayList<>();
+        breadcrumbs.add(Map.of("label", "홈", "url", "/"));
+        breadcrumbs.add(Map.of("label", "자산운용조직 소개", "url", "/organization/intro"));
+        breadcrumbs.add(Map.of("label", "조직도", "url", "")); // [수정] null -> ""
+
+        List<Map<String, String>> toc = new ArrayList<>();
+        toc.add(Map.of("label", "조직도", "url", "#section-chart"));
+        toc.add(Map.of("label", "조직업무 소개", "url", "#section-members"));
+        
+        model.addAttribute("breadcrumbs", breadcrumbs);
+        model.addAttribute("lnbItems", getOrganizationLnb("chart"));
+        model.addAttribute("tocItems", toc);
+        return "organization_chart";
+    }
+    
+    // 3. 찾아오시는 길 페이지
+    @GetMapping("/organization/location")
+    public String organizationLocation(Model model) {
+        model.addAttribute("pageTitle", "찾아오시는 길");
+        model.addAttribute("sidebarTitle", "자산운용조직");
+        model.addAttribute("activeMenu", "organization");
+        model.addAttribute("pageDescription", "경찰공제회에 방문하시는 길을 안내해 드립니다.");
+
+        List<Map<String, String>> breadcrumbs = new ArrayList<>();
+        breadcrumbs.add(Map.of("label", "홈", "url", "/"));
+        breadcrumbs.add(Map.of("label", "자산운용조직 소개", "url", "/organization/intro"));
+        breadcrumbs.add(Map.of("label", "찾아오시는 길", "url", "")); // [수정] null -> ""
+
+        List<Map<String, String>> toc = new ArrayList<>();
+        toc.add(Map.of("label", "오시는 길", "url", "#section-location"));
+        toc.add(Map.of("label", "교통편 안내", "url", "#section-transport"));
+
+        model.addAttribute("breadcrumbs", breadcrumbs);
+        model.addAttribute("lnbItems", getOrganizationLnb("location"));
+        model.addAttribute("tocItems", toc);
+        return "organization_location";
+    }
+
+    // 공지/건의
+    // 공지사항 페이지
+    @GetMapping("/notice")
+    public String notice(Model model) {
+        model.addAttribute("pageTitle", "공지사항");
+        model.addAttribute("sidebarTitle", "공지/건의");
+        model.addAttribute("activeMenu", "notice");
+
+        List<Map<String, String>> breadcrumbs = new ArrayList<>();
+        breadcrumbs.add(Map.of("label", "홈", "url", "/"));
+        breadcrumbs.add(Map.of("label", "공지/건의", "url", "/notice"));
+        breadcrumbs.add(Map.of("label", "공지사항", "url", ""));
+        
+        model.addAttribute("breadcrumbs", breadcrumbs);
+        model.addAttribute("lnbItems", getNoticeLnb("notice"));
+        return "notice";
+    }
+
+    // 건의사항 페이지
+    @GetMapping("/suggestion")
+    public String suggestion(Model model) {
+        model.addAttribute("pageTitle", "건의사항");
+        model.addAttribute("sidebarTitle", "공지/건의");
+        model.addAttribute("activeMenu", "notice"); // '공지/건의' 메뉴 활성화를 위해 동일하게 설정
+
+        List<Map<String, String>> breadcrumbs = new ArrayList<>();
+        breadcrumbs.add(Map.of("label", "홈", "url", "/"));
+        breadcrumbs.add(Map.of("label", "공지/건의", "url", "/notice"));
+        breadcrumbs.add(Map.of("label", "건의사항", "url", ""));
+
+        model.addAttribute("breadcrumbs", breadcrumbs);
+        model.addAttribute("lnbItems", getNoticeLnb("suggestion"));
+        return "suggestion";
+    }
+
+    // 회원가입
     @GetMapping("/signup")
     public String signup(Model model) {
-        model.addAttribute("pageTitle", "아이디요청");
+        model.addAttribute("pageTitle", "회원가입");
         model.addAttribute("isSignupPage", true); 
         return "signup";
     }
     
+    // 로그인
     @PostMapping("/login")
     @ResponseBody
     public Map<String, Object> loginProcess(@RequestParam("username") String username,
@@ -93,6 +173,8 @@ public class WebController {
         }
         return response;
     }
+    
+    // 로그아웃
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);

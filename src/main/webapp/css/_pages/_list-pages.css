@@ -1,0 +1,83 @@
+/* _pages/_list-page.css */
+
+.content-container {
+    margin-top: 20px;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid var(--border-color-strong);
+}
+
+.data-table th,
+.data-table td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color-light);
+    text-align: center;
+    font-size: 14px;
+}
+
+.data-table th {
+    background-color: var(--background-color-light);
+    font-weight: 600;
+}
+
+/* [수정] td.no-data에서는 padding을 제거합니다. */
+.data-table td.no-data {
+    padding: 0;
+    color: var(--text-color-light);
+    font-size: 15px;
+}
+
+/* [추가] 내부 div의 높이를 직접 제어하여 공간을 확실하게 확보합니다. */
+.no-data-content {
+    height: 350px; /* 원하는 최소 높이로 설정 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.table-footer .item-counter {
+    font-size: 13px;
+    color: var(--text-color-subtle);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+}
+
+.pagination a {
+    color: #333;
+    text-decoration: none;
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    user-select: none;
+    min-width: 32px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.pagination a.active, .pagination a:not(.arrow):hover {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: bold;
+}
+
+.pagination a.disabled {
+    color: #ccc;
+    pointer-events: none;
+    background-color: #f8f9fa;
+}
