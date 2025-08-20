@@ -50,10 +50,6 @@
                             </p>
                             <p class="introduce-desc">경찰공제회 정보교류시스템 홈페이지를 찾아주셔서<br>대단히 감사합니다.</p>
 
-                            <!-- <div class="intro-image">
-                                <img src="/images/bg_info.jpg" alt="자산 운용 소개 이미지">
-                            </div> -->
-
                             <div class="contents">
                                 경찰공제회는 전국 경찰공무원의 생활안정과 복지증진을 도모하기 위한 목적으로 설립하였고 지속적인 발전을 거듭하며<br>
                                 자산 3조원 시대를 넘어 새로운 도약을 준비하고 있습니다.<br><br>
@@ -63,8 +59,11 @@
                                 감사합니다.
                             </div>
                         </div>
-                        <%-- 오른쪽: 이미지 영역 --%>
-                        
+
+                        <%-- 오른쪽: 이미지 영역 (수정) --%>
+                        <div class="intro-image">
+                            <img src="/images/bg_info.jpg" alt="자산 운용 소개 이미지">
+                        </div>
                     </div>
                 </section>
             </c:if>
