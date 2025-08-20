@@ -1,0 +1,16 @@
+/* _pages/_signup-page.css */
+
+/* 페이지 좌우 여백을 다른 페이지와 통일 */
+.signup-container {
+    max-width: var(--layout-max-width);
+    margin: 0 auto;
+    padding: var(--layout-padding);
+}
+
+.signup-container h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--border-color-strong);
+    color: var(--text-color-dark);
+}
