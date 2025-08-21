@@ -1,0 +1,43 @@
+/* _pages/_finops.css
+
+/* 목록 페이지 상단 검색창 스타일 */
+.search-bar-wrapper {
+display: flex;
+justify-content: flex-end; /* 전체 영역의 끝으로 정렬 */
+align-items: center;
+gap: 15px; /* 검색 필드와 버튼 사이 간격 */
+}
+.search-fields {
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.search-fields label {
+font-weight: 600;
+color: var(--text-color-medium);
+}
+.search-fields input[type="month"] {
+height: 34px;
+padding: 0 8px; 
+border: 1px solid var(--border-color-default);
+border-radius: var(--border-radius-tiny);
+}
+/* 파일 목록 아이템 스타일 */
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+/* 파일 삭제 버튼 스타일 */
+.btn-delete-file {
+    background: none;
+    border: none;
+    color: var(--error-color);
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}

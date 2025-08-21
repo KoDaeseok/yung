@@ -54,3 +54,7 @@
     color: var(--error-color);
     margin-right: 4px;
 }
+
+.form-table .short-input {
+    width: 170px;
+}

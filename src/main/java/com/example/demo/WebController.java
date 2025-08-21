@@ -25,20 +25,32 @@ public class WebController {
         // --- 상위 메뉴 ---
         menuData.add(Map.of("menuNo", "1", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "2", "menuNm", "공지/건의", "upperMenuNo", "0", "url", "/notice"));
-        // "투자제안" 메뉴의 기본 URL을 목록 페이지로 직접 지정
         menuData.add(Map.of("menuNo", "3", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list")); 
         menuData.add(Map.of("menuNo", "4", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate"));
-        menuData.add(Map.of("menuNo", "5", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops"));
+        menuData.add(Map.of("menuNo", "5", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops/balance_cert/list"));
         menuData.add(Map.of("menuNo", "6", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk"));
         menuData.add(Map.of("menuNo", "7", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms"));
 
         // --- 하위 메뉴 ---
+        // 1. 자산운용조직
         menuData.add(Map.of("menuNo", "101", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "102", "menuNm", "조직도", "upperMenuNo", "1", "url", "/organization/chart"));
         menuData.add(Map.of("menuNo", "103", "menuNm", "찾아오시는 길", "upperMenuNo", "1", "url", "/organization/location"));
+
+        // 2. 공지/건의
         menuData.add(Map.of("menuNo", "201", "menuNm", "공지사항", "upperMenuNo", "2", "url", "/notice"));
         menuData.add(Map.of("menuNo", "202", "menuNm", "건의사항", "upperMenuNo", "2", "url", "/suggestion"));
+
+        // 3. 투자제안
         menuData.add(Map.of("menuNo", "301", "menuNm", "제안요청목록", "upperMenuNo", "3", "url", "/propvest/list"));
+
+        // 5. 운용관리
+        menuData.add(Map.of("menuNo", "501", "menuNm", "잔고증명", "upperMenuNo", "5", "url", "/finops/balance_cert/list"));
+        menuData.add(Map.of("menuNo", "502", "menuNm", "운용실적보고", "upperMenuNo", "5", "url", "/finops/report/list"));
+        menuData.add(Map.of("menuNo", "503", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
+        menuData.add(Map.of("menuNo", "504", "menuNm", "편입자산 세부내역", "upperMenuNo", "5", "url", "/finops/asset/list"));
+        menuData.add(Map.of("menuNo", "505", "menuNm", "연간 자금계획", "upperMenuNo", "5", "url", "/finops/plan/list"));
+        menuData.add(Map.of("menuNo", "506", "menuNm", "업무담당자", "upperMenuNo", "5", "url", "/finops/manager/list"));
     }
     // (참고) 다른 상위 메뉴들도 필요하다면 여기에 하위 메뉴를 추가할 수 있습니다.
 
@@ -283,17 +295,74 @@ public class WebController {
          return "propvest/propvest_detail";
      }
 
+     // 5. 운용관리
+    // 5-1. 잔고증명
+    @GetMapping("/finops/balance_cert/list")
+    public String balanceCertList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+        addCommonAttributes("501", model, session);
+        
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        for (int i = 1; i <= 23; i++) {
+            sampleList.add(Map.of(
+                "no", String.valueOf(i), "id", String.valueOf(i),
+                "title", "2025년 " + (i % 12 + 1) + "월 잔고증명서",
+                "issuer", "발급기관 " + (i % 3 + 1),
+                "date", "2025-08-" + (21 - (i % 10)),
+                "status", (i % 4 == 0) ? "처리중" : "완료"
+            ));
+        }
+        
+        // 페이지네이션 로직 (기존과 동일)
+        int pageSize = 10;
+        addPaginationAttributes(model, page, pageSize, sampleList);
+        
+        return "finops/balance_cert/list";
+    }
+
+    @GetMapping("/finops/balance_cert/detail")
+    public String balanceCertDetail(Model model, HttpSession session) {
+        addCommonAttributes("501", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "잔고증명 상세"));
+        return "finops/balance_cert/detail";
+    }
+
+    @GetMapping("/finops/balance_cert/form")
+    public String balanceCertForm(Model model, HttpSession session) {
+        addCommonAttributes("501", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "잔고증명 등록"));
+        return "finops/balance_cert/form";
+    }
+
+    // --- 페이지네이션 로직을 위한 헬퍼 메소드 ---
+    private void addPaginationAttributes(Model model, int currentPage, int pageSize, List<Map<String, String>> fullList) {
+        int totalItems = fullList.size();
+        int totalPages = (int) Math.ceil((double) totalItems / pageSize);
+        int startPage = ((currentPage - 1) / 5) * 5 + 1;
+        int endPage = Math.min(startPage + 4, totalPages);
+        
+        int startIndex = (currentPage - 1) * pageSize;
+        int endIndex = Math.min(startIndex + pageSize, totalItems);
+        
+        model.addAttribute("list", fullList.subList(startIndex, endIndex));
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("pageSize", pageSize);
+    }
+
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
     // @GetMapping("/propvest") public String propvest() { return "redirect:/"; }
     @GetMapping("/prorate") public String prorate() { return "redirect:/"; }
-    @GetMapping("/finops") public String finops() { return "redirect:/"; }
+    // @GetMapping("/finops") public String finops() { return "redirect:/"; }
     @GetMapping("/investtalk") public String investtalk() { return "redirect:/"; }
     @GetMapping("/dms") public String dms() { return "redirect:/"; }
     
 
     // --- 로그인/회원가입 ---
-    @GetMapping("/signup")
+    @GetMapping("/member/MberInsertView.do")
     public String signup(Model model) {
         model.addAttribute("isSignupPage", true);
         return "member/signup";

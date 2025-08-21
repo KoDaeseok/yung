@@ -17,12 +17,14 @@
     gap: 5px;
 }
 
-.input-with-button .org-code {
-    width: 120px;
+.input-with-button .org-code,
+.input-with-button .short-input {
+    width: 170px;
     flex-shrink: 0;
 }
 
-.input-with-button .org-name {
+.input-with-button .org-name,
+.input-with-button .wide-input {
     flex-grow: 1;
     width: 100px;
 }
@@ -51,7 +53,7 @@
 
 .email-group input,
 .phone-group input {
-    width: 120px;
+    width: 170px;
 }
 
 .phone-group select {
