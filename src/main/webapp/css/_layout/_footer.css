@@ -1,10 +1,10 @@
 /* _layout/_footer.css */
 footer {
-    background-color: #fff;
-    color: #666;
     font-size: 13px;
     padding: 10px 120px;
-    border-top: 1px solid #e8e8e8;
+    background-color: var(--background-color-white); 
+    color: var(--text-color-light); 
+    border-top: 1px solid var(--border-color-light); 
 }
 
 .footer-info {
