@@ -5,7 +5,7 @@
     <h2>${sidebarTitle}</h2>
     <ul>
         <c:forEach var="item" items="${sideMenulist}">
-            <li class="${item.menuNo == acticeMenu ? 'active' : ''}">
+            <li class="${item.menuNo == activeMenu ? 'active' : ''}">
                 <a href="/moveMenu.do?menuNo=${item.menuNo}">${item.menuNm}</a>
             </li>
         </c:forEach>

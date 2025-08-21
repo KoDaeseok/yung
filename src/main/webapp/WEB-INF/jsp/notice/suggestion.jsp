@@ -68,18 +68,32 @@
                 </table>
                 
                 <div class="table-footer">
-                    <div class="pagination-wrapper">
-                        <div class="pagination">
-                            <a href="#" class="arrow disabled">&laquo;</a>
-                            <a href="#" class="arrow disabled">&lsaquo;</a>
-                            <a href="#" class="active">1</a>
-                            <a href="#" class="arrow">&rsaquo;</a>
-                            <a href="#" class="arrow">&raquo;</a>
-                        </div>
-                    </div>
-                    <%-- 카운트 정보 동적으로 표시 --%>
                     <c:if test="${not empty suggestions}">
-                        <div class="item-counter">1 - ${suggestions.size()} of ${suggestions.size()}</div>
+                        <div class="pagination-wrapper">
+                            <div class="pagination">
+                                <%-- 맨 처음으로 --%>
+                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&laquo;</a>
+                                <%-- 이전 페이지 --%>
+                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&lsaquo;</a>
+                                
+                                <%-- 페이지 번호 목록 --%>
+                                <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                                    <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+                                </c:forEach>
+                
+                                <%-- 다음 페이지 --%>
+                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&rsaquo;</a>
+                                <%-- 맨 끝으로 --%>
+                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&raquo;</a>
+                            </div>
+                        </div>
+                        
+                        <%-- 카운트 정보 동적으로 표시 --%>
+                        <div class="item-counter">
+                            <c:set var="startItem" value="${(currentPage - 1) * pageSize + 1}" />
+                            <c:set var="endItem" value="${currentPage * pageSize}" />
+                            ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
+                        </div>
                     </c:if>
                 </div>
             </div>
