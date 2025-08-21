@@ -117,7 +117,8 @@
                     </tbody>
                 </table>
 
-                <div class="form-buttons">
+                <div id="button-group-wrapper" class="button-container"> <%-- 기본값을 우측 정렬로 설정 --%>
+                    <%-- '수정', '목록' 버튼 --%>
                     <div id="view-mode-buttons">
                         <button type="button" class="btn btn-primary" id="edit-btn">
                             <i class="fa-solid fa-edit"></i> 수정
@@ -126,6 +127,8 @@
                             <i class="fa-solid fa-list"></i> 목록
                         </button>
                     </div>
+                    
+                    <%-- '저장', '취소' 버튼 --%>
                     <div id="edit-mode-buttons" style="display: none;">
                         <button type="submit" class="btn btn-primary">
                             <i class="fa-solid fa-check"></i> 저장
