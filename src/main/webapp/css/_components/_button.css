@@ -118,3 +118,11 @@
     vertical-align: middle;
     margin-left: 5px;
 }
+
+.btn-disabled {
+    background-color: #f0f0f0 !important;
+    border-color: #ddd !important;
+    color: #aaa !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+}

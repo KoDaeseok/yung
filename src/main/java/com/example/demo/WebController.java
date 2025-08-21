@@ -19,30 +19,28 @@ import java.util.stream.Collectors;
 @Controller
 public class WebController {
 
-    // --- 전체 메뉴 데이터 (DB 대신 임시 데이터) ---
     private List<Map<String, Object>> menuData = new ArrayList<>();
 
     public WebController() {
-        // --- 상위 메뉴 (요청하신 메뉴 모두 추가) ---
-        menuData.add(Map.of("menuNo", "1", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/intro"));
+        // --- 상위 메뉴 ---
+        menuData.add(Map.of("menuNo", "1", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "2", "menuNm", "공지/건의", "upperMenuNo", "0", "url", "/notice"));
-        menuData.add(Map.of("menuNo", "3", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest"));
+        // "투자제안" 메뉴의 기본 URL을 목록 페이지로 직접 지정
+        menuData.add(Map.of("menuNo", "3", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list")); 
         menuData.add(Map.of("menuNo", "4", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate"));
         menuData.add(Map.of("menuNo", "5", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops"));
         menuData.add(Map.of("menuNo", "6", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk"));
         menuData.add(Map.of("menuNo", "7", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms"));
 
         // --- 하위 메뉴 ---
-        // 1. 자산운용조직소개
-        menuData.add(Map.of("menuNo", "101", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/intro"));
+        menuData.add(Map.of("menuNo", "101", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "102", "menuNm", "조직도", "upperMenuNo", "1", "url", "/organization/chart"));
         menuData.add(Map.of("menuNo", "103", "menuNm", "찾아오시는 길", "upperMenuNo", "1", "url", "/organization/location"));
-        // 2. 공지/건의
         menuData.add(Map.of("menuNo", "201", "menuNm", "공지사항", "upperMenuNo", "2", "url", "/notice"));
         menuData.add(Map.of("menuNo", "202", "menuNm", "건의사항", "upperMenuNo", "2", "url", "/suggestion"));
-        
-        // (참고) 다른 상위 메뉴들도 필요하다면 여기에 하위 메뉴를 추가할 수 있습니다.
+        menuData.add(Map.of("menuNo", "301", "menuNm", "제안요청목록", "upperMenuNo", "3", "url", "/propvest/list"));
     }
+    // (참고) 다른 상위 메뉴들도 필요하다면 여기에 하위 메뉴를 추가할 수 있습니다.
 
     // --- 공통 컴포넌트 컨트롤러 ---
 
@@ -73,7 +71,7 @@ public class WebController {
                     .filter(m -> rootMenuNo.equals(m.get("upperMenuNo")))
                     .collect(Collectors.toList());
             model.addAttribute("sideMenulist", sideMenuList);
-            model.addAttribute("acticeMenu", activeMenuNo);
+            model.addAttribute("activeMenu", activeMenuNo);
         }
         return "common/sidebar";
     }
@@ -116,7 +114,7 @@ public class WebController {
     }
 
     // 1. 자산운용조직
-    @GetMapping("/organization/intro")
+    @GetMapping("/organization/introduce")
     public String organizationIntro(Model model, HttpSession session) {
         addCommonAttributes("101", model, session);
         return "org/introduce";
@@ -230,9 +228,64 @@ public class WebController {
         return "notice/suggestion_detail";
     }
 
+    // 3. 투자제안
+    @GetMapping("/propvest/list")
+    public String propvestList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+        addCommonAttributes("301", model, session);
+        
+        // --- 페이지네이션을 위한 임시 데이터 생성 ---
+        List<Map<String, String>> propvestList = new ArrayList<>();
+        for (int i = 1; i <= 35; i++) {
+            propvestList.add(Map.of(
+                "no", String.valueOf(i),
+                "id", String.valueOf(i),
+                "title", "신규 투자 제안 " + i,
+                "proposer", "제안자" + i,
+                "date", "2025-08-" + (21 - (i % 5)),
+                "status", (i % 3 == 0) ? "검토중" : "검토완료"
+            ));
+        }
+
+        int currentPage = page;
+        int pageSize = 10; // 한 페이지에 10개씩 표시
+        int totalItems = propvestList.size();
+        int totalPages = (int) Math.ceil((double) totalItems / pageSize);
+        int startPage = ((currentPage - 1) / 5) * 5 + 1;
+        int endPage = Math.min(startPage + 4, totalPages);
+
+        // 현재 페이지에 해당하는 데이터만 잘라서 모델에 추가
+        model.addAttribute("propvestList", propvestList.subList((currentPage - 1) * pageSize, Math.min(currentPage * pageSize, totalItems)));
+        
+        // 페이지네이션 관련 정보 모델에 추가
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("pageSize", pageSize);
+
+        return "propvest/propvest_list";
+    }
+ 
+     @GetMapping("/propvest/new")
+     public String newPropvestForm(Model model, HttpSession session) {
+         // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
+         addCommonAttributes("301", model, session); 
+         model.addAttribute("menuDetail", Map.of("menuNm", "투자제안 등록")); // 페이지 제목은 개별 설정
+         return "propvest/propvest_form";
+     }
+ 
+     @GetMapping("/propvest/detail")
+     public String propvestDetail(Model model, HttpSession session) {
+         // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
+         addCommonAttributes("301", model, session);
+         model.addAttribute("menuDetail", Map.of("menuNm", "제안요청상세")); // 페이지 제목은 개별 설정
+         return "propvest/propvest_detail";
+     }
+
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
-    @GetMapping("/propvest") public String propvest() { return "redirect:/"; }
+    // @GetMapping("/propvest") public String propvest() { return "redirect:/"; }
     @GetMapping("/prorate") public String prorate() { return "redirect:/"; }
     @GetMapping("/finops") public String finops() { return "redirect:/"; }
     @GetMapping("/investtalk") public String investtalk() { return "redirect:/"; }

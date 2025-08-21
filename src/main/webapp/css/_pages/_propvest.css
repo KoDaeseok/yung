@@ -1,0 +1,76 @@
+/* _pages/_propvest.css */
+
+/* 제안자 정보 등 읽기전용 필드 스타일 */
+.propvest-readonly-info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--border-color-default);
+    background-color: var(--background-color-light);
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.propvest-readonly-info span {
+    font-weight: 600;
+    color: var(--text-color-medium);
+}
+.propvest-readonly-info input {
+    border: none;
+    background: transparent;
+    font-weight: bold;
+    padding: 0;
+    width: 120px;
+}
+
+/* 파일 첨부 스타일 */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.file-input-wrapper input[type="text"] {
+    flex-grow: 1;
+}
+.file-input-wrapper .btn {
+    flex-shrink: 0;
+    padding: 0 15px;
+    height: 34px;
+}
+
+/* 아이콘 포함된 입력 필드 스타일 */
+.input-with-icon {
+    position: relative;
+}
+.input-with-icon input {
+    width: 100%;
+    box-sizing: border-box; /* 너비 계산 기준을 테두리까지 포함 */
+}
+.input-with-icon i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+}
+
+/* 시간 범위 입력 스타일 */
+.time-range-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.time-range-input input {
+    width: 80px;
+}
+
+/* 선택(select) 박스 너비 확장 */
+.form-table select.wide-select {
+    width: 220px; 
+}
+
+/* jQuery UI datepicker z-index 수정 (다른 요소에 가려지지 않도록) */
+.ui-datepicker {
+    z-index: 2000 !important;
+}
