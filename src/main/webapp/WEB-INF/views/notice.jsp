@@ -47,7 +47,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%-- [수정] 데이터 유무에 따라 분기 처리 --%>
+                        <%-- 데이터 유무에 따라 분기 처리 --%>
                         <c:choose>
                             <c:when test="${not empty noticeList}">
                                 <c:forEach var="item" items="${noticeList}">
