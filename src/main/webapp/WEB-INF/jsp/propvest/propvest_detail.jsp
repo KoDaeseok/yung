@@ -55,7 +55,7 @@
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 투자사업개요</th>
-                            <td colspan="3"><textarea name="overview" readonly>- 서울 중심업무지구(CBD) 프라임 오피스 빌딩&#13;- 안정적인 임대 수익 및 자산 가치 상승 기대</textarea></td>
+                            <td colspan="3"><textarea name="overview" style="height: 120px; resize: vertical; width: 100%;" readonly>- 서울 중심업무지구(CBD) 프라임 오피스 빌딩&#13;- 안정적인 임대 수익 및 자산 가치 상승 기대</textarea></td>
                         </tr>
                         <tr>
                             <th>투자제안서</th>

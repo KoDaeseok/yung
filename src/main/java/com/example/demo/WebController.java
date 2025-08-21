@@ -352,6 +352,61 @@ public class WebController {
         model.addAttribute("pageSize", pageSize);
     }
 
+    // 5-2. 운용실적보고
+    @GetMapping("/finops/report/list")
+    public String reportList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+        addCommonAttributes("502", model, session);
+        
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        for (int i = 1; i <= 28; i++) {
+            sampleList.add(Map.of(
+                "no", String.valueOf(i), "id", String.valueOf(i),
+                "reportDate", "2025-0" + (9 - (i % 9)),
+                "fundName", "KB사모부동산신탁제" + i + "호",
+                "cycle", (i % 2 == 0) ? "분기" : "월",
+                "reportFile", "운용실적보고서_" + i + "차.pdf"
+            ));
+        }
+        
+        addPaginationAttributes(model, page, 10, sampleList);
+        return "finops/report/list";
+    }
+
+    // '/form' 경로를 '/detail'로 통합하여 처리
+    @GetMapping({"/finops/report/detail", "/finops/report/form"})
+    public String reportDetailAndForm(Model model, HttpSession session, @RequestParam(value="id", required = false) String id) {
+        addCommonAttributes("502", model, session);
+
+        if (id != null) {
+            // 상세/수정 모드: ID가 있으면 기존 데이터를 조회했다고 가정
+            model.addAttribute("pageMode", "detail");
+            model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 상세"));
+            
+            // DB에서 조회한 데이터라고 가정한 예시 데이터
+            Map<String, Object> reportData = new HashMap<>();
+            reportData.put("fundCode", "951112103101");
+            reportData.put("fundName", "KB스타오피스사모부동산신탁");
+            reportData.put("reportCycle", "분기");
+            reportData.put("reportMonth", "2025-03");
+            reportData.put("overview", "종합 현황 내용입니다.");
+            reportData.put("staff", "홍길동, 김철수, 이영희");
+            reportData.put("staffChange", "Y");
+            reportData.put("staffChangeDetail", "3/28 ddd -> ccc");
+            reportData.put("compliance", "정상 준수");
+            reportData.put("recentIssue", "특이사항 없음");
+            reportData.put("fileName", "블라인드_펀드_세부투자_자산_입력_기업금융-test.xlsx");
+            model.addAttribute("report", reportData);
+
+        } else {
+            // 등록 모드: ID가 없으면 빈 데이터를 전달
+            model.addAttribute("pageMode", "form");
+            model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 등록"));
+            model.addAttribute("report", new HashMap<String, Object>()); // 빈 Map 전달
+        }
+        
+        return "finops/report/detail";
+    }
+
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
     // @GetMapping("/propvest") public String propvest() { return "redirect:/"; }
