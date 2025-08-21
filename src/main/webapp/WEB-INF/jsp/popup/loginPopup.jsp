@@ -1,4 +1,3 @@
-<!-- views/popup/loginPopup.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%-- 로그인 팝업 모달 --%>
 <div id="login-popup-modal" class="popup-modal-overlay" style="display: none;">
@@ -22,7 +21,6 @@
                     <input type="password" id="popup-password" name="password">
                     <div class="error-message" id="password-error"></div>
                 </div>
-                <!-- <button type="submit" class="btn-login">로그인</button> -->
                 <button type="submit" class="btn btn-primary btn-block">로그인</button>
             </form>
             <div class="login-options">

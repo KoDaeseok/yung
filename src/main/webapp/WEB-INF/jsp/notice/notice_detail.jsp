@@ -1,41 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>경찰공제회 - ${pageTitle}</title>
+    <title>경찰공제회 - ${menuDetail.menuNm}</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <c:import url="/header.do" />
 
     <div class="page-container">
         <%-- 사이드바 --%>
-        <jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
+        <c:import url="/lnb.do" />
 
         <main class="page-content">
             <div class="breadcrumb">
-                <c:forEach var="crumb" items="${breadcrumbs}" varStatus="status">
-                    <c:if test="${not status.first}">
-                        <span>></span>
-                    </c:if>
-                    <c:choose>
-                        <c:when test="${not empty crumb.url}">
-                            <a href="${crumb.url}">
-                                <c:if test="${status.first}"><i class="fa-solid fa-house"></i></c:if>
-                                ${crumb.label}
-                            </a>
-                        </c:when>
-                        <c:otherwise>
-                            <span>${crumb.label}</span>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-            </div>
+				<a href="/index.do">
+					<i class="fa-solid fa-house"></i> 
+					홈 
+				</a>
+				<span>></span>            
+                <span>공지/건의</span>
+				<span>></span>
+				<span>${menuDetail.menuNm}</span>
+			</div>
             
-            <h1>${pageTitle}</h1>
+            <h1>${menuDetail.menuNm}</h1>
             
             <div class="content-container">
                 <table class="detail-table">
@@ -74,6 +67,8 @@
         </main>
     </div>
 
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+
+    <script src="/js/auth.js"></script>
 </body>
 </html>

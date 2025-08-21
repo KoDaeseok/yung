@@ -22,7 +22,7 @@ public class WebController {
     @GetMapping("/")
     public String home(Model model) { // Model 추가
         model.addAttribute("activeMenu", "home"); // 홈 메뉴 활성화
-        return "index";
+        return "main/index";
     }
     
     // 공통 LNB 데이터 생성 메소드
@@ -57,7 +57,7 @@ public class WebController {
         model.addAttribute("breadcrumbs", breadcrumbs);
         model.addAttribute("lnbItems", getOrganizationLnb("intro"));
         model.addAttribute("tocItems", new ArrayList<>()); // 소개 페이지에는 TOC 없음
-        return "organization_intro";
+        return "org/introduce";
     }
 
     // 2. 조직도 페이지
@@ -79,7 +79,7 @@ public class WebController {
         model.addAttribute("breadcrumbs", breadcrumbs);
         model.addAttribute("lnbItems", getOrganizationLnb("chart"));
         model.addAttribute("tocItems", toc);
-        return "organization_chart";
+        return "org/chart";
     }
     
     // 3. 찾아오시는 길 페이지
@@ -102,7 +102,7 @@ public class WebController {
         model.addAttribute("breadcrumbs", breadcrumbs);
         model.addAttribute("lnbItems", getOrganizationLnb("location"));
         model.addAttribute("tocItems", toc);
-        return "organization_location";
+        return "org/location";
     }
 
     // 공지/건의
@@ -130,7 +130,7 @@ public class WebController {
 
         model.addAttribute("noticeList", noticeList);
         
-        return "notice";
+        return "notice/notice";
     }
 
      // [추가] 공지사항 상세 페이지
@@ -158,7 +158,7 @@ public class WebController {
 
         model.addAttribute("notice", noticeDetail);
 
-        return "notice_detail";
+        return "notice/notice_detail";
     }
 
     // [수정] 건의사항 목록
@@ -187,7 +187,7 @@ public class WebController {
         suggestions.add(Map.of("no", "1", "title", "이용 문의", "date", "2024-08-19", "isPublic", "공개", "status", "답변완료"));
         model.addAttribute("suggestions", suggestions);
 
-        return "suggestion";
+        return "notice/suggestion";
     }
 
     // [추가] 건의사항 등록 폼
@@ -212,7 +212,7 @@ public class WebController {
         lnb.add(Map.of("label", "건의사항", "url", "/suggestion", "isActive", true));
         model.addAttribute("lnbItems", lnb);
 
-        return "suggestion_form";
+        return "notice/suggestion_form";
     }
 
     // [추가] 건의사항 상세 페이지
@@ -245,7 +245,7 @@ public class WebController {
         suggestionDetail.put("content", "질문입니다");
         model.addAttribute("suggestion", suggestionDetail);
         
-        return "suggestion_detail";
+        return "notice/suggestion_detail";
     }
 
     // 회원가입
@@ -253,7 +253,7 @@ public class WebController {
     public String signup(Model model) {
         model.addAttribute("pageTitle", "회원가입");
         model.addAttribute("isSignupPage", true); 
-        return "signup";
+        return "member/signup";
     }
     
     // 로그인

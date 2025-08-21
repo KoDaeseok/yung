@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>경찰공제회 - ${pageTitle}</title>
+    <title>경찰공제회 - 회원가입</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
     <%-- 헤더 영역 포함 --%>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <c:import url="/header.do" />
 
     <%-- 메인 콘텐츠 --%>
     <main class="signup-container">
-        <h1>${pageTitle}</h1>
+        <h1>회원가입</h1>
         <form class="signup-form" id="signup-form">
             <table class="form-table">
                 <tbody>
@@ -126,10 +129,10 @@
     </main>
 
     <%-- 기관 검색 팝업 파일 포함 --%>
-    <jsp:include page="/WEB-INF/views/popup/orgSearchPopup.jsp" />
+    <jsp:include page="/WEB-INF/jsp/popup/orgSearchPopup.jsp" />
 
     <%-- 푸터 영역 포함 --%>
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
 
     <script src="/js/signup.js"></script>
 </body>

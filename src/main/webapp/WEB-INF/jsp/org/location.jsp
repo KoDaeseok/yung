@@ -1,59 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>경찰공제회 - ${pageTitle}</title>
+    <title>경찰공제회 - ${menuDetail.menuNm}</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <c:import url="/header.do" />
 
     <div class="page-container">
+
         <%-- 사이드바 --%>
-        <jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
+        <c:import url="/lnb.do" />
 
         <main class="page-content">
-            <div class="breadcrumb">
-                <c:forEach var="crumb" items="${breadcrumbs}" varStatus="status">
-                    <c:if test="${not status.first}">
-                        <span>></span>
-                    </c:if>
-                    <c:choose>
-                        <c:when test="${not empty crumb.url}">
-                            <a href="${crumb.url}">
-                                <c:if test="${status.first}"><i class="fa-solid fa-house"></i></c:if>
-                                ${crumb.label}
-                            </a>
-                        </c:when>
-                        <c:otherwise>
-                            <span>${crumb.label}</span>
-                        </c:otherwise>
-                    </c:choose>
-                </c:forEach>
-            </div>
-
+        	<div class="breadcrumb">
+				<a href="/index.do">
+					<i class="fa-solid fa-house"></i> 
+					홈 
+				</a>
+				<span>></span>                
+                <span>자산운용조직</span>
+				<span>></span> 
+				<span>${menuDetail.menuNm}</span>
+			</div>
+			
             <section id="section-location">
                 <h1>찾아오시는 길</h1>
-                <p class="description">${pageDescription}</p>
-
+                <p class="description">경찰공제회에 방문하시는 길을 안내해 드립니다.</p>
+                
+                <%-- 구글 지도 --%>
                 <div class="map-container">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3163.5602510702565!2d126.94756761531083!3d37.54186217980247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c98a6615ef543%3A0xc1f036b7b1502b59!2z7ISc7Jq47Yq567OE7IucIOuniO2PrOq1rCDrj4TtmZTrj5kg66eI7Y-s64yA66GcIDc4!5e0!3m2!1sko!2skr!4v1572826994748!5m2!1sko!2skr" width="100%" height="400" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
                 </div>
             </section>
-
+            
+            <%-- 상세 교통 정보 테이블 --%>
             <section id="section-transport">
-                <h2>교통편 안내</h2>
                 <table class="location-details">
                     <tbody>
                         <tr>
                             <th><i class="fa-solid fa-subway"></i> 지하철</th>
                             <td>
-                                <strong><span class="line-5">5호선</span>, <span class="line-6">6호선</span></strong> 공덕역 8번 출구, 자람빌딩까지 도보 5분거리<br>
-                                <strong><span class="line-5">5호선</span></strong> 마포역 3번 출구, 자람빌딩까지 도보 8분거리<br>
-                                <strong><span class="line-kj">경의중앙선</span>, <span class="line-ar">공항철도</span></strong> 공덕역 9번 출구, 자람빌딩까지 도보 3분거리
+                                <strong>
+                                    <span class="line-5">5호선</span>, 
+                                    <span class="line-6">6호선</span>
+                                </strong>
+                                공덕역 8번 출구, 자람빌딩까지 도보 5분거리
+                                <br>
+                                <strong>
+                                    <span class="line-5">5호선</span> 
+                                </strong>
+                                마포역 3번 출구, 자람빌딩까지 도보 8분거리
+                                <br>
+                                <strong>
+                                    <span class="line-kj">경의중앙선</span>, 
+                                    <span class="line-ar">공항철도</span> 
+                                </strong>
+                                공덕역 9번 출구, 자람빌딩까지 도보 3분거리
+                                
                             </td>
                         </tr>
                         <tr>
@@ -76,22 +85,21 @@
                         </tr>
                     </tbody>
                 </table>
-            </section>
+           </section>
         </main>
-
-        <c:if test="${not empty tocItems}">
-            <aside class="right-toc-sidebar">
-                <h3>찾아오시는 길</h3>
-                <ul>
-                    <c:forEach var="item" items="${tocItems}">
-                        <li><a href="${item.url}">${item.label}</a></li>
-                    </c:forEach>
-                </ul>
-            </aside>
-        </c:if>
+        
+        <aside class="right-toc-sidebar">
+	        <h3>자산운용조직</h3>
+	        <ul>
+	            <li><a href="#section-location">오시는 길</a></li>
+	            <li><a href="#section-transport">교통편 안내</a></li>
+	        </ul>
+	    </aside>
     </div>
 
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    
+    <script src="/js/auth.js"></script>
     <script src="/js/organization.js"></script>
 </body>
 </html>

@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>경찰공제회 - ${pageTitle}</title>
+    <title>경찰공제회 - ${menuDetail.menuNm}</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <c:import url="/header.do" />
 
     <div class="page-container">
         <%-- 사이드바 --%>
-        <jsp:include page="/WEB-INF/views/common/sidebar.jsp" />
+        <c:import url="/lnb.do" />
 
         <main class="page-content">
             <div class="breadcrumb">
@@ -35,7 +36,7 @@
                 </c:forEach>
             </div>
             
-            <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
+            <h1><i class="fa-solid fa-pen-to-square"></i> ${menuDetail.menuNm}</h1>
             
             <form id="suggestion-form">
                 <table class="form-table">
@@ -92,6 +93,8 @@
         </main>
     </div>
 
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+
+    <script src="/js/auth.js"></script>
 </body>
 </html>

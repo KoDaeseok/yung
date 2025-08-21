@@ -73,7 +73,7 @@
 }
 
 /* 오류 메시지 스타일 */
-.error-message {
+.error {
     color: var(--error-color);
     font-size: 12px;
     font-weight: 500;

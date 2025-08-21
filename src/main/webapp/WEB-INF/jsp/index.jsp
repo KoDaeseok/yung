@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,7 @@
 <body>
 
     <%-- 헤더 영역 포함 --%>
-    <jsp:include page="/WEB-INF/views/common/header.jsp" />
+    <c:import url="/header.do" />
 
     <%-- 메인 콘텐츠 --%>
     <main class="main-container">
@@ -53,7 +55,7 @@
     </main>
 
     <%-- 푸터 영역 포함 --%>
-    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     
     <%-- 로그인/인증 스크립트만 로드 --%>
     <script src="/js/auth.js"></script>
