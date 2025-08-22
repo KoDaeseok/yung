@@ -29,85 +29,90 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width: 10%;">번호</th>
-                            <th style="width: 50%;">제목</th>
-                            <th style="width: 15%;">제안자</th>
-                            <th style="width: 15%;">등록일</th>
-                            <th style="width: 10%;">상태</th>
+                            <th style="width: 8%;">요청일자</th>
+                            <th style="width: 10%;">투자접수번호</th>
+                            <th style="width: 8%;">진행상태</th>
+                            <th style="width: 10%;">투자분야</th>
+                            <th style="width: auto;">제안제목</th>
+                            <th style="width: 10%;">미팅예정일시</th>
+                            <th style="width: 8%;">제안통화</th>
+                            <th style="width: 10%;">제안금액</th>
+                            <th style="width: 8%;">제안자</th>
+                            <th style="width: 8%;">담당팀</th>
+                            <th style="width: 8%;">담당자</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <%-- 예시 데이터 --%>
-                        <tr>
-                            <td>1</td>
-                            <td style="text-align: left;">
-                                <a href="/propvest/detail?id=1" style="text-decoration:none; color: #333;">신규 부동산 투자 제안</a>
-                            </td>
-                            <td>김투자</td>
-                            <td>2025-08-21</td>
-                            <td><span class="status-badge complete">검토완료</span></td>
-                        </tr>
-                        <%-- 데이터가 없을 경우 --%>
-                        <%-- 
-                        <tr>
-                            <td colspan="5" class="no-data">
-                                <div class="no-data-content">제안이 없습니다.</div>
-                            </td>
-                        </tr>
-                        --%>
-                        <tbody>
-                            <c:choose>
-                                <c:when test="${not empty propvestList}">
-                                    <c:forEach var="item" items="${propvestList}">
-                                        <tr>
-                                            <td>${item.no}</td>
-                                            <td style="text-align: left;">
-                                                <a href="/propvest/detail?id=${item.id}" style="text-decoration:none; color: #333;">${item.title}</a>
-                                            </td>
-                                            <td>${item.proposer}</td>
-                                            <td>${item.date}</td>
-                                            <td><span class="status-badge ${item.status == '검토완료' ? 'complete' : ''}">${item.status}</span></td>
-                                        </tr>
-                                    </c:forEach>
-                                </c:when>
-                                <c:otherwise>
+                        <c:choose>
+                            <c:when test="${not empty propvestList}">
+                                <c:forEach var="item" items="${propvestList}">
                                     <tr>
-                                        <td colspan="5" class="no-data">
-                                            <div class="no-data-content">제안이 없습니다.</div>
+                                        <td>${item.date}</td>
+                                        <td>
+                                             <a href="/propvest/detail?id=${item.id}" style="text-decoration:none; color: #333;">${item.id}</a>
                                         </td>
+                                        <td class="status-cell">
+                                            <c:choose>
+                                                <c:when test="${item.status == '검토완료'}">
+                                                    <span class="status-badge complete">${item.status}</span>
+                                                </c:when>
+                                                <c:when test="${item.status == '검토중'}">
+                                                    <span class="status-badge pending">${item.status}</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="status-badge">${item.status}</span>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td>부동산</td>
+                                        <td style="text-align: left;">
+                                            <a href="/propvest/detail?id=${item.id}" style="text-decoration:none; color: #333;">${item.title}</a>
+                                        </td>
+                                        <td>2025-09-01</td>
+                                        <td>KRW</td>
+                                        <td style="text-align: right;">500,000,000</td>
+                                        <td>${item.proposer}</td>
+                                        <td>기업투자팀</td>
+                                        <td>김담당</td>
                                     </tr>
-                                </c:otherwise>
-                            </c:choose>
-                        </tbody>
-                    </table>
-                    
-                    <div class="table-footer">
-                        <c:if test="${not empty propvestList}">
-                            <div class="pagination-wrapper">
-                                <div class="pagination">
-                                    <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angles-left"></i></a>
-                                    <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angle-left"></i></a>
-                                    <c:forEach var="i" begin="${startPage}" end="${endPage}">
-                                        <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
-                                    </c:forEach>
-                                    <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angle-right"></i></a>
-                                    <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angles-right"></i></a>
-                                </div>
-                            </div>
-                            
-                            <%-- 카운트 정보 동적으로 표시 --%>
-                            <div class="item-counter">
-                                <c:set var="startItem" value="${(currentPage - 1) * pageSize + 1}" />
-                                <c:set var="endItem" value="${currentPage * pageSize}" />
-                                ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
-                            </div>
-                        </c:if>
-                    </div>
-                </div>
+                                </c:forEach>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <td colspan="11" class="no-data">
+                                        <div class="no-data-content">제안이 없습니다.</div>
+                                    </td>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
+                    </tbody>
+                </table>
                 
-                <div class="button-container">
-                    <a href="/propvest/new" class="btn btn-primary">신규 제안 등록</a>
+                <div class="table-footer">
+                    <c:if test="${not empty propvestList}">
+                        <div class="pagination-wrapper">
+                            <div class="pagination">
+                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angles-left"></i></a>
+                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angle-left"></i></a>
+                                <c:forEach var="i" begin="${startPage}" end="${endPage}">
+                                    <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
+                                </c:forEach>
+                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angle-right"></i></a>
+                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angles-right"></i></a>
+                            </div>
+                        </div>
+                        
+                        <div class="item-counter">
+                            <c:set var="startItem" value="${(currentPage - 1) * pageSize + 1}" />
+                            <c:set var="endItem" value="${currentPage * pageSize}" />
+                            ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
+                        </div>
+                    </c:if>
                 </div>
+            </div>
+            
+            <div class="button-container">
+                <a href="/propvest/new" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 신규 제안 등록</a>
             </div>
         </main>
     </div>

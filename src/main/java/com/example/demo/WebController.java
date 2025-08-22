@@ -201,13 +201,13 @@ public class WebController {
         // --- 페이지네이션 데이터 생성 ---
         List<Map<String, String>> suggestions = new ArrayList<>();
         suggestions.add(Map.of("no", "2", "id", "2", "title", "정보교류시스템 개선 건의", "date", "2024-08-20", "isPublic", "비공개",
-                "status", "답변완료"));
+                "status", "완료"));
         suggestions.add(Map.of("no", "1", "id", "1", "title", "이용 문의", "date", "2024-08-19", "isPublic", "공개", "status",
-                "답변완료"));
+                "미완료"));
         // 추가 데이터 예시 (총 25개)
         for (int i = 3; i <= 25; i++) {
             suggestions.add(Map.of("no", String.valueOf(i), "id", String.valueOf(i), "title", "건의사항 테스트 " + i, "date",
-                    "2024-08-18", "isPublic", "공개", "status", "답변대기"));
+                    "2024-08-18", "isPublic", "공개", "status", "완료"));
         }
 
         int currentPage = page;

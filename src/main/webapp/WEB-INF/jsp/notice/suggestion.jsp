@@ -52,7 +52,16 @@
                                         </td>
                                         <td>${item.date}</td>
                                         <td>${item.isPublic}</td>
-                                        <td><span class="status-badge complete">${item.status}</span></td>
+                                        <td class="status-cell">
+                                            <c:choose>
+                                                <c:when test="${item.status == '완료'}">
+                                                    <span class="status-badge complete">${item.status}</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="status-badge pending">${item.status}</span>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </c:when>

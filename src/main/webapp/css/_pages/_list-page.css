@@ -115,3 +115,32 @@
 .data-table tbody tr[data-href]:hover {
     background-color: var(--background-color-hover);
 }
+
+/* 답변 상태 스타일 (새로운 배지 스타일로 교체) */
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 15px; /* 둥근 모서리 */
+    text-align: center;
+    white-space: nowrap;
+    line-height: 1;
+}
+
+/* 완료 (Complete) & 승인 (Approved) */
+.status-badge.complete,
+.status-badge.approved {
+    background-color: var(--primary-color); /* 파란색 */
+}
+
+/* 미완료 (Pending) */
+.status-badge.pending {
+    background-color: #6c757d; /* 회색 */
+}
+
+/* 요청 (Requested) */
+.status-badge.requested {
+    background-color: #17a2b8; /* 청록색 */
+}
