@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,6 @@
             </div>
             <h1>${menuDetail.menuNm}</h1>
             
-            <%-- 검색 영역 --%>
             <div class="search-bar-wrapper">
                 <div class="search-fields">
                     <label for="search-month">보고대상월</label>
@@ -33,10 +33,10 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width: 15%;">펀드코드</th>
+                            <th style="width: 25%;">펀드코드</th>
                             <th style="width: 45%;">펀드명</th>
-                            <th style="width: 20%;">금액</th>
-                            <th style="width: 20%;">잔고증명서</th>
+                            <th style="width: 15%;">금액</th>
+                            <th style="width: 15%;">등록여부</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,13 +44,12 @@
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
                                     <tr>
-                                        <td>951515032501</td>
+                                        <td>${item.fundCode}</td>
                                         <td style="text-align: left;">
-                                            <a href="/finops/balance_cert/detail?id=${item.id}" class="text-link">KB PG 에너지인프라모특별자산투자</a>
+                                            <a href="/finops/balance_cert/detail?id=${item.id}" class="text-link">${item.fundName}</a>
                                         </td>
-                                        <td>10,000,000</td>
-                                        <%-- 다운로드 링크 --%>
-                                        <td><a href="#" class="download-link" data-filename="${item.title}.pdf">${item.title}.pdf</a></td>
+                                        <td style="text-align: right;"><fmt:formatNumber value="${item.amount}" pattern="#,###" /></td>
+                                        <td><span class="${item.status == '등록완료' ? 'status-completed' : 'status-pending'}">${item.status}</span></td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
@@ -60,8 +59,6 @@
                         </c:choose>
                     </tbody>
                 </table>
-
-                <%-- 페이지네이션 --%>
                 <div class="table-footer">
                     <c:if test="${not empty list}">
                         <div class="pagination-wrapper">
@@ -75,15 +72,10 @@
                                 <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&raquo;</a>
                             </div>
                         </div>
-                        <div class="item-counter">
-                            <c:set var="startItem" value="${(currentPage - 1) * pageSize + 1}" />
-                            <c:set var="endItem" value="${currentPage * pageSize}" />
-                            ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
-                        </div>
                     </c:if>
                 </div>
                 <div class="button-container">
-                    <a href="/finops/balance_cert/form" class="btn btn-primary"> 등록</a>
+                    <a href="/finops/balance_cert/form" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 등록</a>
                 </div>
             </div>
         </main>

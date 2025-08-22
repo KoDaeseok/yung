@@ -33,8 +33,8 @@
                         <tr>
                             <th><span class="required">*</span> 보고월</th>
                             <td><input type="month" name="reportMonth" class="short-input" value="2025-08"></td>
-                            <th>금액</th>
-                            <td><input type="number" name="amount" class="short-input" placeholder="금액 입력"></td>
+                            <th><span class="required">*</span> 금액</th>
+                            <td><input type="text" name="amount" class="short-input" placeholder="금액 입력"></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 잔고증명서</th>
@@ -42,7 +42,7 @@
                                 <div class="file-input-wrapper">
                                     <input type="text" readonly placeholder="파일을 첨부해주세요.">
                                     <label for="file-upload" class="btn btn-dark">파일찾기</label>
-                                    <input type="file" id="file-upload" name="attachment" style="display: none;">
+                                    <input type="file" id="file-upload" name="attachment" style="display: none;" multiple>
                                 </div>
                             </td>
                         </tr>

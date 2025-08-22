@@ -315,24 +315,31 @@ public class WebController {
         List<Map<String, String>> sampleList = new ArrayList<>();
         for (int i = 1; i <= 23; i++) {
             sampleList.add(Map.of(
-                    "no", String.valueOf(i), "id", String.valueOf(i),
-                    "title", "2025년 " + (i % 12 + 1) + "월 잔고증명서",
-                    "issuer", "발급기관 " + (i % 3 + 1),
-                    "date", "2025-08-" + (21 - (i % 10)),
-                    "status", (i % 4 == 0) ? "처리중" : "완료"));
+                    "id", String.valueOf(i),
+                    "fundCode", "95151503250" + i,
+                    "fundName", "KB PG 에너지인프라모특별자산투자 " + i + "호",
+                    "amount", String.valueOf(10000000 * i),
+                    "fileName", "잔고증명서_202508_v" + i + ".pdf"));
         }
 
-        // 페이지네이션 로직 (기존과 동일)
-        int pageSize = 10;
-        addPaginationAttributes(model, page, pageSize, sampleList);
-
+        addPaginationAttributes(model, page, 10, sampleList);
         return "finops/balance_cert/list";
     }
 
     @GetMapping("/finops/balance_cert/detail")
-    public String balanceCertDetail(Model model, HttpSession session) {
+    public String balanceCertDetail(Model model, HttpSession session, @RequestParam("id") String id) {
         addCommonAttributes("501", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "잔고증명 상세"));
+        
+        // id를 기반으로 DB에서 데이터를 조회했다고 가정
+        Map<String, Object> detailData = new HashMap<>();
+        detailData.put("fundCode", "951515032501");
+        detailData.put("fundName", "KB PG 에너지인프라모특별자산투자 1호");
+        detailData.put("reportMonth", "2025-08");
+        detailData.put("amount", 10000000);
+        detailData.put("files", List.of("잔고증명서_202508_v1.pdf", "추가확인서_202508.pdf"));
+        model.addAttribute("detail", detailData);
+        
         return "finops/balance_cert/detail";
     }
 
