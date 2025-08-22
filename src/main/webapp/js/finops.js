@@ -37,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // 파일 삭제 버튼에 이벤트 추가
             deleteFileBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
-                    // 실제로는 서버에 삭제 요청 후 성공 시 아래 코드 실행
                     e.target.closest('.file-item').remove();
                 });
             });

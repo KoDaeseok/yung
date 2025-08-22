@@ -37,7 +37,6 @@
                             <td><input type="month" name="reportMonth" class="short-input" value="2025-08" readonly></td>
                             <th>금액</th>
                             <td>
-                                <%-- 금액 포맷팅을 위해 JSTL fmt 태그 사용 --%>
                                 <c:set var="amountValue" value="10000000" />
                                 <input type="text" name="amount" class="short-input" value="<fmt:formatNumber value="${amountValue}" pattern="#,###" />" readonly>
                             </td>
@@ -45,23 +44,23 @@
                         <tr>
                             <th><span class="required">*</span> 잔고증명서</th>
                             <td colspan="3">
+                                <%-- 수정 시 새로운 파일을 첨부하는 영역 --%>
+                                <div id="file-add-wrapper" style="display:none;">
+                                    <div class="file-input-wrapper">
+                                        <input type="text" readonly placeholder="파일을 첨부해주세요.">
+                                        <label for="file-upload" class="btn btn-dark">파일찾기</label>
+                                        <input type="file" id="file-upload" name="attachment" style="display: none;">
+                                    </div>
+                                </div>
+                                <%-- 기존 파일 목록이 표시되는 영역 --%>
                                 <div id="file-list-container">
-                                    <%-- 예시 파일 목록 --%>
                                     <div class="file-item">
                                         <a href="#" class="text-link">잔고증명서_202508_v1.pdf</a>
                                         <button type="button" class="btn-delete-file" style="display:none;">&times;</button>
                                     </div>
-                                     <div class="file-item">
+                                    <div class="file-item">
                                         <a href="#" class="text-link">추가확인서_202508.pdf</a>
                                         <button type="button" class="btn-delete-file" style="display:none;">&times;</button>
-                                    </div>
-                                </div>
-                                <%-- 파일 추가 버튼 (수정 시에만 보임) --%>
-                                <div id="file-add-wrapper" style="display:none; margin-top:10px;">
-                                    <div class="file-input-wrapper">
-                                         <input type="text" readonly placeholder="파일을 첨부해주세요.">
-                                         <label for="file-upload" class="btn btn-dark">파일찾기</label>
-                                         <input type="file" id="file-upload" name="attachment" style="display: none;">
                                     </div>
                                 </div>
                             </td>

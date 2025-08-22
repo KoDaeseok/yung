@@ -20,10 +20,10 @@
             
             <div class="search-bar-wrapper">
                 <div class="search-fields">
-                    <label for="start-month">보고대상월</label>
-                    <input type="month" id="start-month" value="2025-01">
+                    <label for="start-date">일자</label>
+                    <input type="date" id="start-date" class="short-input" value="2025-01-01">
                     <span>~</span>
-                    <input type="month" id="end-month" value="2025-08">
+                    <input type="date" id="end-date" class="short-input" value="2025-08-22">
                 </div>
                 <div class="search-buttons">
                     <button type="submit" class="btn btn-dark"><i class="fa-solid fa-search"></i> 조회</button>
@@ -34,28 +34,25 @@
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width: 15%;">보고년월</th>
-                            <th style="width: 45%;">펀드명</th>
-                            <th style="width: 10%;">보고주기</th>
-                            <th style="width: 30%;">월간실적보고</th>
+                            <th style="width: 15%;">펀드코드</th>
+                            <th style="width: 25%;">펀드명</th>
+                            <th style="width: 10%;">일자</th>
+                            <th style="width: 10%;">보고구분</th>
+                            <th style="width: 25%;">제목</th>
+                            <th style="width: 15%;">첨부파일</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:choose>
-                            <c:when test="${not empty list}">
-                                <c:forEach var="item" items="${list}">
-                                    <tr>
-                                        <td>${item.reportDate}</td>
-                                        <td style="text-align: left;"><a href="/finops/report/detail?id=${item.id}" class="text-link">${item.fundName}</a></td>
-                                        <td>${item.cycle}</td>
-                                        <td><a href="#" class="download-link" data-filename="${item.reportFile}">${item.reportFile}</a></td>
-                                    </tr>
-                                </c:forEach>
-                            </c:when>
-                            <c:otherwise>
-                                <tr><td colspan="4" class="no-data"><div class="no-data-content">데이터가 없습니다.</div></td></tr>
-                            </c:otherwise>
-                        </c:choose>
+                        <c:forEach var="item" items="${list}">
+                            <tr>
+                                <td>${item.fundCode}</td>
+                                <td style="text-align: left;"><a href="/finops/request/detail?id=${item.id}" class="text-link">${item.fundName}</a></td>
+                                <td>${item.date}</td>
+                                <td>${item.type}</td>
+                                <td style="text-align: left;">${item.title}</td>
+                                <td><a href="#" class="download-link" data-filename="${item.fileName}">${item.fileName}</a></td>
+                            </tr>
+                        </c:forEach>
                     </tbody>
                 </table>
                 <div class="table-footer">
@@ -79,7 +76,7 @@
                     </c:if>
                 </div>
                 <div class="button-container">
-                    <a href="/finops/report/form" class="btn btn-primary">등록</a>
+                    <a href="/finops/request/form" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 등록</a>
                 </div>
             </div>
         </main>

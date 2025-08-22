@@ -16,16 +16,7 @@
                  <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
                 <span>></span><span>운용관리</span><span>></span><span>${menuDetail.menuNm}</span>
             </div>
-            
-            <c:choose>
-                <c:when test="${pageMode == 'form'}">
-                    <h1><i class="fa-solid fa-pen-to-square"></i> ${menuDetail.menuNm}</h1>
-                </c:when>
-                <c:otherwise>
-                    <h1><i class="fa-solid fa-circle-info"></i> ${menuDetail.menuNm}</h1>
-                </c:otherwise>
-            </c:choose>
-
+            <h1><i class="fa-solid fa-circle-info"></i> ${menuDetail.menuNm}</h1>
             <form id="finops-form">
                 <table class="form-table">
                      <tbody>
@@ -33,8 +24,8 @@
                             <th><span class="required">*</span> 펀드코드</th>
                             <td colspan="3">
                                 <div class="input-with-button">
-                                    <input type="text" name="fundCode" class="short-input" value="${report.fundCode}" <c:if test="${pageMode == 'detail'}">readonly</c:if>>
-                                    <button type="button" class="btn-search" <c:if test="${pageMode == 'detail'}">disabled</c:if>><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <input type="text" name="fundCode" class="short-input" value="${report.fundCode}" readonly>
+                                    <button type="button" class="btn-search" disabled><i class="fa-solid fa-magnifying-glass"></i></button>
                                     <input type="text" name="fundName" class="wide-input" value="${report.fundName}" readonly>
                                 </div>
                             </td>
@@ -42,26 +33,26 @@
                         <tr>
                             <th><span class="required">*</span> 보고주기</th>
                             <td>
-                                <select name="cycle" class="short-input" <c:if test="${pageMode == 'detail'}">disabled</c:if>>
+                                <select name="cycle" class="short-input" disabled>
                                     <option <c:if test="${report.reportCycle == '분기'}">selected</c:if>>분기</option>
                                     <option <c:if test="${report.reportCycle == '월'}">selected</c:if>>월</option>
                                 </select>
                             </td>
                             <th><span class="required">*</span> 보고년월</th>
-                            <td><input type="month" name="reportMonth" class="short-input" value="${report.reportMonth}" <c:if test="${pageMode == 'detail'}">readonly</c:if>></td>
+                            <td><input type="month" name="reportMonth" class="short-input" value="${report.reportMonth}" readonly></td>
                         </tr>
                          <tr>
                             <th>종합현황</th>
-                            <td colspan="3"><textarea name="overview" style="height: 80px; resize: vertical; width: 100%;" <c:if test="${pageMode == 'detail'}">readonly</c:if>>${report.overview}</textarea></td>
+                            <td colspan="3"><textarea name="overview" style="width: 100%; height: 80px; resize: vertical;" readonly>${report.overview}</textarea></td>
                         </tr>
                         <tr>
                             <th>현재 운용인력</th>
-                            <td colspan="3"><input type="text" name="staff" value="${report.staff}" <c:if test="${pageMode == 'detail'}">readonly</c:if>></td>
+                            <td colspan="3"><input type="text" name="staff" value="${report.staff}" readonly></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 주요인력변동 여부</th>
                             <td colspan="3">
-                                <select name="staffChange" class="short-input" <c:if test="${pageMode == 'detail'}">disabled</c:if>>
+                                <select name="staffChange" class="short-input" disabled>
                                     <option value="Y" <c:if test="${report.staffChange == 'Y'}">selected</c:if>>Y</option>
                                     <option value="N" <c:if test="${report.staffChange == 'N'}">selected</c:if>>N</option>
                                 </select>
@@ -69,57 +60,48 @@
                         </tr>
                          <tr>
                             <th>주요인력변동</th>
-                            <td colspan="3"><textarea name="staffChangeDetail" style="height: 80px; resize: vertical; width: 100%;" placeholder="1/1(변동일자) 기존인력 ===> 변동인력" <c:if test="${pageMode == 'detail'}">readonly</c:if>>${report.staffChangeDetail}</textarea></td>
+                            <td colspan="3"><textarea name="staffChangeDetail" style="width: 100%; height: 80px; resize: vertical;" placeholder="1/1(변동일자) 기존인력 ===> 변동인력" readonly>${report.staffChangeDetail}</textarea></td>
                         </tr>
                         <tr>
                             <th>계약내용준수여부</th>
-                            <td colspan="3"><input type="text" name="compliance" value="${report.compliance}" <c:if test="${pageMode == 'detail'}">readonly</c:if>></td>
+                            <td colspan="3"><input type="text" name="compliance" value="${report.compliance}" readonly></td>
                         </tr>
                         <tr>
                             <th>최근 이슈</th>
-                            <td colspan="3"><input type="text" name="recentIssue" value="${report.recentIssue}" <c:if test="${pageMode == 'detail'}">readonly</c:if>></td>
+                            <td colspan="3"><input type="text" name="recentIssue" value="${report.recentIssue}" readonly></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 운용보고</th>
                             <td colspan="3">
+                                <%-- 수정 시 새로운 파일을 첨부하는 영역 --%>
+                                <div id="file-add-wrapper" style="display:none;">
+                                    <div class="file-input-wrapper">
+                                        <input type="text" readonly placeholder="파일을 첨부해주세요.">
+                                        <label for="file-upload" class="btn btn-dark">파일찾기</label>
+                                        <input type="file" id="file-upload" name="attachment" style="display: none;">
+                                    </div>
+                                </div>
+                                <%-- 기존 파일 목록이 표시되는 영역 --%>
                                 <div id="file-list-container">
-                                    <c:if test="${pageMode == 'detail' and not empty report.fileName}">
+                                    <c:if test="${not empty report.fileName}">
                                         <div class="file-item">
                                             <a href="#" class="text-link">${report.fileName}</a>
                                             <button type="button" class="btn-delete-file" style="display:none;">&times;</button>
                                         </div>
                                     </c:if>
                                 </div>
-                                <div id="file-add-wrapper" <c:if test="${pageMode == 'detail'}">style="display:none;"</c:if>>
-                                    <div class="file-input-wrapper">
-                                         <input type="text" readonly placeholder="파일을 첨부해주세요.">
-                                         <label for="file-upload" class="btn btn-dark">파일찾기</label>
-                                         <input type="file" id="file-upload" name="attachment" style="display: none;">
-                                    </div>
-                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                
-                <c:choose>
-                    <c:when test="${pageMode == 'form'}">
-                        <div class="form-buttons">
-                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 등록</button>
-                            <button type="button" class="btn btn-secondary" onclick="location.href='/finops/report/list'"><i class="fa-solid fa-times"></i> 취소</button>
-                        </div>
-                    </c:when>
-                    <c:otherwise>
-                        <div class="button-container" id="view-mode-buttons">
-                            <button type="button" class="btn btn-primary" id="edit-btn"><i class="fa-solid fa-edit"></i> 수정</button>
-                            <button type="button" class="btn btn-outline" onclick="location.href='/finops/report/list'"><i class="fa-solid fa-list"></i> 목록</button>
-                        </div>
-                        <div class="form-buttons" id="edit-mode-buttons" style="display: none;">
-                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 저장</button>
-                            <button type="button" class="btn btn-secondary" id="cancel-btn"><i class="fa-solid fa-times"></i> 취소</button>
-                        </div>
-                    </c:otherwise>
-                </c:choose>
+                <div class="button-container" id="view-mode-buttons">
+                    <button type="button" class="btn btn-primary" id="edit-btn"><i class="fa-solid fa-edit"></i> 수정</button>
+                    <button type="button" class="btn btn-outline" onclick="location.href='/finops/report/list'"><i class="fa-solid fa-list"></i> 목록</button>
+                </div>
+                <div class="form-buttons" id="edit-mode-buttons" style="display: none;">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 저장</button>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn"><i class="fa-solid fa-times"></i> 취소</button>
+                </div>
             </form>
         </main>
     </div>

@@ -25,7 +25,7 @@ public class WebController {
         // --- 상위 메뉴 ---
         menuData.add(Map.of("menuNo", "1", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "2", "menuNm", "공지/건의", "upperMenuNo", "0", "url", "/notice"));
-        menuData.add(Map.of("menuNo", "3", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list")); 
+        menuData.add(Map.of("menuNo", "3", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list"));
         menuData.add(Map.of("menuNo", "4", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate"));
         menuData.add(Map.of("menuNo", "5", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops/balance_cert/list"));
         menuData.add(Map.of("menuNo", "6", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk"));
@@ -33,7 +33,8 @@ public class WebController {
 
         // --- 하위 메뉴 ---
         // 1. 자산운용조직
-        menuData.add(Map.of("menuNo", "101", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/introduce"));
+        menuData.add(
+                Map.of("menuNo", "101", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "102", "menuNm", "조직도", "upperMenuNo", "1", "url", "/organization/chart"));
         menuData.add(Map.of("menuNo", "103", "menuNm", "찾아오시는 길", "upperMenuNo", "1", "url", "/organization/location"));
 
@@ -47,7 +48,8 @@ public class WebController {
         // 5. 운용관리
         menuData.add(Map.of("menuNo", "501", "menuNm", "잔고증명", "upperMenuNo", "5", "url", "/finops/balance_cert/list"));
         menuData.add(Map.of("menuNo", "502", "menuNm", "운용실적보고", "upperMenuNo", "5", "url", "/finops/report/list"));
-        menuData.add(Map.of("menuNo", "503", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
+        menuData.add(
+                Map.of("menuNo", "503", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
         menuData.add(Map.of("menuNo", "504", "menuNm", "편입자산 세부내역", "upperMenuNo", "5", "url", "/finops/asset/list"));
         menuData.add(Map.of("menuNo", "505", "menuNm", "연간 자금계획", "upperMenuNo", "5", "url", "/finops/plan/list"));
         menuData.add(Map.of("menuNo", "506", "menuNm", "업무담당자", "upperMenuNo", "5", "url", "/finops/manager/list"));
@@ -72,11 +74,11 @@ public class WebController {
 
         if (rootMenuNo != null) {
             Map<String, Object> rootMenu = menuData.stream()
-                .filter(m -> rootMenuNo.equals(m.get("menuNo")))
-                .findFirst().orElse(null);
+                    .filter(m -> rootMenuNo.equals(m.get("menuNo")))
+                    .findFirst().orElse(null);
 
             if (rootMenu != null) {
-                 model.addAttribute("sidebarTitle", rootMenu.get("menuNm"));
+                model.addAttribute("sidebarTitle", rootMenu.get("menuNm"));
             }
 
             List<Map<String, Object>> sideMenuList = menuData.stream()
@@ -87,37 +89,36 @@ public class WebController {
         }
         return "common/sidebar";
     }
-    
+
     // --- 페이지 이동 공통 컨트롤러 ---
     @GetMapping("/moveMenu.do")
     public String moveMenu(@RequestParam("menuNo") String menuNo, HttpSession session) {
         Map<String, Object> targetMenu = menuData.stream()
-            .filter(m -> menuNo.equals(m.get("menuNo")))
-            .findFirst().orElse(null);
+                .filter(m -> menuNo.equals(m.get("menuNo")))
+                .findFirst().orElse(null);
 
         if (targetMenu != null) {
             session.setAttribute("activeMenuNo", menuNo);
             String upperMenuNo = (String) targetMenu.get("upperMenuNo");
             session.setAttribute("rootMenuNo", "0".equals(upperMenuNo) ? menuNo : upperMenuNo);
-            
+
             return "redirect:" + targetMenu.get("url");
         }
         return "redirect:/";
     }
 
-
     // --- 페이지 컨트롤러 ---
     private void addCommonAttributes(String menuNo, Model model, HttpSession session) {
         Map<String, Object> menuDetail = menuData.stream()
-            .filter(m -> menuNo.equals(m.get("menuNo")))
-            .findFirst().orElse(new HashMap<>());
+                .filter(m -> menuNo.equals(m.get("menuNo")))
+                .findFirst().orElse(new HashMap<>());
         model.addAttribute("menuDetail", menuDetail);
-        
+
         session.setAttribute("activeMenuNo", menuNo);
         String upperMenuNo = (String) menuDetail.getOrDefault("upperMenuNo", "0");
         session.setAttribute("rootMenuNo", "0".equals(upperMenuNo) ? menuNo : upperMenuNo);
     }
-    
+
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
         session.removeAttribute("rootMenuNo");
@@ -147,16 +148,17 @@ public class WebController {
     // 2. 공지/건의
     // 2. 공지/건의
     @GetMapping("/notice")
-    public String notice(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+    public String notice(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
         addCommonAttributes("201", model, session);
-        
+
         // --- 페이지네이션 데이터 생성 ---
         List<Map<String, String>> noticeList = new ArrayList<>();
         noticeList.add(Map.of("id", "1", "type", "일반", "title", "정보교류시스템 오픈 안내", "date", "2025-08-20"));
         noticeList.add(Map.of("id", "2", "type", "중요", "title", "개인정보처리방침 개정 안내", "date", "2025-08-15"));
         // 추가 데이터 예시 (총 12개)
         for (int i = 3; i <= 12; i++) {
-            noticeList.add(Map.of("id", String.valueOf(i), "type", "일반", "title", "일반 공지사항 " + i, "date", "2025-08-10"));
+            noticeList
+                    .add(Map.of("id", String.valueOf(i), "type", "일반", "title", "일반 공지사항 " + i, "date", "2025-08-10"));
         }
 
         int currentPage = page;
@@ -166,7 +168,8 @@ public class WebController {
         int startPage = ((currentPage - 1) / 5) * 5 + 1;
         int endPage = Math.min(startPage + 4, totalPages);
 
-        model.addAttribute("noticeList", noticeList.subList((currentPage - 1) * pageSize, Math.min(currentPage * pageSize, totalItems)));
+        model.addAttribute("noticeList",
+                noticeList.subList((currentPage - 1) * pageSize, Math.min(currentPage * pageSize, totalItems)));
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("startPage", startPage);
@@ -178,7 +181,8 @@ public class WebController {
     }
 
     @GetMapping("/notice/detail")
-    public String noticeDetail(Model model, HttpSession session, @RequestParam(value="id", required = false) String id) {
+    public String noticeDetail(Model model, HttpSession session,
+            @RequestParam(value = "id", required = false) String id) {
         addCommonAttributes("201", model, session);
         Map<String, Object> noticeDetail = new HashMap<>();
         noticeDetail.put("title", "정보교류시스템 오픈 안내");
@@ -191,16 +195,20 @@ public class WebController {
     }
 
     @GetMapping("/suggestion")
-    public String suggestion(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+    public String suggestion(Model model, HttpSession session,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
         addCommonAttributes("202", model, session);
-        
+
         // --- 페이지네이션 데이터 생성 ---
         List<Map<String, String>> suggestions = new ArrayList<>();
-        suggestions.add(Map.of("no", "2", "id", "2", "title", "정보교류시스템 개선 건의", "date", "2024-08-20", "isPublic", "비공개", "status", "답변완료"));
-        suggestions.add(Map.of("no", "1", "id", "1", "title", "이용 문의", "date", "2024-08-19", "isPublic", "공개", "status", "답변완료"));
+        suggestions.add(Map.of("no", "2", "id", "2", "title", "정보교류시스템 개선 건의", "date", "2024-08-20", "isPublic", "비공개",
+                "status", "답변완료"));
+        suggestions.add(Map.of("no", "1", "id", "1", "title", "이용 문의", "date", "2024-08-19", "isPublic", "공개", "status",
+                "답변완료"));
         // 추가 데이터 예시 (총 25개)
         for (int i = 3; i <= 25; i++) {
-            suggestions.add(Map.of("no", String.valueOf(i), "id", String.valueOf(i), "title", "건의사항 테스트 " + i, "date", "2024-08-18", "isPublic", "공개", "status", "답변대기"));
+            suggestions.add(Map.of("no", String.valueOf(i), "id", String.valueOf(i), "title", "건의사항 테스트 " + i, "date",
+                    "2024-08-18", "isPublic", "공개", "status", "답변대기"));
         }
 
         int currentPage = page;
@@ -209,8 +217,9 @@ public class WebController {
         int totalPages = (int) Math.ceil((double) totalItems / pageSize);
         int startPage = ((currentPage - 1) / 5) * 5 + 1;
         int endPage = Math.min(startPage + 4, totalPages);
-        
-        model.addAttribute("suggestions", suggestions.subList((currentPage - 1) * pageSize, Math.min(currentPage * pageSize, totalItems)));
+
+        model.addAttribute("suggestions",
+                suggestions.subList((currentPage - 1) * pageSize, Math.min(currentPage * pageSize, totalItems)));
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("startPage", startPage);
@@ -228,7 +237,8 @@ public class WebController {
     }
 
     @GetMapping("/suggestion/detail")
-    public String suggestionDetail(Model model, HttpSession session, @RequestParam(value="id", required = false) String id) {
+    public String suggestionDetail(Model model, HttpSession session,
+            @RequestParam(value = "id", required = false) String id) {
         addCommonAttributes("202", model, session);
         Map<String, Object> suggestionDetail = new HashMap<>();
         suggestionDetail.put("title", "질문입니다");
@@ -242,20 +252,20 @@ public class WebController {
 
     // 3. 투자제안
     @GetMapping("/propvest/list")
-    public String propvestList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+    public String propvestList(Model model, HttpSession session,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
         addCommonAttributes("301", model, session);
-        
+
         // --- 페이지네이션을 위한 임시 데이터 생성 ---
         List<Map<String, String>> propvestList = new ArrayList<>();
         for (int i = 1; i <= 35; i++) {
             propvestList.add(Map.of(
-                "no", String.valueOf(i),
-                "id", String.valueOf(i),
-                "title", "신규 투자 제안 " + i,
-                "proposer", "제안자" + i,
-                "date", "2025-08-" + (21 - (i % 5)),
-                "status", (i % 3 == 0) ? "검토중" : "검토완료"
-            ));
+                    "no", String.valueOf(i),
+                    "id", String.valueOf(i),
+                    "title", "신규 투자 제안 " + i,
+                    "proposer", "제안자" + i,
+                    "date", "2025-08-" + (21 - (i % 5)),
+                    "status", (i % 3 == 0) ? "검토중" : "검토완료"));
         }
 
         int currentPage = page;
@@ -266,8 +276,9 @@ public class WebController {
         int endPage = Math.min(startPage + 4, totalPages);
 
         // 현재 페이지에 해당하는 데이터만 잘라서 모델에 추가
-        model.addAttribute("propvestList", propvestList.subList((currentPage - 1) * pageSize, Math.min(currentPage * pageSize, totalItems)));
-        
+        model.addAttribute("propvestList",
+                propvestList.subList((currentPage - 1) * pageSize, Math.min(currentPage * pageSize, totalItems)));
+
         // 페이지네이션 관련 정보 모델에 추가
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
@@ -278,44 +289,44 @@ public class WebController {
 
         return "propvest/propvest_list";
     }
- 
-     @GetMapping("/propvest/new")
-     public String newPropvestForm(Model model, HttpSession session) {
-         // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
-         addCommonAttributes("301", model, session); 
-         model.addAttribute("menuDetail", Map.of("menuNm", "투자제안 등록")); // 페이지 제목은 개별 설정
-         return "propvest/propvest_form";
-     }
- 
-     @GetMapping("/propvest/detail")
-     public String propvestDetail(Model model, HttpSession session) {
-         // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
-         addCommonAttributes("301", model, session);
-         model.addAttribute("menuDetail", Map.of("menuNm", "제안요청상세")); // 페이지 제목은 개별 설정
-         return "propvest/propvest_detail";
-     }
 
-     // 5. 운용관리
+    @GetMapping("/propvest/new")
+    public String newPropvestForm(Model model, HttpSession session) {
+        // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
+        addCommonAttributes("301", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "투자제안 등록")); // 페이지 제목은 개별 설정
+        return "propvest/propvest_form";
+    }
+
+    @GetMapping("/propvest/detail")
+    public String propvestDetail(Model model, HttpSession session) {
+        // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
+        addCommonAttributes("301", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "제안요청상세")); // 페이지 제목은 개별 설정
+        return "propvest/propvest_detail";
+    }
+
+    // 5. 운용관리
     // 5-1. 잔고증명
     @GetMapping("/finops/balance_cert/list")
-    public String balanceCertList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+    public String balanceCertList(Model model, HttpSession session,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
         addCommonAttributes("501", model, session);
-        
+
         List<Map<String, String>> sampleList = new ArrayList<>();
         for (int i = 1; i <= 23; i++) {
             sampleList.add(Map.of(
-                "no", String.valueOf(i), "id", String.valueOf(i),
-                "title", "2025년 " + (i % 12 + 1) + "월 잔고증명서",
-                "issuer", "발급기관 " + (i % 3 + 1),
-                "date", "2025-08-" + (21 - (i % 10)),
-                "status", (i % 4 == 0) ? "처리중" : "완료"
-            ));
+                    "no", String.valueOf(i), "id", String.valueOf(i),
+                    "title", "2025년 " + (i % 12 + 1) + "월 잔고증명서",
+                    "issuer", "발급기관 " + (i % 3 + 1),
+                    "date", "2025-08-" + (21 - (i % 10)),
+                    "status", (i % 4 == 0) ? "처리중" : "완료"));
         }
-        
+
         // 페이지네이션 로직 (기존과 동일)
         int pageSize = 10;
         addPaginationAttributes(model, page, pageSize, sampleList);
-        
+
         return "finops/balance_cert/list";
     }
 
@@ -334,15 +345,16 @@ public class WebController {
     }
 
     // --- 페이지네이션 로직을 위한 헬퍼 메소드 ---
-    private void addPaginationAttributes(Model model, int currentPage, int pageSize, List<Map<String, String>> fullList) {
+    private void addPaginationAttributes(Model model, int currentPage, int pageSize,
+            List<Map<String, String>> fullList) {
         int totalItems = fullList.size();
         int totalPages = (int) Math.ceil((double) totalItems / pageSize);
         int startPage = ((currentPage - 1) / 5) * 5 + 1;
         int endPage = Math.min(startPage + 4, totalPages);
-        
+
         int startIndex = (currentPage - 1) * pageSize;
         int endIndex = Math.min(startIndex + pageSize, totalItems);
-        
+
         model.addAttribute("list", fullList.subList(startIndex, endIndex));
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
@@ -354,67 +366,143 @@ public class WebController {
 
     // 5-2. 운용실적보고
     @GetMapping("/finops/report/list")
-    public String reportList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+    public String reportList(Model model, HttpSession session,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
         addCommonAttributes("502", model, session);
-        
+
         List<Map<String, String>> sampleList = new ArrayList<>();
         for (int i = 1; i <= 28; i++) {
             sampleList.add(Map.of(
-                "no", String.valueOf(i), "id", String.valueOf(i),
+                "no", String.valueOf(i),
+                "id", String.valueOf(i),
                 "reportDate", "2025-0" + (9 - (i % 9)),
                 "fundName", "KB사모부동산신탁제" + i + "호",
                 "cycle", (i % 2 == 0) ? "분기" : "월",
-                "reportFile", "운용실적보고서_" + i + "차.pdf"
-            ));
+                "reportFile", "운용실적보고서_" + i + "차.pdf"));
         }
-        
+
         addPaginationAttributes(model, page, 10, sampleList);
         return "finops/report/list";
     }
 
-    // '/form' 경로를 '/detail'로 통합하여 처리
-    @GetMapping({"/finops/report/detail", "/finops/report/form"})
-    public String reportDetailAndForm(Model model, HttpSession session, @RequestParam(value="id", required = false) String id) {
+    @GetMapping("/finops/report/detail")
+    public String reportDetail(Model model, HttpSession session,
+            @RequestParam(value = "id", required = false) String id) {
         addCommonAttributes("502", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 상세"));
 
-        if (id != null) {
-            // 상세/수정 모드: ID가 있으면 기존 데이터를 조회했다고 가정
-            model.addAttribute("pageMode", "detail");
-            model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 상세"));
-            
-            // DB에서 조회한 데이터라고 가정한 예시 데이터
-            Map<String, Object> reportData = new HashMap<>();
-            reportData.put("fundCode", "951112103101");
-            reportData.put("fundName", "KB스타오피스사모부동산신탁");
-            reportData.put("reportCycle", "분기");
-            reportData.put("reportMonth", "2025-03");
-            reportData.put("overview", "종합 현황 내용입니다.");
-            reportData.put("staff", "홍길동, 김철수, 이영희");
-            reportData.put("staffChange", "Y");
-            reportData.put("staffChangeDetail", "3/28 ddd -> ccc");
-            reportData.put("compliance", "정상 준수");
-            reportData.put("recentIssue", "특이사항 없음");
-            reportData.put("fileName", "블라인드_펀드_세부투자_자산_입력_기업금융-test.xlsx");
-            model.addAttribute("report", reportData);
+        // DB에서 조회한 데이터라고 가정한 예시 데이터
+        Map<String, Object> reportData = new HashMap<>();
+        reportData.put("fundCode", "951112103101");
+        reportData.put("fundName", "KB스타오피스사모부동산신탁");
+        reportData.put("reportCycle", "분기");
+        reportData.put("reportMonth", "2025-03");
+        reportData.put("overview", "종합 현황 내용입니다.");
+        reportData.put("staff", "홍길동, 김철수, 이영희");
+        reportData.put("staffChange", "Y");
+        reportData.put("staffChangeDetail", "3/28 ddd -> ccc");
+        reportData.put("compliance", "정상 준수");
+        reportData.put("recentIssue", "특이사항 없음");
+        reportData.put("fileName", "블라인드_펀드_세부투자_자산_입력_기업금융-test.xlsx");
+        model.addAttribute("report", reportData);
 
-        } else {
-            // 등록 모드: ID가 없으면 빈 데이터를 전달
-            model.addAttribute("pageMode", "form");
-            model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 등록"));
-            model.addAttribute("report", new HashMap<String, Object>()); // 빈 Map 전달
+        return "finops/report/detail";
+    }
+
+    @GetMapping("/finops/report/form")
+    public String reportForm(Model model, HttpSession session) {
+        addCommonAttributes("502", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 등록"));
+        // 등록 화면이므로 빈 Map 전달
+        model.addAttribute("report", new HashMap<String, Object>());
+        return "finops/report/form";
+    }
+
+    // 5-3. 운용관련 요청 및 보고
+    @GetMapping("/finops/request/list")
+    public String requestList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+        addCommonAttributes("503", model, session);
+        
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        for (int i = 1; i <= 15; i++) {
+            sampleList.add(Map.of(
+                "no", String.valueOf(i),
+                "id", String.valueOf(i),
+                "fundCode", "95151503250" + i,
+                "fundName", "KB PG 에너지인프라모특별자산투자",
+                "date", "2025-08-" + (20 - i),
+                "type", (i % 3 == 0) ? "기타 보고" : "주주총회",
+                "title", "운용관련 요청사항 " + i,
+                "fileName", "첨부파일_" + i + ".pdf"));
         }
         
-        return "finops/report/detail";
+        addPaginationAttributes(model, page, 10, sampleList);
+        return "finops/request/list";
+    }
+    
+    @GetMapping("/finops/request/detail")
+    public String requestDetail(Model model, HttpSession session, @RequestParam("id") String id) {
+        addCommonAttributes("503", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 상세"));
+        
+        // 실제로는 DB에서 id로 데이터를 조회
+        Map<String, Object> requestData = new HashMap<>();
+        requestData.put("fundCode", "951112103101");
+        requestData.put("fundName", "KB와이즈스타전문투자형사모부동산");
+        requestData.put("reportType", "주주총회");
+        requestData.put("date", "2025-05-10");
+        requestData.put("title", "주주총회 결과 보고");
+        requestData.put("content", "주요 내용입니다.");
+        requestData.put("fileName", "주총결과보고서.pdf");
+        model.addAttribute("request", requestData);
+        
+        return "finops/request/detail";
+    }
+
+    @GetMapping("/finops/request/form")
+    public String requestForm(Model model, HttpSession session, @RequestParam(value="id", required=false) String id) {
+        addCommonAttributes("503", model, session);
+
+        if (id != null) {
+            // 수정 모드
+            model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 수정"));
+            // (실제로는 id로 데이터를 조회하여 model에 담아 전달)
+            Map<String, Object> requestData = new HashMap<>();
+            requestData.put("fundCode", "951112103101");
+            requestData.put("fundName", "KB와이즈스타전문투자형사모부동산");
+            requestData.put("reportType", "주주총회");
+            requestData.put("date", "2025-05-10");
+            requestData.put("title", "주주총회 결과 보고");
+            requestData.put("content", "주요 내용입니다.");
+            requestData.put("fileName", "주총결과보고서.pdf");
+            model.addAttribute("request", requestData);
+        } else {
+            // 등록 모드
+            model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 등록"));
+            model.addAttribute("request", new HashMap<String, Object>());
+        }
+
+        return "finops/request/form";
     }
 
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
     // @GetMapping("/propvest") public String propvest() { return "redirect:/"; }
-    @GetMapping("/prorate") public String prorate() { return "redirect:/"; }
+    @GetMapping("/prorate")
+    public String prorate() {
+        return "redirect:/";
+    }
+
     // @GetMapping("/finops") public String finops() { return "redirect:/"; }
-    @GetMapping("/investtalk") public String investtalk() { return "redirect:/"; }
-    @GetMapping("/dms") public String dms() { return "redirect:/"; }
-    
+    @GetMapping("/investtalk")
+    public String investtalk() {
+        return "redirect:/";
+    }
+
+    @GetMapping("/dms")
+    public String dms() {
+        return "redirect:/";
+    }
 
     // --- 로그인/회원가입 ---
     @GetMapping("/member/MberInsertView.do")
@@ -426,8 +514,8 @@ public class WebController {
     @PostMapping("/login")
     @ResponseBody
     public Map<String, Object> loginProcess(@RequestParam("username") String username,
-                                            @RequestParam("password") String password,
-                                            HttpServletRequest request) {
+            @RequestParam("password") String password,
+            HttpServletRequest request) {
         Map<String, Object> response = new HashMap<>();
         if ("test".equals(username) && "1111".equals(password)) {
             HttpSession session = request.getSession();
