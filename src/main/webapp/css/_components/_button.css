@@ -5,8 +5,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 8px 15px;
-    font-size: 16px;
+    padding: 6px 12px;
+    font-size: 14px;
     font-weight: 500;
     border: 1px solid transparent;
     border-radius: var(--border-radius-default);

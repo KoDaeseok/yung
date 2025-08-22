@@ -465,6 +465,51 @@ public class WebController {
         return "finops/request/form";
     }
 
+    // 5-4. 편입자산 세부내역
+    @GetMapping("/finops/asset/list")
+    public String assetList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+        addCommonAttributes("504", model, session);
+        
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        sampleList.add(Map.of("id", "1", "investType", "test", "overview", "test", "category", "주거시설", "detailCategory", "분양아파트", "country", "대한민국"));
+        // 추가 데이터
+        for (int i = 2; i <= 18; i++) {
+            sampleList.add(Map.of("id", String.valueOf(i), "investType", "기업 " + i, "overview", "투자 개요 " + i, "category", "오피스", "detailCategory", "상업용 오피스", "country", "미국"));
+        }
+        
+        addPaginationAttributes(model, page, 10, sampleList);
+        return "finops/asset/list";
+    }
+
+    @GetMapping("/finops/asset/detail")
+    public String assetDetail(Model model, HttpSession session, @RequestParam("id") String id) {
+        addCommonAttributes("504", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "편입자산 세부내역 상세"));
+        
+        // id를 기반으로 DB에서 데이터를 조회했다고 가정
+        Map<String, Object> assetData = new HashMap<>();
+        assetData.put("fundCode", "951515032501");
+        assetData.put("fundName", "KBPG에너지인프라모특별자산신탁");
+        assetData.put("reInvestFund", "선택"); // 예시 값
+        assetData.put("investType", "test");
+        assetData.put("overview", "test");
+        assetData.put("category", "주거시설");
+        assetData.put("detailCategory", "분양아파트");
+        assetData.put("country", "대한민국");
+        model.addAttribute("asset", assetData);
+        
+        return "finops/asset/detail";
+    }
+
+    @GetMapping("/finops/asset/form")
+    public String assetForm(Model model, HttpSession session) {
+        addCommonAttributes("504", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "편입자산 세부내역 등록"));
+        model.addAttribute("asset", new HashMap<String, Object>()); // 빈 객체 전달
+        return "finops/asset/form";
+    }
+
+
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
     // @GetMapping("/propvest") public String propvest() { return "redirect:/"; }
