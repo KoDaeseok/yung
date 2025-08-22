@@ -63,12 +63,12 @@
                 </table>
                 <div class="button-container" id="view-mode-buttons">
                     <button type="button" class="btn btn-primary" id="edit-btn"><i class="fa-solid fa-edit"></i> 수정</button>
+                    <button type="button" class="btn btn-outline" id="delete-btn"><i class="fa-solid fa-trash"></i> 삭제</button>
                     <button type="button" class="btn btn-outline" onclick="location.href='/finops/balance_cert/list'"><i class="fa-solid fa-list"></i> 목록</button>
                 </div>
                 <%-- 수정 모드에 '삭제' 버튼 추가 --%>
                 <div class="form-buttons" id="edit-mode-buttons" style="display: none;">
                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 저장</button>
-                    <button type="button" class="btn btn-outline" style="color: var(--text-color-white);border-color:var(--error-color);background: var(--error-color);"><i class="fa-solid fa-trash"></i> 삭제</button>
                     <button type="button" class="btn btn-secondary" id="cancel-btn"><i class="fa-solid fa-times"></i> 취소</button>
                 </div>
             </form>

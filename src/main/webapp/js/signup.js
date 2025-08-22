@@ -104,13 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
             let endPage = startPage + maxPagesToShow - 1;
             if (endPage > totalPages) endPage = totalPages;
 
-            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="1">&laquo;</a>`;
-            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${currentPage - 1}">&lsaquo;</a>`;
+            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="1"><i class="fa-solid fa-angles-left"></i></a>`;
+            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${currentPage - 1}"><i class="fa-solid fa-angle-left"></i></a>`;
             for (let i = startPage; i <= endPage; i++) {
                 paginationContainer.innerHTML += `<a href="#" class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
             }
-            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${currentPage + 1}">&rsaquo;</a>`;
-            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${totalPages}">&raquo;</a>`;
+            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${currentPage + 1}"><i class="fa-solid fa-angle-right"></i></a>`;
+            paginationContainer.innerHTML += `<a href="#" class="arrow" data-page="${totalPages}"><i class="fa-solid fa-angles-right"></i></a>`;
 
             if (currentPage === 1) {
                 paginationContainer.querySelector('[data-page="1"]').classList.add('disabled');

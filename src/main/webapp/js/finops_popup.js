@@ -82,15 +82,15 @@ document.addEventListener('DOMContentLoaded', () => {
         let endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
 
         let paginationHTML = '';
-        paginationHTML += `<a href="#" class="arrow ${currentPage === 1 ? 'disabled' : ''}" data-page="1">&laquo;</a>`;
-        paginationHTML += `<a href="#" class="arrow ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}">&lsaquo;</a>`;
+        paginationHTML += `<a href="#" class="arrow ${currentPage === 1 ? 'disabled' : ''}" data-page="1"><i class="fa-solid fa-angles-left"></i></a>`;
+        paginationHTML += `<a href="#" class="arrow ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}"><i class="fa-solid fa-angle-left"></i></a>`;
 
         for (let i = startPage; i <= endPage; i++) {
             paginationHTML += `<a href="#" class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
         }
 
-        paginationHTML += `<a href="#" class="arrow ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}">&rsaquo;</a>`;
-        paginationHTML += `<a href="#" class="arrow ${currentPage === totalPages ? 'disabled' : ''}" data-page="${totalPages}">&raquo;</a>`;
+        paginationHTML += `<a href="#" class="arrow ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}"><i class="fa-solid fa-angle-right"></i></a>`;
+        paginationHTML += `<a href="#" class="arrow ${currentPage === totalPages ? 'disabled' : ''}" data-page="${totalPages}"><i class="fa-solid fa-angles-right"></i></a>`;
         
         paginationContainer.innerHTML = paginationHTML;
     };

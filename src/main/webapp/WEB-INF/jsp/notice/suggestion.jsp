@@ -71,20 +71,13 @@
                     <c:if test="${not empty suggestions}">
                         <div class="pagination-wrapper">
                             <div class="pagination">
-                                <%-- 맨 처음으로 --%>
-                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&laquo;</a>
-                                <%-- 이전 페이지 --%>
-                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&lsaquo;</a>
-                                
-                                <%-- 페이지 번호 목록 --%>
+                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angles-left"></i></a>
+                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angle-left"></i></a>
                                 <c:forEach var="i" begin="${startPage}" end="${endPage}">
                                     <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
                                 </c:forEach>
-                
-                                <%-- 다음 페이지 --%>
-                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&rsaquo;</a>
-                                <%-- 맨 끝으로 --%>
-                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&raquo;</a>
+                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angle-right"></i></a>
+                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angles-right"></i></a>
                             </div>
                         </div>
                         

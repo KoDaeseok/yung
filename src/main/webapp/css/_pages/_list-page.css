@@ -18,10 +18,14 @@
     font-size: 14px;
 }
 
-/* [수정] 마지막 셀을 제외한 모든 셀의 오른쪽에만 세로선을 추가 */
-.data-table th:not(:last-child),
-.data-table td:not(:last-child) {
+.data-table th,
+.data-table td {
     border-right: 1px solid var(--border-color-light);
+}
+
+.data-table th:first-child,
+.data-table td:first-child {
+    border-left: 1px solid var(--border-color-light);
 }
 
 .data-table th {

@@ -54,20 +54,11 @@
                             <th>평가금액</th>
                             <td><input type="text" name="appraisedValue" class="short-input" value="1,550,000,000" readonly></td>
                         </tr>
-                        <tr>
-                            <th><span class="required">*</span> 투자형(기업명)</th>
-                            <td><input type="text" name="investType" class="short-input" value="${asset.investType}" readonly></td>
-                            <th><span class="required">*</span> 투자개요</th>
-                            <td><input type="text" name="overview" class="short-input" value="${asset.overview}" readonly></td>
-                        </tr>
-                        <tr>
-                             <th><span class="required">*</span> 투자대상국</th>
-                            <td><input type="text" name="country" class="short-input" value="${asset.country}" readonly></td>
-                        </tr>
                     </tbody>
                 </table>
                 <div class="button-container" id="view-mode-buttons">
                     <button type="button" class="btn btn-primary" id="edit-btn"><i class="fa-solid fa-edit"></i> 수정</button>
+                    <button type="button" class="btn btn-outline" id="delete-btn"><i class="fa-solid fa-trash"></i> 삭제</button>
                     <button type="button" class="btn btn-outline" onclick="location.href='/finops/asset/list'"><i class="fa-solid fa-list"></i> 목록</button>
                 </div>
                 <div class="form-buttons" id="edit-mode-buttons" style="display: none;">

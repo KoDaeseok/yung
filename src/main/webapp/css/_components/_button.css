@@ -151,3 +151,9 @@
     display: flex;
     gap: 10px;
 }
+
+#delete-btn {
+    color: var(--text-color-white);
+    border-color: var(--error-color);
+    background: var(--error-color);
+}

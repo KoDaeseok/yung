@@ -52,16 +52,25 @@
 
             <div class="content-container">
                 <table class="data-table">
-                    <thead>
+                    <thead style="text-align: center;">
                         <tr>
-                            <th style="width: 15%;">투자명(기업명)</th>
-                            <th style="width: 25%;">투자개요</th>
-                            <th style="width: 10%;">투자대상국</th>
-                            <th style="width: 10%;">투자방식</th>
-                            <th style="width: 10%;">금리유형</th>
-                            <th style="width: 10%;">투자상태</th>
-                            <th style="width: 10%;">취득원가</th>
-                            <th style="width: 10%;">평가금액</th>
+                            <th rowspan="2" style="vertical-align: middle;">투자명(기업명)</th>
+                            <th rowspan="2" style="vertical-align: middle;">투자개요</th>
+                            <th rowspan="2" style="vertical-align: middle;">투자대상국</th>
+                            <th colspan="2">하위 투자대상</th>
+                            <th rowspan="2" style="vertical-align: middle;">투자상태</th>
+                            <th colspan="2">투자금(취득원가)</th>
+                            <th colspan="2">현재 평가금액</th>
+                            <th rowspan="2" style="vertical-align: middle;">Gross TVPI</th>
+                            <th rowspan="2" style="vertical-align: middle;">Gross IRR(%)</th>
+                        </tr>
+                        <tr>
+                            <th>투자방식</th>
+                            <th>금리유형</th>
+                            <th>원화기준</th>
+                            <th>외화기준</th>
+                            <th>원화기준</th>
+                            <th>외화기준</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,16 +81,20 @@
                                         <td class="text-link">${item.investType}</td>
                                         <td style="text-align: left;">${item.overview}</td>
                                         <td>${item.country}</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td style="text-align: right;">1,500,000</td>
-                                        <td style="text-align: right;">1,550,000</td>
+                                        <td>${item.entrAstsIvMethNm}</td>
+                                        <td>${item.entrAstsRateNm}</td>
+                                        <td>${item.ivStatTcNm}</td>
+                                        <td style="text-align: right;"><fmt:formatNumber value="${item.ivAmt}" pattern="#,###" /></td>
+                                        <td style="text-align: right;"><fmt:formatNumber value="${item.fxIvAmt}" pattern="#,###" /></td>
+                                        <td style="text-align: right;"><fmt:formatNumber value="${item.ivEstmAmt}" pattern="#,###" /></td>
+                                        <td style="text-align: right;"><fmt:formatNumber value="${item.fxIvEstmAmt}" pattern="#,###" /></td>
+                                        <td style="text-align: right;">${item.grossTvpi}</td>
+                                        <td style="text-align: right;">${item.grossIrr}</td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
-                                <tr><td colspan="8" class="no-data"><div class="no-data-content">데이터가 없습니다.</div></td></tr>
+                                <tr><td colspan="12" class="no-data"><div class="no-data-content">데이터가 없습니다.</div></td></tr>
                             </c:otherwise>
                         </c:choose>
                     </tbody>
@@ -90,14 +103,14 @@
                     <c:if test="${not empty list}">
                         <div class="pagination-wrapper">
                             <div class="pagination">
-                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&laquo;</a>
-                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&lsaquo;</a>
+                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angles-left"></i></a>
+                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angle-left"></i></a>
                                 <c:forEach var="i" begin="${startPage}" end="${endPage}">
                                     <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
                                 </c:forEach>
-                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&rsaquo;</a>
-                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&raquo;</a>
-                            </div>
+                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angle-right"></i></a>
+                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angles-right"></i></a>
+                            </div>                            
                         </div>
                         <div class="item-counter">
                              <c:set var="startItem" value="${(currentPage - 1) * pageSize + 1}" />

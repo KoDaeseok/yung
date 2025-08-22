@@ -60,13 +60,13 @@
                     <c:if test="${not empty list}">
                         <div class="pagination-wrapper">
                             <div class="pagination">
-                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&laquo;</a>
-                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}">&lsaquo;</a>
+                                <a href="?page=1" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angles-left"></i></a>
+                                <a href="?page=${currentPage - 1}" class="arrow ${currentPage == 1 ? 'disabled' : ''}"><i class="fa-solid fa-angle-left"></i></a>
                                 <c:forEach var="i" begin="${startPage}" end="${endPage}">
                                     <a href="?page=${i}" class="${i == currentPage ? 'active' : ''}">${i}</a>
                                 </c:forEach>
-                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&rsaquo;</a>
-                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}">&raquo;</a>
+                                <a href="?page=${currentPage + 1}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angle-right"></i></a>
+                                <a href="?page=${totalPages}" class="arrow ${currentPage == totalPages ? 'disabled' : ''}"><i class="fa-solid fa-angles-right"></i></a>
                             </div>
                         </div>
                         <div class="item-counter">

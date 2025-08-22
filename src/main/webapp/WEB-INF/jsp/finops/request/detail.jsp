@@ -76,6 +76,7 @@
                 </table>
                 <div class="button-container" id="view-mode-buttons">
                     <button type="button" class="btn btn-primary" id="edit-btn"><i class="fa-solid fa-edit"></i> 수정</button>
+                    <button type="button" class="btn btn-outline" id="delete-btn"><i class="fa-solid fa-trash"></i> 삭제</button>
                     <button type="button" class="btn btn-outline" onclick="location.href='/finops/request/list'"><i class="fa-solid fa-list"></i> 목록</button>
                 </div>
                 <div class="form-buttons" id="edit-mode-buttons" style="display: none;">
