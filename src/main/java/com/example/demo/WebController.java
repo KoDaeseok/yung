@@ -146,7 +146,6 @@ public class WebController {
     }
 
     // 2. 공지/건의
-    // 2. 공지/건의
     @GetMapping("/notice")
     public String notice(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
         addCommonAttributes("201", model, session);
@@ -413,7 +412,6 @@ public class WebController {
     public String reportForm(Model model, HttpSession session) {
         addCommonAttributes("502", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 등록"));
-        // 등록 화면이므로 빈 Map 전달
         model.addAttribute("report", new HashMap<String, Object>());
         return "finops/report/form";
     }
@@ -460,28 +458,10 @@ public class WebController {
     }
 
     @GetMapping("/finops/request/form")
-    public String requestForm(Model model, HttpSession session, @RequestParam(value="id", required=false) String id) {
+    public String requestForm(Model model, HttpSession session) {
         addCommonAttributes("503", model, session);
-
-        if (id != null) {
-            // 수정 모드
-            model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 수정"));
-            // (실제로는 id로 데이터를 조회하여 model에 담아 전달)
-            Map<String, Object> requestData = new HashMap<>();
-            requestData.put("fundCode", "951112103101");
-            requestData.put("fundName", "KB와이즈스타전문투자형사모부동산");
-            requestData.put("reportType", "주주총회");
-            requestData.put("date", "2025-05-10");
-            requestData.put("title", "주주총회 결과 보고");
-            requestData.put("content", "주요 내용입니다.");
-            requestData.put("fileName", "주총결과보고서.pdf");
-            model.addAttribute("request", requestData);
-        } else {
-            // 등록 모드
-            model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 등록"));
-            model.addAttribute("request", new HashMap<String, Object>());
-        }
-
+        model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 등록"));
+        model.addAttribute("request", new HashMap<String, Object>());
         return "finops/request/form";
     }
 

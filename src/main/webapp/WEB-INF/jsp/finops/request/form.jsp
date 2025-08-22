@@ -20,7 +20,7 @@
             <form>
                 <table class="form-table">
                      <tbody>
-                        <tr>
+                         <tr>
                             <th><span class="required">*</span> 펀드코드</th>
                             <td colspan="3">
                                 <div class="input-with-button">
@@ -29,7 +29,7 @@
                                     <input type="text" name="fundName" class="wide-input" value="${request.fundName}" placeholder="펀드명" readonly>
                                 </div>
                             </td>
-                        </tr>
+                         </tr>
                         <tr>
                             <th><span class="required">*</span> 보고구분</th>
                             <td>
@@ -39,25 +39,19 @@
                                 </select>
                             </td>
                              <th><span class="required">*</span> 일자</th>
-                            <td><input type="date" name="date" class="short-input" value="${request.date}"></td>
+                             <td><input type="date" name="date" class="short-input" value="${request.date}"></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 제목</th>
                             <td colspan="3"><input type="text" name="title" value="${request.title}"></td>
                         </tr>
                          <tr>
-                            <th>주요내용</th>
+                             <th>주요내용</th>
                             <td colspan="3"><textarea name="content" style="width: 100%; height: 120px; resize: vertical;">${request.content}</textarea></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 첨부파일</th>
                             <td colspan="3">
-                                <c:if test="${not empty request.fileName}">
-                                    <div class="file-item" style="margin-bottom: 10px;">
-                                        <a href="#" class="text-link">${request.fileName}</a>
-                                        <button type="button" class="btn-delete-file">&times;</button>
-                                    </div>
-                                </c:if>
                                 <div class="file-input-wrapper">
                                      <input type="text" readonly placeholder="파일을 첨부해주세요.">
                                      <label for="file-upload" class="btn btn-dark">파일찾기</label>
@@ -71,7 +65,7 @@
                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 저장</button>
                     <button type="button" class="btn btn-secondary" onclick="location.href='/finops/request/list'"><i class="fa-solid fa-times"></i> 취소</button>
                 </div>
-            </form>
+           </form>
         </main>
     </div>
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
