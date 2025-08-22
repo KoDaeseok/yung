@@ -44,11 +44,12 @@
                         <c:choose>
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
-                                    <tr>
+                                    <tr data-href="/finops/report/detail?id=${item.id}">
                                         <td>${item.reportDate}</td>
-                                        <td style="text-align: left;"><a href="/finops/report/detail?id=${item.id}" class="text-link">${item.fundName}</a></td>
+                                        <%-- <a> 태그 제거 --%>
+                                        <td style="text-align: left;" class="text-link">${item.fundName}</td>
                                         <td>${item.cycle}</td>
-                                        <td><a href="#" class="download-link" data-filename="${item.reportFile}">${item.reportFile}</a></td>
+                                        <td>${item.reportFile}</td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
@@ -87,5 +88,6 @@
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
     <script src="/js/finops.js"></script>
+    <script src="/js/clickable-rows.js"></script>
 </body>
 </html>

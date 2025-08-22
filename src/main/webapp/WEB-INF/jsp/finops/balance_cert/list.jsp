@@ -43,11 +43,10 @@
                         <c:choose>
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
-                                    <tr>
+                                    <tr data-href="/finops/balance_cert/detail?id=${item.id}">
                                         <td>${item.fundCode}</td>
-                                        <td style="text-align: left;">
-                                            <a href="/finops/balance_cert/detail?id=${item.id}" class="text-link">${item.fundName}</a>
-                                        </td>
+                                        <%-- <a> 태그 제거 --%>
+                                        <td style="text-align: left;" class="text-link">${item.fundName}</td>
                                         <td style="text-align: right;"><fmt:formatNumber value="${item.amount}" pattern="#,###" /></td>
                                         <td><span class="${item.status == '등록완료' ? 'status-completed' : 'status-pending'}">${item.status}</span></td>
                                     </tr>
@@ -83,5 +82,6 @@
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
     <script src="/js/finops.js"></script>
+    <script src="/js/clickable-rows.js"></script>
 </body>
 </html>

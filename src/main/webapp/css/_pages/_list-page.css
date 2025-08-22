@@ -104,3 +104,10 @@
     pointer-events: none;
     background-color: #f8f9fa;
 }
+
+.data-table tbody tr[data-href] {
+    cursor: pointer;
+}
+.data-table tbody tr[data-href]:hover {
+    background-color: var(--background-color-hover);
+}

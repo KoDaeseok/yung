@@ -68,8 +68,9 @@
                         <c:choose>
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
-                                    <tr>
-                                        <td><a href="/finops/asset/detail?id=${item.id}" class="text-link">${item.investType}</a></td>
+                                    <tr data-href="/finops/asset/detail?id=${item.id}">
+                                        <%-- <a> 태그 제거 --%>
+                                        <td class="text-link">${item.investType}</td>
                                         <td style="text-align: left;">${item.overview}</td>
                                         <td>${item.country}</td>
                                         <td>-</td>
@@ -118,5 +119,6 @@
     <%-- 펀드 검색 팝업 파일 포함 --%>
     <jsp:include page="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
     <script src="/js/finops_popup.js"></script>
+    <script src="/js/clickable-rows.js"></script>
 </body>
 </html>
