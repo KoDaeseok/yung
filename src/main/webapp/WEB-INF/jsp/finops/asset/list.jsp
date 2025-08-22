@@ -18,8 +18,8 @@
             </div>
             <h1>${menuDetail.menuNm}</h1>
             
-            <%-- 검색 영역 (기존 화면 구성 반영) --%>
-            <div class="search-bar-wrapper" style="flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-bottom: 20px;">
+            <%-- 검색 영역 class 수정 --%>
+            <div class="asset-search-bar">
                 <div class="search-fields">
                     <label for="fund-code">펀드</label>
                     <div class="input-with-button">
@@ -36,9 +36,9 @@
                 </div>
                 <div class="search-fields">
                     <label for="target-year">대상분기</label>
-                    <input type="text" id="target-year" style="width: 80px;" value="2024">
-                    <span style="margin: 0 5px;">년</span>
-                    <select id="target-quarter" class="short-input" style="width: 80px;">
+                    <input type="text" id="target-year" name="targetYear" value="2024">
+                    <span>년</span>
+                    <select id="target-quarter" name="targetQuarter" class="short-input">
                         <option value="1">1분기</option>
                         <option value="2">2분기</option>
                         <option value="3">3분기</option>
@@ -69,7 +69,6 @@
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
                                     <tr data-href="/finops/asset/detail?id=${item.id}">
-                                        <%-- <a> 태그 제거 --%>
                                         <td class="text-link">${item.investType}</td>
                                         <td style="text-align: left;">${item.overview}</td>
                                         <td>${item.country}</td>
@@ -101,9 +100,9 @@
                             </div>
                         </div>
                         <div class="item-counter">
-                            <c:set var="startItem" value="${(currentPage - 1) * pageSize + 1}" />
-                            <c:set var="endItem" value="${currentPage * pageSize}" />
-                            ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
+                             <c:set var="startItem" value="${(currentPage - 1) * pageSize + 1}" />
+                             <c:set var="endItem" value="${currentPage * pageSize}" />
+                             ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
                         </div>
                     </c:if>
                 </div>
@@ -116,7 +115,6 @@
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
     <script src="/js/finops.js"></script>
-    <%-- 펀드 검색 팝업 파일 포함 --%>
     <jsp:include page="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
     <script src="/js/finops_popup.js"></script>
     <script src="/js/clickable-rows.js"></script>

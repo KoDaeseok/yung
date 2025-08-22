@@ -16,7 +16,7 @@
     font-weight: 600;
     color: var(--text-color-medium);
 }
-.search-fields input[type="month"] {
+.search-fields input[type="month"],input[type="date"] {
     height: 34px;
     padding: 0 8px; 
     border: 1px solid var(--border-color-default);
@@ -40,4 +40,42 @@
     cursor: pointer;
     padding: 0 5px;
     line-height: 1;
+}
+
+.asset-search-bar {
+    display: flex;
+    justify-content: flex-end; /* 우측 정렬 */
+    align-items: center;
+    gap: 15px; /* 각 검색 그룹 사이의 간격 */
+    margin-bottom: 20px;
+    flex-wrap: nowrap; /* 줄바꿈 방지 */
+}
+
+.asset-search-bar .search-fields {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 라벨과 입력 필드 사이의 간격 */
+}
+
+.asset-search-bar label {
+    font-weight: 600;
+    color: var(--text-color-medium);
+    white-space: nowrap; /* 라벨 줄바꿈 방지 */
+}
+
+/* 검색 바 내부 입력 필드들의 너비 조정 */
+.asset-search-bar .input-with-button .short-input {
+    width: 120px;
+}
+.asset-search-bar .input-with-button .wide-input {
+    width: 250px;
+}
+.asset-search-bar #re-invest-fund {
+    width: 120px;
+}
+.asset-search-bar #target-year {
+    width: 70px;
+}
+.asset-search-bar #target-quarter {
+    width: 80px;
 }
