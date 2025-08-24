@@ -46,11 +46,9 @@
                         <c:choose>
                             <c:when test="${not empty propvestList}">
                                 <c:forEach var="item" items="${propvestList}">
-                                    <tr>
+                                    <tr data-href="/propvest/detail?id=${item.id} style="text-decoration:none; color: #333;"">
                                         <td>${item.date}</td>
-                                        <td>
-                                             <a href="/propvest/detail?id=${item.id}" style="text-decoration:none; color: #333;">${item.id}</a>
-                                        </td>
+                                        <td>${item.id}</td>
                                         <td class="status-cell">
                                             <c:choose>
                                                 <c:when test="${item.status == '검토완료'}">
@@ -119,5 +117,6 @@
 
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
+    <script src="/js/clickable-rows.js"></script>
 </body>
 </html>

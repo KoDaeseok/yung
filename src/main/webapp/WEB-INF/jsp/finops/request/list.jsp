@@ -43,18 +43,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="item" items="${list}">
+                        <c:forEach var="item" items="${list}">      
                             <tr data-href="/finops/request/detail?id=${item.id}">
                                 <td>${item.fundCode}</td>
-                                <%-- <a> 태그 제거 --%>
+                                <%-- <a> 태그 제거 --%>         
                                 <td style="text-align: left;" class="text-link">${item.fundName}</td>
                                 <td>${item.date}</td>
                                 <td>${item.type}</td>
                                 <td style="text-align: left;">${item.title}</td>
-                                <td>${item.fileName}</td>
+                                <%-- [수정] 파일 다운로드 링크 추가 --%>
+                                <td>
+                                    <a href="#" class="download-link" data-filename="${item.fileName}">${item.fileName}</a>
+                                </td>
                             </tr>
                         </c:forEach>
-                    </tbody>
                 </table>
                 <div class="table-footer">
                     <c:if test="${not empty list}">

@@ -13,6 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const fileAddWrapper = document.getElementById('file-add-wrapper');
             const deleteFileBtns = finopsForm.querySelectorAll('.btn-delete-file');
 
+            // [추가] asset 상세 페이지용 요소
+            const excelButtons = document.getElementById('edit-mode-excel-buttons');
+            const viewModeAssetBody = document.getElementById('view-mode-asset-body');
+            const editModeAssetBody = document.getElementById('asset-table-body');
+
+
             const enableEditMode = () => {
                 formFields.forEach(field => {
                     field.readOnly = false;
@@ -23,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(fileAddWrapper) fileAddWrapper.style.display = 'block';
                 deleteFileBtns.forEach(btn => btn.style.display = 'inline-block');
                 
+                // [추가] asset 상세 페이지 수정 모드 처리
+                if(excelButtons) excelButtons.style.display = 'flex';
+                if(viewModeAssetBody) viewModeAssetBody.style.display = 'none';
+                if(editModeAssetBody) editModeAssetBody.style.display = '';
+
+
                 viewModeButtons.style.display = 'none';
                 editModeButtons.style.display = 'flex';
             };
@@ -48,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     downloadLinks.forEach(link => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
+            event.stopPropagation(); // 이벤트 버블링을 막아 행 전체 클릭 방지
             const filename = link.getAttribute('data-filename');
             alert('"' + filename + '" 다운로드를 시작합니다.'); 
         });

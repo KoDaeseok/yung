@@ -101,7 +101,7 @@
             </div>
             <%-- 등록 버튼 추가 --%>
             <div class="button-container">
-                <a href="/suggestion/new" class="btn btn-primary">질문하기</a>
+                <a href="/suggestion/new" class="btn btn-primary"><i class="fa-solid fa-pen"></i>질문하기</a>
             </div>
         </main>
     </div>

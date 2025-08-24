@@ -46,10 +46,15 @@
                                 <c:forEach var="item" items="${list}">
                                     <tr data-href="/finops/report/detail?id=${item.id}">
                                         <td>${item.reportDate}</td>
+                            
                                         <%-- <a> 태그 제거 --%>
                                         <td style="text-align: left;" class="text-link">${item.fundName}</td>
                                         <td>${item.cycle}</td>
-                                        <td>${item.reportFile}</td>
+                                        <%-- [수정] 파일 다운로드 링크 추가 --%>
+                                        <td>
+                                            <a href="#" class="download-link" data-filename="${item.reportFile}">${item.reportFile}</a>
+                                        </td>
+                    
                                     </tr>
                                 </c:forEach>
                             </c:when>

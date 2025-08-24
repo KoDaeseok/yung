@@ -505,6 +505,44 @@ public class WebController {
         assetData.put("country", "대한민국");
         model.addAttribute("asset", assetData);
         
+        // [수정] Map.of() 대신 new HashMap<>() 사용
+        List<Map<String, String>> assetDetailList = new ArrayList<>();
+        
+        Map<String, String> detail1 = new HashMap<>();
+        detail1.put("investType", "강남 프라임 빌딩");
+        detail1.put("overview", "오피스 자산");
+        detail1.put("country", "대한민국");
+        detail1.put("entrAstsIvMethNm", "대출");
+        detail1.put("entrAstsRateNm", "고정");
+        detail1.put("ivStatTcNm", "운용중");
+        detail1.put("ivAmt", "1500000000");
+        detail1.put("fxIvAmt", "0");
+        detail1.put("ivEstmAmt", "1550000000");
+        detail1.put("fxIvEstmAmt", "0");
+        detail1.put("grossTvpi", "1.03");
+        detail1.put("grossIrr", "7.5");
+        assetDetailList.add(detail1);
+
+        Map<String, String> detail2 = new HashMap<>();
+        detail2.put("investType", "판교 데이터센터");
+        detail2.put("overview", "인프라 자산");
+        detail2.put("country", "대한민국");
+        detail2.put("entrAstsIvMethNm", "지분");
+        detail2.put("entrAstsRateNm", "변동");
+        detail2.put("ivStatTcNm", "운용중");
+        detail2.put("ivAmt", "2000000000");
+        detail2.put("fxIvAmt", "0");
+        detail2.put("ivEstmAmt", "2100000000");
+        detail2.put("fxIvEstmAmt", "0");
+        detail2.put("grossTvpi", "1.05");
+        detail2.put("grossIrr", "8.0");
+        assetDetailList.add(detail2);
+        
+        // // 데이터가 없는 경우 테스트
+        // List<Map<String, String>> assetDetailList = new ArrayList<>();
+
+        model.addAttribute("assetDetailList", assetDetailList);
+        
         return "finops/asset/detail";
     }
 

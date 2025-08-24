@@ -55,6 +55,11 @@
     color: var(--text-color-light);
 }
 
+/* [추가] 다운로드 링크 호버 스타일 */
+.download-link:hover {
+    text-decoration: underline;
+}
+
 .table-footer {
     position: relative;
     margin-top: 20px;
