@@ -1,0 +1,35 @@
+/* _components/_sidebar.css */
+
+/* 사이드바 하단 현황판 스타일 */
+.status-box {
+    margin-top: 30px;
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-small);
+}
+
+.status-header {
+    padding: 10px;
+    font-weight: 600;
+    background-color: var(--background-color-light);
+    border-bottom: 1px solid var(--border-color-light);
+    font-size: 14px;
+    color: var(--text-color-dark);
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 14px;
+    color: var(--text-color-medium);
+}
+
+.status-item:not(:last-child) {
+    border-bottom: 1px solid var(--border-color-extra-light);
+}
+
+.status-count {
+    font-weight: bold;
+    color: var(--primary-color);
+}

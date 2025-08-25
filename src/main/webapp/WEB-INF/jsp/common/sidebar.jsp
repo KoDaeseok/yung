@@ -10,4 +10,19 @@
             </li>
         </c:forEach>
     </ul>
+
+    <%-- [추가] 로그인 상태일 때만 현황판 표시 --%>
+    <c:if test="${not empty sessionScope.userName}">
+        <div class="status-box">
+            <div class="status-header">현황 및 상태</div>
+            <div class="status-item">
+                <span>자료요청</span>
+                <span id="reqCnt" class="status-count">0</span>
+            </div>
+            <div class="status-item">
+                <span>세미나 요청</span>
+                <span id="smnCnt" class="status-count">0</span>
+            </div>
+        </div>
+    </c:if>
 </aside>

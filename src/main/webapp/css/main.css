@@ -21,6 +21,7 @@
 @import url('_components/_card-layout.css');
 @import url('_components/_table.css');
 @import url('_components/_form-table.css');
+@import url('_layout/_sidebar.css');
 
 /* 페이지별 스타일 */
 @import url('_pages/_organization.css');

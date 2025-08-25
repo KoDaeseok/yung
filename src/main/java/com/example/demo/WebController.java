@@ -56,6 +56,22 @@ public class WebController {
     }
     // (참고) 다른 상위 메뉴들도 필요하다면 여기에 하위 메뉴를 추가할 수 있습니다.
 
+    // --- [추가] 사이드바 현황 데이터 API ---
+    @GetMapping("/main/sideStat.do")
+    @ResponseBody
+    public Map<String, Object> getSideStatus(HttpSession session) {
+        Map<String, Object> response = new HashMap<>();
+        // 로그인 상태일 때만 실제 카운트 반환 (시뮬레이션)
+        if (session.getAttribute("userName") != null) {
+            response.put("reqCnt", 5); // 예시 데이터
+            response.put("smnCnt", 2); // 예시 데이터
+        } else {
+            response.put("reqCnt", 0);
+            response.put("smnCnt", 0);
+        }
+        return response;
+    }
+    
     // --- 공통 컴포넌트 컨트롤러 ---
 
     @GetMapping("/header.do")
