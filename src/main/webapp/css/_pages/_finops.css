@@ -18,6 +18,7 @@
 .search-fields label {
     font-weight: 600;
     color: var(--text-color-medium);
+    white-space: nowrap;
 }
 .search-fields input[type="month"],
 .search-fields input[type="date"],
@@ -215,4 +216,14 @@
 
 #plan-form #target-year {
     width: 100px;
+}
+
+/* ==============================
+   manager 목록 검색바
+   ============================== */
+.manager-list-search .input-with-button .wide-input {
+    width: 220px;
+}
+.manager-list-search #manager-name {
+    width: 150px;
 }

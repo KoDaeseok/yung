@@ -605,6 +605,88 @@ public class WebController {
         return "finops/plan/form";
     }
 
+    // 5-6. 업무담당자
+    @GetMapping("/finops/manager/list")
+    public String managerList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+        addCommonAttributes("506", model, session);
+        
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        sampleList.add(Map.of("id", "1", "fundName", "KB PG 에너지인프라모특별자산투자", "managerName", "김담당", "position", "팀장", "task", "운용 총괄", "orgType", "운용사", "phone", "02-1234-5678", "mobile", "010-1111-2222"));
+        sampleList.add(Map.of("id", "2", "fundName", "KB스타오피스사모부동산신탁", "managerName", "박대리", "position", "대리", "task", "운용 실무", "orgType", "운용사", "phone", "02-4321-8765", "mobile", "010-3333-4444"));
+        
+        addPaginationAttributes(model, page, 10, sampleList);
+        return "finops/manager/list";
+    }
+
+    @GetMapping("/finops/manager/detail")
+    public String managerDetail(Model model, HttpSession session, @RequestParam("id") String id) {
+        addCommonAttributes("506", model, session);
+        model.addAttribute("pageTitle", "업무담당자 상세");
+        
+        // id로 DB에서 데이터를 조회했다고 가정
+        Map<String, Object> managerData = new HashMap<>();
+        managerData.put("id", id);
+        managerData.put("fundCode", "951515032501");
+        managerData.put("fundName", "KB PG 에너지인프라모특별자산투자");
+        managerData.put("orgType", "운용사");
+        managerData.put("roleType", "운용역");
+        managerData.put("managerName", "김담당");
+        managerData.put("position", "팀장");
+        managerData.put("emailId", "manager");
+        managerData.put("emailDomain", "kb.co.kr");
+        managerData.put("mobile1", "010");
+        managerData.put("mobile2", "1111");
+        managerData.put("mobile3", "2222");
+        managerData.put("phone1", "02");
+        managerData.put("phone2", "1234");
+        managerData.put("phone3", "5678");
+        managerData.put("task", "운용 총괄");
+        managerData.put("startDate", "2023-01-01");
+        managerData.put("endDate", "9999-12-31");
+        model.addAttribute("manager", managerData);
+        
+        return "finops/manager/detail";
+    }
+
+    @GetMapping("/finops/manager/form")
+    public String managerForm(Model model, HttpSession session, @RequestParam(value="id", required=false) String id) {
+        addCommonAttributes("506", model, session);
+
+        if (id == null) {
+            // 등록 페이지
+            model.addAttribute("pageTitle", "업무담당자 등록");
+            model.addAttribute("isNew", true);
+            model.addAttribute("manager", new HashMap<String, Object>());
+        } else {
+            // 수정 페이지
+            model.addAttribute("pageTitle", "업무담당자 수정");
+            model.addAttribute("isNew", false);
+            // id로 DB에서 데이터를 조회했다고 가정 (detail과 동일한 데이터 사용)
+            Map<String, Object> managerData = new HashMap<>();
+            managerData.put("id", id);
+            managerData.put("fundCode", "951515032501");
+            managerData.put("fundName", "KB PG 에너지인프라모특별자산투자");
+            managerData.put("orgType", "운용사");
+            managerData.put("roleType", "운용역");
+            managerData.put("managerName", "김담당");
+            managerData.put("position", "팀장");
+            managerData.put("emailId", "manager");
+            managerData.put("emailDomain", "kb.co.kr");
+            managerData.put("mobile1", "010");
+            managerData.put("mobile2", "1111");
+            managerData.put("mobile3", "2222");
+            managerData.put("phone1", "02");
+            managerData.put("phone2", "1234");
+            managerData.put("phone3", "5678");
+            managerData.put("task", "운용 총괄");
+            managerData.put("startDate", "2023-01-01");
+            managerData.put("endDate", "9999-12-31");
+            model.addAttribute("manager", managerData);
+        }
+        
+        return "finops/manager/form";
+    }
+
 
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
