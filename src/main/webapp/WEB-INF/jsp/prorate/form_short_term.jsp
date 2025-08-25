@@ -17,7 +17,6 @@
                 <span>></span><span>금리제안</span><span>></span><span>${pageTitle}</span>
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
-
             <form>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
@@ -48,7 +47,6 @@
                         </tr>
                     </tbody>
                 </table>
-                
                 <div class="section-title" style="margin-top:20px;">
                     <h2>담당자 정보</h2>
                 </div>
@@ -72,10 +70,9 @@
                         </tr>
                     </tbody>
                 </table>
-
                 <div class="form-buttons">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 등록</button>
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/prorate/list'"><i class="fa-solid fa-times"></i> 취소</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> ${isEdit ? '수정' : '등록'}</button>
+                    <button type="button" class="btn btn-secondary" onclick="history.back()"><i class="fa-solid fa-times"></i> 취소</button>
                 </div>
             </form>
         </main>

@@ -17,38 +17,37 @@
                 <span>></span><span>금리제안</span><span>></span><span>${menuDetail.menuNm}</span>
             </div>
             <h1>${menuDetail.menuNm}</h1>
-
             <div class="content-container">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width: 10%;">번호</th>
-                            <th style="width: 15%;">상품구분</th>
-                            <th style="width: auto;">제목</th>
-                            <th style="width: 20%;">마감일시</th>
-                            <th style="width: 15%;">상태</th>
+                            <th style="width: 15%;">등록번호</th>
+                            <th style="width: 15%;">요청팀</th>
+                            <th style="width: auto;">요청명</th>
+                            <th style="width: 15%;">게시일자</th>
+                            <th style="width: 15%;">마감일시</th>
+                            <th style="width: 10%;">등록여부</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:choose>
                             <c:when test="${not empty list}">
-                                <c:forEach var="item" items="${list}" varStatus="status">
-                                    <tr data-href="/prorate/detail?id=${item.id}&type=${item.type}">
-                                        <td>${totalItems - ((currentPage - 1) * pageSize) - status.index}</td>
-                                        <td>${item.type}</td>
+                                <c:forEach var="item" items="${list}">
+                                    <tr data-href="/prorate/detail?id=${item.id}&type=short">
+                                        <td>${item.regNum}</td>
+                                        <td>${item.team}</td>
                                         <td style="text-align: left;" class="text-link">${item.title}</td>
+                                        <td>${item.postDate}</td>
                                         <td>${item.endDate}</td>
                                         <td>
-                                             <span class="status-badge ${item.status == '진행중' ? 'pending' : 'complete'}">${item.status}</span>
+                                             <span class="status-badge ${item.regStatus == '등록완료' ? 'complete' : 'pending'}">${item.regStatus}</span>
                                         </td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
                                 <tr>
-                                    <td colspan="5" class="no-data">
-                                        <div class="no-data-content">데이터가 없습니다.</div>
-                                    </td>
+                                    <td colspan="6" class="no-data"><div class="no-data-content">데이터가 없습니다.</div></td>
                                 </tr>
                             </c:otherwise>
                         </c:choose>
@@ -73,6 +72,9 @@
                             ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
                         </div>
                     </c:if>
+                </div>
+                 <div class="button-container">
+                    <a href="/prorate/form?type=short" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 신규 등록</a>
                 </div>
             </div>
         </main>

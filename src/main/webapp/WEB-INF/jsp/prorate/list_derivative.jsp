@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,45 +14,41 @@
         <main class="page-content">
             <div class="breadcrumb">
                 <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
-                <span>></span><span>운용관리</span><span>></span><span>${menuDetail.menuNm}</span>
+                <span>></span><span>금리제안</span><span>></span><span>${menuDetail.menuNm}</span>
             </div>
             <h1>${menuDetail.menuNm}</h1>
-            
-            <div class="search-bar-wrapper">
-                <div class="search-fields">
-                    <label for="search-month">보고대상월</label>
-                    <input type="month" id="search-month" value="2025-08">
-                </div>
-                <div class="search-buttons">
-                    <button type="submit" class="btn btn-dark"><i class="fa-solid fa-search"></i> 조회</button>
-                </div>
-            </div>
-
             <div class="content-container">
                 <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width: 25%;">펀드코드</th>
-                            <th style="width: 45%;">펀드명</th>
-                            <th style="width: 15%;">금액</th>
-                            <th style="width: 15%;">등록여부</th>
+                            <th style="width: 15%;">등록번호</th>
+                            <th style="width: 15%;">요청팀</th>
+                            <th style="width: auto;">요청명</th>
+                            <th style="width: 15%;">게시일자</th>
+                            <th style="width: 15%;">마감일시</th>
+                            <th style="width: 10%;">등록여부</th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:choose>
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
-                                    <tr data-href="/finops/balance_cert/detail?id=${item.id}">
-                                        <td>${item.fundCode}</td>
-                                        <%-- <a> 태그 제거 --%>
-                                        <td style="text-align: left;" class="text-link">${item.fundName}</td>
-                                        <td style="text-align: right;"><fmt:formatNumber value="${item.amount}" pattern="#,###" /></td>
-                                        <td><span class="${item.status == '등록완료' ? 'status-completed' : 'status-pending'}">${item.status}</span></td>
+                                    <tr data-href="/prorate/detail?id=${item.id}&type=deriv">
+                                        <td>${item.regNum}</td>
+                                        <td>${item.team}</td>
+                                        <td style="text-align: left;" class="text-link">${item.title}</td>
+                                        <td>${item.postDate}</td>
+                                        <td>${item.endDate}</td>
+                                        <td>
+                                             <span class="status-badge ${item.regStatus == '등록완료' ? 'complete' : 'pending'}">${item.regStatus}</span>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </c:when>
                             <c:otherwise>
-                                <tr><td colspan="4" class="no-data"><div class="no-data-content">데이터가 없습니다.</div></td></tr>
+                                <tr>
+                                    <td colspan="6" class="no-data"><div class="no-data-content">데이터가 없습니다.</div></td>
+                                </tr>
                             </c:otherwise>
                         </c:choose>
                     </tbody>
@@ -78,15 +73,14 @@
                         </div>
                     </c:if>
                 </div>
-                <div class="button-container">
-                    <a href="/finops/balance_cert/form" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 등록</a>
+                 <div class="button-container">
+                    <a href="/prorate/form?type=deriv" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 신규 등록</a>
                 </div>
             </div>
         </main>
     </div>
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
-    <script src="/js/finops.js"></script>
     <script src="/js/clickable-rows.js"></script>
 </body>
 </html>

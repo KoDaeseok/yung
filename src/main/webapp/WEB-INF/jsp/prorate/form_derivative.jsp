@@ -17,7 +17,6 @@
                 <span>></span><span>금리제안</span><span>></span><span>${pageTitle}</span>
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
-
             <form>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안금리</h2>
@@ -36,7 +35,6 @@
                         </tr>
                     </tbody>
                 </table>
-                
                 <div class="content-container" style="margin-top:20px;">
                     <table class="data-table">
                         <thead>
@@ -48,8 +46,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%-- 요청 유형만큼 반복 (샘플 5개) --%>
-                            <c:forEach begin="1" end="5" var="i">
+                            <c:forEach begin="1" end="15" var="i">
                                 <tr>
                                     <td>유형${i}</td>
                                     <td style="text-align: left;">조건 예시 텍스트 ${i}</td>
@@ -60,7 +57,6 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
                 </div>
@@ -76,10 +72,9 @@
                         </tr>
                     </tbody>
                 </table>
-
                 <div class="form-buttons">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 등록</button>
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/prorate/list'"><i class="fa-solid fa-times"></i> 취소</button>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> ${isEdit ? '수정' : '등록'}</button>
+                    <button type="button" class="btn btn-secondary" onclick="history.back()"><i class="fa-solid fa-times"></i> 취소</button>
                 </div>
             </form>
         </main>

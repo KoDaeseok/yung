@@ -1,4 +1,3 @@
-<%-- /kodaeseok/yung/yung-d14fd9bdba91706cbfda4bbeb23305736ac65e6d/src/main/webapp/WEB-INF/jsp/prorate/detail_short_term.jsp --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -18,7 +17,6 @@
                 <span>></span><span>금리제안</span><span>></span><span>${pageTitle}</span>
             </div>
             <h1><i class="fa-solid fa-circle-info"></i> ${pageTitle}</h1>
-
             <form id="prorate-form">
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
@@ -49,7 +47,6 @@
                         </tr>
                     </tbody>
                 </table>
-                
                 <div class="section-title" style="margin-top:20px;">
                     <h2>담당자 정보</h2>
                 </div>
@@ -57,7 +54,7 @@
                     <tbody>
                         <tr>
                             <th>담당자 부서</th>
-                            <td><input type="text" value="채권운용팀" readonly class="short-input"></td>
+                            <td><input type="text" value="채권투자팀" readonly class="short-input"></td>
                             <th>담당자명</th>
                             <td><input type="text" value="김채권" readonly class="short-input"></td>
                         </tr>
@@ -73,11 +70,10 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <div class="button-container" id="view-mode-buttons">
+                <div class="button-container">
                     <button type="button" class="btn btn-primary" onclick="location.href='/prorate/form?type=short&id=${detail.id}'"><i class="fa-solid fa-edit"></i> 수정</button>
                     <button type="button" class="btn btn-outline" id="delete-btn"><i class="fa-solid fa-trash"></i> 삭제</button>
-                    <button type="button" class="btn btn-outline" onclick="location.href='/prorate/list'"><i class="fa-solid fa-list"></i> 목록</button>
+                    <button type="button" class="btn btn-outline" onclick="location.href='/prorate/short_term/list'"><i class="fa-solid fa-list"></i> 목록</button>
                 </div>
             </form>
         </main>
