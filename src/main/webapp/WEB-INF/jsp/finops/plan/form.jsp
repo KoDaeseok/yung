@@ -24,7 +24,7 @@
                     <div class="form-action-buttons">
                         <div class="search-fields">
                              <label for="target-year"><span class="required">*</span> 대상년도</label>
-                            <input type="text" id="target-year" value="${year}" maxlength="4" placeholder="YYYY" readonly>
+                            <input type="text" id="target-year" value="${year}" maxlength="4" placeholder="" readonly>
                         </div>
                         <button type="button" class="btn btn-outline" id="btn-download-template"><i class="fa-solid fa-download"></i> 양식 다운로드</button>
                         <label for="excel-upload" class="btn btn-outline"><i class="fa-solid fa-upload"></i> 엑셀 업로드</label>

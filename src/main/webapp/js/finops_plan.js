@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // THEAD
         const thead = document.createElement('thead');
-        // [수정] 헤더 구조 변경: '구분' 헤더 추가 및 클래스 명확화
+        // [수정] 헤더에 클래스 추가
         let headerHTML = `
             <tr>
-                <th colspan="2" style="text-align:center;">구분</th>
+                <th colspan="2" class="sticky-col-group" style="text-align:center;">구분</th>
         `;
         for (let i = 1; i <= 12; i++) {
             headerHTML += `<th colspan="3">${i}월</th>`;
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // [수정] 본문 TD에 클래스 추가
                 let rowHTML = `
                     <tr>
-                        <td class="sticky-col-code">${row.fundC || ''}</td>
+                        <td class="sticky-col-code" style="text-align:left;">${row.fundC || ''}</td>
                         <td class="sticky-col-name" style="text-align:left;">${row.fundNm || ''}</td>
                 `;
                 for (let i = 1; i <= 12; i++) {

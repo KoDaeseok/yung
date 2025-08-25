@@ -178,16 +178,21 @@
    ============================== */
 /* 공통 sticky */
 .plan-table .sticky-col-code,
-.plan-table .sticky-col-name {
+.plan-table .sticky-col-name,
+.plan-table .sticky-col-group {
     position: sticky;
     z-index: 1;
 }
 
 /* 헤더에서도 동일하게 적용 */
 .plan-table thead .sticky-col-code,
+.plan-table thead .sticky-col-name,
+.plan-table thead .sticky-col-group {
+    z-index: 4; /* 헤더가 본문 위로 오도록 z-index를 더 높게 설정 */
+}
+.plan-table thead .sticky-col-code,
 .plan-table thead .sticky-col-name {
     top: 38px; /* 1행 헤더 높이만큼 내려주기 */
-    z-index: 2;
 }
 
 /* 펀드코드 (첫번째 컬럼) */
@@ -195,16 +200,16 @@
     left: 0;
     width: 150px;
     min-width: 150px;
-    border-right: none;
-    box-shadow: inset -1px 0 0 0 var(--border-color-light);
 }
 /* 펀드명 (두번째 컬럼) */
 .plan-table .sticky-col-name {
     left: 150px; /* 코드 폭만큼 밀기 */
     width: 220px;
     min-width: 220px;
-    border-right: none;
-    box-shadow: inset -1px 0 0 0 var(--border-color-light);
+}
+/* 구분 (병합된 헤더) */
+.plan-table .sticky-col-group {
+    left: 0;
 }
 
 

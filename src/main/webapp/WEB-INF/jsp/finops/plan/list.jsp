@@ -21,7 +21,6 @@
             <div class="search-bar-wrapper">
                 <div class="search-fields">
                     <label for="search-year">대상년도</label>
-                    <%-- [수정] input 태그에 type="text" 명시 및 스타일 클래스 추가 --%>
                     <input type="text" id="search-year" value="2025" maxlength="4" style="width: 100px;">
                 </div>
                 <div class="search-buttons">
@@ -34,7 +33,7 @@
                     <thead>
                         <tr>
                             <th style="width: 20%;">대상년도</th>
-                            <th style="width: 60%;">펀드명</th>
+                            <th style="width: 60%;">제목</th>
                             <th style="width: 20%;">등록일</th>
                         </tr>
                     </thead>
@@ -42,10 +41,9 @@
                         <c:choose>
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
-                                    <%-- [수정] 상세 페이지 경로로 수정 --%>
                                     <tr data-href="/finops/plan/detail?year=${item.year}">
                                         <td>${item.year}</td>
-                                        <td style="text-align: left;" class="text-link">${item.fundName}</td>
+                                        <td style="text-align: left;" class="text-link">${item.title}</td>
                                         <td>${item.regDate}</td>
                                     </tr>
                                 </c:forEach>

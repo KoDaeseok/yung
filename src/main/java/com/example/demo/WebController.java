@@ -575,8 +575,9 @@ public class WebController {
         addCommonAttributes("505", model, session);
         
         List<Map<String, String>> sampleList = new ArrayList<>();
-        sampleList.add(Map.of("id", "1", "year", "2025", "fundName", "KB PG 에너지인프라모특별자산투자", "regDate", "2025-01-15"));
-        sampleList.add(Map.of("id", "2", "year", "2024", "fundName", "KB스타오피스사모부동산신탁", "regDate", "2024-01-20"));
+        // [수정] "fundName"을 "title"로 변경하고 내용 수정
+        sampleList.add(Map.of("id", "1", "year", "2025", "title", "2025년 연간 자금계획", "regDate", "2025-01-15"));
+        sampleList.add(Map.of("id", "2", "year", "2024", "title", "2024년 연간 자금계획", "regDate", "2024-01-20"));
         
         addPaginationAttributes(model, page, 10, sampleList);
         return "finops/plan/list";
