@@ -26,7 +26,7 @@ public class WebController {
         menuData.add(Map.of("menuNo", "1", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "2", "menuNm", "공지/건의", "upperMenuNo", "0", "url", "/notice"));
         menuData.add(Map.of("menuNo", "3", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list"));
-        menuData.add(Map.of("menuNo", "4", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate"));
+        menuData.add(Map.of("menuNo", "4", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate/list"));
         menuData.add(Map.of("menuNo", "5", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops/balance_cert/list"));
         menuData.add(Map.of("menuNo", "6", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk"));
         menuData.add(Map.of("menuNo", "7", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms"));
@@ -45,6 +45,10 @@ public class WebController {
         // 3. 투자제안
         menuData.add(Map.of("menuNo", "301", "menuNm", "제안요청목록", "upperMenuNo", "3", "url", "/propvest/list"));
 
+        // 4. 금리제안
+        menuData.add(Map.of("menuNo", "401", "menuNm", "금리제안 목록", "upperMenuNo", "4", "url", "/prorate/list"));
+        menuData.add(Map.of("menuNo", "402", "menuNm", "요청자료등록(단기상품)", "upperMenuNo", "4", "url", "/prorate/form?type=short"));
+        menuData.add(Map.of("menuNo", "403", "menuNm", "요청자료등록(파생상품)", "upperMenuNo", "4", "url", "/prorate/form?type=deriv"));
         // 5. 운용관리
         menuData.add(Map.of("menuNo", "501", "menuNm", "잔고증명", "upperMenuNo", "5", "url", "/finops/balance_cert/list"));
         menuData.add(Map.of("menuNo", "502", "menuNm", "운용실적보고", "upperMenuNo", "5", "url", "/finops/report/list"));
@@ -318,6 +322,64 @@ public class WebController {
         addCommonAttributes("301", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "제안요청상세")); // 페이지 제목은 개별 설정
         return "propvest/propvest_detail";
+    }
+
+    // 4. 금리제안
+    public String prorateList(Model model, HttpSession session,
+            @RequestParam(value = "page", defaultValue = "1") int page) {
+        addCommonAttributes("401", model, session);
+
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        sampleList.add(Map.of("id", "1", "type", "단기", "title", "단기자금상품 금리요청", "endDate", "2025-09-10", "status", "진행중"));
+        sampleList.add(Map.of("id", "2", "type", "파생", "title", "파생결합상품 금리요청", "endDate", "2025-09-05", "status", "마감"));
+        for (int i = 3; i <= 22; i++) {
+             sampleList.add(Map.of("id", String.valueOf(i), "type", i % 2 == 0 ? "단기" : "파생", "title", (i % 2 == 0 ? "단기자금상품" : "파생결합상품") + " 금리요청", "endDate", "2025-08-" + (30-i) , "status", "마감"));
+        }
+
+        addPaginationAttributes(model, page, 10, sampleList);
+        return "prorate/list";
+    }
+    
+    @GetMapping("/prorate/detail")
+    public String prorateDetail(Model model, HttpSession session, @RequestParam("id") String id, @RequestParam("type") String type) {
+        addCommonAttributes("401", model, session); // 상세에서도 목록 메뉴 활성화
+
+        Map<String, Object> detailData = new HashMap<>();
+        detailData.put("id", id);
+        detailData.put("type", type);
+        model.addAttribute("detail", detailData);
+        
+        if("파생".equals(type)) {
+             model.addAttribute("pageTitle", "파생결합상품 금리요청 상세");
+            return "prorate/detail_derivative";
+        } else {
+             model.addAttribute("pageTitle", "단기상품 금리요청 상세");
+            return "prorate/detail_short_term";
+        }
+    }
+
+    @GetMapping("/prorate/form")
+    public String prorateForm(Model model, HttpSession session, @RequestParam("type") String type, @RequestParam(value="id", required=false) String id) {
+        
+        boolean isEdit = (id != null);
+        String pageTitle;
+        String viewName;
+
+        if ("deriv".equals(type)) {
+            addCommonAttributes("403", model, session);
+            pageTitle = isEdit ? "파생결합상품 금리요청 수정" : "요청자료등록(파생결합상품 금리요청)";
+            viewName = "prorate/form_derivative";
+        } else {
+            addCommonAttributes("402", model, session);
+            pageTitle = isEdit ? "단기상품 금리요청 수정" : "요청자료등록(단기상품 금리요청)";
+            viewName = "prorate/form_short_term";
+        }
+        
+        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("isEdit", isEdit);
+        model.addAttribute("id", id);
+        
+        return viewName;
     }
 
     // 5. 운용관리
@@ -690,13 +752,6 @@ public class WebController {
 
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
-    // @GetMapping("/propvest") public String propvest() { return "redirect:/"; }
-    @GetMapping("/prorate")
-    public String prorate() {
-        return "redirect:/";
-    }
-
-    // @GetMapping("/finops") public String finops() { return "redirect:/"; }
     @GetMapping("/investtalk")
     public String investtalk() {
         return "redirect:/";

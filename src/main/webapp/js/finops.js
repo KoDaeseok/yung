@@ -1,4 +1,4 @@
-// kodaeseok/yung/yung-404bc4fb9f6635d408e180ac8f3a9a3d0ab809ac/src/main/webapp/js/finops.js
+// js/finops.js
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 상세 페이지 스크립트 ---
