@@ -1,11 +1,14 @@
-/* _pages/_finops.css
+/* _pages/_finops.css */
 
-/* 목록 페이지 상단 검색창 스타일 */
-.search-bar-wrapper {
+/* ==============================
+   목록 페이지 상단 검색창 스타일
+   ============================== */
+   .search-bar-wrapper {
     display: flex;
-    justify-content: flex-end; /* 전체 영역의 끝으로 정렬 */
+    justify-content: flex-end;
     align-items: center;
-    gap: 15px; /* 검색 필드와 버튼 사이 간격 */
+    gap: 15px;
+    margin-bottom: 20px;
 }
 .search-fields {
     display: flex;
@@ -16,21 +19,23 @@
     font-weight: 600;
     color: var(--text-color-medium);
 }
-.search-fields input[type="month"],input[type="date"] {
+.search-fields input[type="month"],
+.search-fields input[type="date"],
+.search-fields input[type="text"] {
     height: 34px;
     padding: 0 8px; 
     border: 1px solid var(--border-color-default);
     border-radius: var(--border-radius-tiny);
+    box-sizing: border-box;
 }
-/* 파일 목록 아이템 스타일 */
+
+/* 파일 목록 아이템 */
 .file-item {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 5px;
 }
-
-/* 파일 삭제 버튼 스타일 */
 .btn-delete-file {
     background: none;
     border: none;
@@ -42,28 +47,27 @@
     line-height: 1;
 }
 
+/* ==============================
+   자산 검색 바 스타일
+   ============================== */
 .asset-search-bar {
     display: flex;
-    justify-content: flex-end; /* 우측 정렬 */
+    justify-content: flex-end;
     align-items: center;
-    gap: 15px; /* 각 검색 그룹 사이의 간격 */
+    gap: 15px;
     margin-bottom: 20px;
-    flex-wrap: nowrap; /* 줄바꿈 방지 */
+    flex-wrap: nowrap;
 }
-
 .asset-search-bar .search-fields {
     display: flex;
     align-items: center;
-    gap: 8px; /* 라벨과 입력 필드 사이의 간격 */
+    gap: 8px;
 }
-
 .asset-search-bar label {
     font-weight: 600;
     color: var(--text-color-medium);
-    white-space: nowrap; /* 라벨 줄바꿈 방지 */
+    white-space: nowrap;
 }
-
-/* 검색 바 내부 입력 필드들의 너비 조정 */
 .asset-search-bar .input-with-button .short-input {
     width: 120px;
 }
@@ -78,4 +82,132 @@
 }
 .asset-search-bar #target-quarter {
     width: 80px;
+}
+
+/* ==============================
+   plan (연간 자금계획)
+   ============================== */
+.form-top-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.form-instruction {
+    font-size: 13px;
+    color: var(--text-color-subtle);
+}
+.form-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.form-action-buttons .search-fields input {
+    width: 100px;
+}
+.readonly-field {
+    height: 34px;
+    padding: 0 8px;
+    border: 1px solid var(--border-color-default);
+    border-radius: var(--border-radius-tiny);
+    background-color: var(--background-color-light);
+    display: flex;
+    align-items: center;
+    color: var(--text-color-medium);
+    width: 100px;
+}
+.plan-grid-container {
+    border: 1px solid var(--border-color-default);
+    padding: 15px;
+}
+.grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.grid-title {
+    font-size: 16px;
+    font-weight: 600;
+}
+.grid-unit {
+    font-size: 13px;
+    color: var(--text-color-light);
+}
+.plan-grid {
+    overflow-x: auto;
+}
+
+/* ==============================
+   plan 테이블
+   ============================== */
+   .plan-table {
+    width: auto; 
+    min-width: 100%;
+    border-spacing: 0;
+    border-collapse: separate; 
+    table-layout: fixed;
+    border-top: 2px solid var(--border-color-strong);
+}
+.plan-table th,
+.plan-table td {
+    white-space: nowrap;
+    padding: 10px 8px;
+    width: 120px;
+    border-bottom: 1px solid var(--border-color-light);
+    border-right: 1px solid var(--border-color-light);
+}
+.plan-table th:last-child,
+.plan-table td:last-child {
+    border-right: none;
+}
+
+/* 헤더 sticky */
+.plan-table thead th {
+    background-color: var(--background-color-light);
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+.plan-table tbody td {
+    background-color: var(--background-color-white);
+}
+
+/* ==============================
+   Sticky Columns (구분/펀드코드/펀드명)
+   ============================== */
+/* 공통 sticky */
+.plan-table .sticky-col-code,
+.plan-table .sticky-col-name {
+    position: sticky;
+    z-index: 1;
+}
+
+/* 헤더에서도 동일하게 적용 */
+.plan-table thead .sticky-col-code,
+.plan-table thead .sticky-col-name {
+    top: 38px; /* 1행 헤더 높이만큼 내려주기 */
+    z-index: 2;
+}
+
+/* 펀드코드 (첫번째 컬럼) */
+.plan-table .sticky-col-code {
+    left: 0;
+    width: 150px;
+    min-width: 150px;
+    border-right: none;
+    box-shadow: inset -1px 0 0 0 var(--border-color-light);
+}
+/* 펀드명 (두번째 컬럼) */
+.plan-table .sticky-col-name {
+    left: 150px; /* 코드 폭만큼 밀기 */
+    width: 220px;
+    min-width: 220px;
+    border-right: none;
+    box-shadow: inset -1px 0 0 0 var(--border-color-light);
+}
+
+
+#plan-form #target-year {
+    width: 100px;
 }

@@ -48,8 +48,7 @@ public class WebController {
         // 5. 운용관리
         menuData.add(Map.of("menuNo", "501", "menuNm", "잔고증명", "upperMenuNo", "5", "url", "/finops/balance_cert/list"));
         menuData.add(Map.of("menuNo", "502", "menuNm", "운용실적보고", "upperMenuNo", "5", "url", "/finops/report/list"));
-        menuData.add(
-                Map.of("menuNo", "503", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
+        menuData.add(Map.of("menuNo", "503", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
         menuData.add(Map.of("menuNo", "504", "menuNm", "편입자산 세부내역", "upperMenuNo", "5", "url", "/finops/asset/list"));
         menuData.add(Map.of("menuNo", "505", "menuNm", "연간 자금계획", "upperMenuNo", "5", "url", "/finops/plan/list"));
         menuData.add(Map.of("menuNo", "506", "menuNm", "업무담당자", "upperMenuNo", "5", "url", "/finops/manager/list"));
@@ -71,7 +70,7 @@ public class WebController {
         }
         return response;
     }
-    
+
     // --- 공통 컴포넌트 컨트롤러 ---
 
     @GetMapping("/header.do")
@@ -568,6 +567,41 @@ public class WebController {
         model.addAttribute("menuDetail", Map.of("menuNm", "편입자산 세부내역 등록"));
         model.addAttribute("asset", new HashMap<String, Object>()); // 빈 객체 전달
         return "finops/asset/form";
+    }
+
+    // 5-5. 연간 자금계획
+    @GetMapping("/finops/plan/list")
+    public String planList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
+        addCommonAttributes("505", model, session);
+        
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        sampleList.add(Map.of("id", "1", "year", "2025", "fundName", "KB PG 에너지인프라모특별자산투자", "regDate", "2025-01-15"));
+        sampleList.add(Map.of("id", "2", "year", "2024", "fundName", "KB스타오피스사모부동산신탁", "regDate", "2024-01-20"));
+        
+        addPaginationAttributes(model, page, 10, sampleList);
+        return "finops/plan/list";
+    }
+
+    @GetMapping("/finops/plan/detail")
+    public String planDetail(Model model, HttpSession session, @RequestParam("year") String year) {
+        addCommonAttributes("505", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", "연간 자금계획 상세"));
+        
+        // 실제로는 year를 기반으로 DB에서 데이터를 조회
+        Map<String, Object> planData = new HashMap<>();
+        planData.put("year", year);
+        // ... 기타 데이터
+        model.addAttribute("plan", planData);
+        
+        return "finops/plan/detail";
+    }
+
+    @GetMapping("/finops/plan/form")
+    public String planForm(Model model, HttpSession session, @RequestParam(value="year", required=false) String year) {
+        addCommonAttributes("505", model, session);
+        model.addAttribute("menuDetail", Map.of("menuNm", year != null ? "연간 자금계획 수정" : "연간 자금계획 등록"));
+        model.addAttribute("year", year); // 목록에서 클릭 시 년도 전달
+        return "finops/plan/form";
     }
 
 
