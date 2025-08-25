@@ -1,4 +1,4 @@
-// js/finops.js
+// kodaeseok/yung/yung-404bc4fb9f6635d408e180ac8f3a9a3d0ab809ac/src/main/webapp/js/finops.js
 document.addEventListener('DOMContentLoaded', () => {
     
     // --- 상세 페이지 스크립트 ---
@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const searchBtn = finopsForm.querySelector('.btn-search');
             const fileAddWrapper = document.getElementById('file-add-wrapper');
             const deleteFileBtns = finopsForm.querySelectorAll('.btn-delete-file');
+            const pageTitle = document.querySelector('.page-content h1'); // 페이지 제목 요소
+            const originalTitleHTML = pageTitle ? pageTitle.innerHTML : ''; // 원래 제목 저장
 
             // [추가] asset 상세 페이지용 요소
             const excelButtons = document.getElementById('edit-mode-excel-buttons');
@@ -25,7 +27,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     field.disabled = false;
                 });
                 
-                if(searchBtn) searchBtn.disabled = false;
+                // [수정] 검색 버튼을 활성화하고 보이게 처리
+                if(searchBtn) {
+                    searchBtn.style.display = ''; // display 속성을 원래대로 복원
+                    searchBtn.disabled = false;
+                }
+
                 if(fileAddWrapper) fileAddWrapper.style.display = 'block';
                 deleteFileBtns.forEach(btn => btn.style.display = 'inline-block');
                 
@@ -34,13 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if(viewModeAssetBody) viewModeAssetBody.style.display = 'none';
                 if(editModeAssetBody) editModeAssetBody.style.display = '';
 
-
                 viewModeButtons.style.display = 'none';
                 editModeButtons.style.display = 'flex';
+
+                // [추가] 페이지 제목을 '수정'으로 변경
+                if (pageTitle && originalTitleHTML.includes('상세')) {
+                    pageTitle.innerHTML = originalTitleHTML.replace('상세', '수정');
+                }
             };
 
             const disableEditMode = () => {
-                location.reload();
+                location.reload(); // 새로고침으로 모든 상태를 원복
             };
 
             editBtn.addEventListener('click', enableEditMode);

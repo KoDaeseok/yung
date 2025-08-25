@@ -26,7 +26,7 @@
                             <td colspan="3">
                                 <div class="input-with-button">
                                     <input type="text" name="fundCode" class="short-input" value="${asset.fundCode}" readonly>
-                                    <button type="button" class="btn-search" disabled><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <button type="button" class="btn-search" style="display: none;"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     <input type="text" name="fundName" class="wide-input" value="${asset.fundName}" readonly>
                                 </div>
                             </td>
