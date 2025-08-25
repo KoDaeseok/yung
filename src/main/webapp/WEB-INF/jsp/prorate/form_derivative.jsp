@@ -17,6 +17,32 @@
                 <span>></span><span>금리제안</span><span>></span><span>${pageTitle}</span>
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
+            
+            <%-- 요청 정보 표시 테이블 --%>
+            <div class="section-title" style="margin-top:20px;">
+                <h2>요청내용</h2>
+            </div>
+            <table class="form-table">
+                 <tbody>
+                    <tr>
+                        <th>요청일자</th>
+                        <td><input type="text" value="2025-09-01" readonly></td>
+                        <th>담당부서</th>
+                        <td><input type="text" value="경찰공제회" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>담당팀</th>
+                        <td><input type="text" value="주식투자팀" readonly></td>
+                        <th>담당자</th>
+                        <td><input type="text" value="김주식" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>요청명</th>
+                        <td colspan="3"><input type="text" value="파생결합상품 금리요청" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+
             <form>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안금리</h2>
@@ -37,31 +63,31 @@
                 </table>
                 <div class="content-container" style="margin-top:20px;">
                     <table class="data-table">
-                        <thead>
+                         <thead>
                             <tr>
                                 <th style="width:10%">유형</th>
                                 <th style="width:auto">조건</th>
                                 <th style="width:20%">투자기간</th>
                                 <th style="width:20%"><span class="required">*</span> 금리</th>
-                            </tr>
+                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach begin="1" end="15" var="i">
-                                <tr>
+                                 <tr>
                                     <td>유형${i}</td>
                                     <td style="text-align: left;">조건 예시 텍스트 ${i}</td>
-                                    <td>투자기간 예시 ${i}</td>
+                                     <td>투자기간 예시 ${i}</td>
                                     <td><input type="text" name="rate_${i}" style="width:100%; text-align:right;" placeholder="0.00 %"></td>
                                 </tr>
                             </c:forEach>
                         </tbody>
-                    </table>
+                     </table>
                 </div>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
                 </div>
                  <table class="form-table">
-                    <tbody>
+                     <tbody>
                          <tr>
                             <th>기타</th>
                             <td><textarea name="etc" style="width:100%; height: 80px; resize: vertical;"></textarea></td>

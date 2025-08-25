@@ -17,7 +17,34 @@
                 <span>></span><span>금리제안</span><span>></span><span>${pageTitle}</span>
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
+
+            <%-- 요청 정보 표시 테이블 --%>
+            <div class="section-title" style="margin-top:20px;">
+                <h2>요청내용</h2>
+            </div>
+            <table class="form-table">
+                <tbody>
+                    <tr>
+                        <th>요청일자</th>
+                        <td><input type="text" value="2025-09-03" readonly></td>
+                        <th>담당부서</th>
+                        <td><input type="text" value="경찰공제회" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>담당팀</th>
+                        <td><input type="text" value="채권투자팀" readonly></td>
+                        <th>담당자</th>
+                        <td><input type="text" value="김채권" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>요청명</th>
+                        <td colspan="3"><input type="text" value="단기자금상품 금리요청" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+
             <form>
+                <%-- 제안 내용 입력 테이블 --%>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
                 </div>
@@ -31,28 +58,29 @@
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 기간</th>
-                            <td colspan="3"><input type="text" name="period" class="wide-input"></td>
+                            <td colspan="3"><input type="text" name="period" class="wide-input" value="2025-09-01 ~ 2025-12-31" readonly></td>
                         </tr>
                          <tr>
                             <th>금액</th>
-                            <td colspan="3"><input type="text" name="amount" class="short-input" placeholder="숫자만 입력"></td>
+                            <td colspan="3"><input type="text" name="amount" class="short-input" placeholder="숫자만 입력" value="10,000,000,000" readonly></td>
                         </tr>
                         <tr>
                             <th>자산</th>
-                            <td colspan="3"><input type="text" name="asset" class="wide-input"></td>
+                            <td colspan="3"><input type="text" name="asset" class="wide-input" value="국고채" readonly></td>
                         </tr>
                         <tr>
                             <th>신탁약관 편입자산<br>최저신용등급</th>
-                            <td colspan="3"><input type="text" name="minCreditRating" class="wide-input"></td>
+                            <td colspan="3"><input type="text" name="minCreditRating" class="wide-input" value="AAA" readonly></td>
                         </tr>
                     </tbody>
                 </table>
+                
                 <div class="section-title" style="margin-top:20px;">
                     <h2>담당자 정보</h2>
                 </div>
                  <table class="form-table">
                     <tbody>
-                        <tr>
+                         <tr>
                             <th>담당자 부서</th>
                             <td><input type="text" name="managerDept" class="short-input"></td>
                             <th>담당자명</th>
@@ -63,7 +91,7 @@
                             <td><input type="text" name="managerPosition" class="short-input"></td>
                              <th>담당자 전화번호</th>
                             <td><input type="text" name="managerPhone" class="short-input"></td>
-                        </tr>
+                         </tr>
                          <tr>
                             <th>담당자 HP</th>
                             <td colspan="3"><input type="text" name="managerMobile" class="short-input"></td>

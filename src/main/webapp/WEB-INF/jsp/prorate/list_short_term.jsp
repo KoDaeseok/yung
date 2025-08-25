@@ -74,7 +74,7 @@
                     </c:if>
                 </div>
                  <div class="button-container">
-                    <a href="/prorate/form?type=short" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 신규 등록</a>
+                    <a href="/prorate/form?type=short" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 등록</a>
                 </div>
             </div>
         </main>

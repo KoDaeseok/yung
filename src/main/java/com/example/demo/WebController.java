@@ -3,10 +3,12 @@ package com.example.demo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -802,5 +804,35 @@ public class WebController {
             session.invalidate();
         }
         return "redirect:/";
+    }
+
+    // --- 에러 페이지 처리 ---
+    @GetMapping("/error")
+    public String handleError(HttpServletRequest request, Model model) {
+        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+        int statusCode = 0;
+
+        if (status != null) {
+            statusCode = Integer.parseInt(status.toString());
+        }
+        
+        // 상태 코드를 Model에 담아 JSP로 전달합니다.
+        model.addAttribute("statusCode", statusCode);
+        
+        return "error";
+    }
+
+    @GetMapping("/test/error/{statusCode}")
+    public String testErrorPages(@PathVariable int statusCode, HttpServletRequest request) {
+        // 요청에 에러 상태 코드를 직접 설정합니다.
+        request.setAttribute(RequestDispatcher.ERROR_STATUS_CODE, statusCode);
+        // Spring Boot의 /error 경로로 요청을 전달(forward)합니다.
+        return "forward:/error";
+    }
+
+    @GetMapping("/test/500")
+    public String testInternalServerError() {
+        // 500 에러는 코드를 직접 실행하다가 예외가 발생하도록 만듭니다.
+        throw new RuntimeException("테스트를 위한 의도적인 500 에러 발생");
     }
 }

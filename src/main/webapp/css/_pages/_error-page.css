@@ -1,0 +1,35 @@
+/* _pages/_error-page.css */
+
+.error-container {
+    display: flex;
+    flex-direction: column; /* 아이콘과 텍스트를 세로로 정렬 */
+    flex-grow: 1; /* 사용 가능한 모든 공간을 차지하도록 설정 */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.error-content {
+    max-width: 600px;
+}
+
+.error-content i {
+    font-size: 60px;
+    color: var(--error-color);
+    margin-bottom: 20px;
+}
+
+.error-content h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--text-color-dark);
+    margin-bottom: 15px;
+}
+
+.error-content p {
+    font-size: 16px;
+    color: var(--text-color-medium);
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
