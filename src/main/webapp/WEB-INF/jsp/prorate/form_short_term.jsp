@@ -18,9 +18,9 @@
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
 
-            <%-- 요청 정보 표시 테이블 --%>
+            <%-- 요청 정보 표시 (상단) --%>
             <div class="section-title" style="margin-top:20px;">
-                <h2>요청내용</h2>
+                <h2>단기상품 금리비딩</h2>
             </div>
             <table class="form-table">
                 <tbody>
@@ -37,14 +37,38 @@
                         <td><input type="text" value="김채권" readonly></td>
                     </tr>
                     <tr>
-                        <th>요청명</th>
-                        <td colspan="3"><input type="text" value="단기자금상품 금리요청" readonly></td>
+                        <th>요청내용</th>
+                        <td colspan="3"><input type="text" value="단기자금 금리요청" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="section-title" style="margin-top:20px;">
+                <h2>요청내용</h2>
+            </div>
+            <table class="form-table">
+                <tbody>
+                    <tr>
+                        <th>상품유형</th>
+                        <td><input type="text" class="short-input" value="MMT" readonly></td>
+                        <th>금리</th>
+                        <td><input type="text" class="short-input" value="1.1%" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>기간</th>
+                        <td><input type="text" class="short-input" value="수시" readonly></td>
+                        <th>금액</th>
+                        <td><input type="text" class="short-input" value="1,560,000" readonly></td>
+                    </tr>
+                    <tr>
+                        <th>자산</th>
+                        <td colspan="3"><input type="text" value="자산입력" readonly></td>
                     </tr>
                 </tbody>
             </table>
 
             <form>
-                <%-- 제안 내용 입력 테이블 --%>
+                <%-- 제안 내용 입력 폼 (하단) --%>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
                 </div>
@@ -52,35 +76,27 @@
                     <tbody>
                         <tr>
                             <th><span class="required">*</span> 상품유형</th>
-                            <td><input type="text" name="productType" class="short-input" value="단기자금" readonly></td>
+                            <td><input type="text" name="productType" class="short-input" value="MMT"></td>
                             <th><span class="required">*</span> 금리</th>
-                            <td><input type="text" name="interestRate" class="short-input" placeholder="0.00 %"></td>
+                            <td><input type="text" name="interestRate" class="short-input" placeholder="0.00"></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 기간</th>
-                            <td colspan="3"><input type="text" name="period" class="wide-input" value="2025-09-01 ~ 2025-12-31" readonly></td>
+                            <td colspan="3"><input type="text" name="period" class="wide-input" value="기간후수시"></td>
                         </tr>
                          <tr>
                             <th>금액</th>
-                            <td colspan="3"><input type="text" name="amount" class="short-input" placeholder="숫자만 입력" value="10,000,000,000" readonly></td>
+                            <td colspan="3"><input type="text" name="amount" class="short-input" value="400,000,000"></td>
                         </tr>
                         <tr>
                             <th>자산</th>
-                            <td colspan="3"><input type="text" name="asset" class="wide-input" value="국고채" readonly></td>
+                            <td colspan="3"><input type="text" name="asset" class="wide-input" value="자산 입력"></td>
                         </tr>
                         <tr>
                             <th>신탁약관 편입자산<br>최저신용등급</th>
-                            <td colspan="3"><input type="text" name="minCreditRating" class="wide-input" value="AAA" readonly></td>
+                            <td colspan="3"><input type="text" name="minCreditRating" class="wide-input" value="3"></td>
                         </tr>
-                    </tbody>
-                </table>
-                
-                <div class="section-title" style="margin-top:20px;">
-                    <h2>담당자 정보</h2>
-                </div>
-                 <table class="form-table">
-                    <tbody>
-                         <tr>
+                        <tr>
                             <th>담당자 부서</th>
                             <td><input type="text" name="managerDept" class="short-input"></td>
                             <th>담당자명</th>
@@ -88,7 +104,7 @@
                         </tr>
                          <tr>
                             <th><span class="required">*</span> 직위명</th>
-                            <td><input type="text" name="managerPosition" class="short-input"></td>
+                            <td><input type="text" name="managerPosition" class="short-input" value="대리"></td>
                              <th>담당자 전화번호</th>
                             <td><input type="text" name="managerPhone" class="short-input"></td>
                          </tr>
@@ -98,9 +114,10 @@
                         </tr>
                     </tbody>
                 </table>
-                <div class="form-buttons">
-                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> ${isEdit ? '수정' : '등록'}</button>
+                <div class="button-container">
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 등록</button>
                     <button type="button" class="btn btn-secondary" onclick="history.back()"><i class="fa-solid fa-times"></i> 취소</button>
+                    <button type="button" class="btn btn-outline" onclick="location.href='/prorate/short_term/list'"><i class="fa-solid fa-list"></i> 목록</button>
                 </div>
             </form>
         </main>

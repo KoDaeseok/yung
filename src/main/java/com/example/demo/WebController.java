@@ -325,6 +325,7 @@ public class WebController {
     }
 
     // 4. 금리제안
+    // 4. 금리제안
     @GetMapping("/prorate/short_term/list")
     public String prorateShortTermList(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
         addCommonAttributes("401", model, session);
@@ -352,23 +353,13 @@ public class WebController {
         return "prorate/list_derivative";
     }
     
+    // [삭제] 상세 페이지 컨트롤러 삭제
+    /*
     @GetMapping("/prorate/detail")
     public String prorateDetail(Model model, HttpSession session, @RequestParam("id") String id, @RequestParam("type") String type) {
-        Map<String, Object> detailData = new HashMap<>();
-        detailData.put("id", id);
-        detailData.put("type", type);
-        model.addAttribute("detail", detailData);
-        
-        if ("deriv".equals(type)) {
-            addCommonAttributes("402", model, session);
-            model.addAttribute("pageTitle", "파생결합상품 금리요청 상세");
-            return "prorate/detail_derivative";
-        } else {
-            addCommonAttributes("401", model, session);
-            model.addAttribute("pageTitle", "단기상품 금리요청 상세");
-            return "prorate/detail_short_term";
-        }
+        // ...
     }
+    */
 
     @GetMapping("/prorate/form")
     public String prorateForm(Model model, HttpSession session, @RequestParam("type") String type, @RequestParam(value="id", required=false) String id) {
@@ -378,11 +369,13 @@ public class WebController {
 
         if ("deriv".equals(type)) {
             addCommonAttributes("402", model, session);
-            pageTitle = isEdit ? "파생결합상품 금리요청 수정" : "파생결합상품 금리요청 등록";
+            // [수정] id 유무에 따라 등록/수정 분기 처리
+            pageTitle = "파생결합상품 금리요청 등록";
             viewName = "prorate/form_derivative";
         } else {
             addCommonAttributes("401", model, session);
-            pageTitle = isEdit ? "단기상품 금리요청 수정" : "단기상품 금리요청 등록";
+            // [수정] id 유무에 따라 등록/수정 분기 처리
+            pageTitle = "단기상품 금리요청 등록";
             viewName = "prorate/form_short_term";
         }
         

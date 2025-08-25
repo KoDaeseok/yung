@@ -33,7 +33,8 @@
                         <c:choose>
                             <c:when test="${not empty list}">
                                 <c:forEach var="item" items="${list}">
-                                    <tr data-href="/prorate/detail?id=${item.id}&type=deriv">
+                                     <%-- [수정] 클릭 시 form 페이지로 이동하도록 data-href 변경 --%>
+                                    <tr data-href="/prorate/form?type=deriv&id=${item.id}">
                                         <td>${item.regNum}</td>
                                         <td>${item.team}</td>
                                         <td style="text-align: left;" class="text-link">${item.title}</td>
@@ -72,9 +73,6 @@
                             ${startItem} - ${endItem > totalItems ? totalItems : endItem} of ${totalItems}
                         </div>
                     </c:if>
-                </div>
-                 <div class="button-container">
-                    <a href="/prorate/form?type=deriv" class="btn btn-primary"><i class="fa-solid fa-pen"></i> 등록</a>
                 </div>
             </div>
         </main>
