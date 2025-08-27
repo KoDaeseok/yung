@@ -30,7 +30,7 @@ public class WebController {
         menuData.add(Map.of("menuNo", "030000", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list"));
         menuData.add(Map.of("menuNo", "040000", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate/short_term/list")); // 기본 진입 페이지
         menuData.add(Map.of("menuNo", "050000", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops/balance_cert/list"));
-        menuData.add(Map.of("menuNo", "060000", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk"));
+        menuData.add(Map.of("menuNo", "060000", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk/list"));
         menuData.add(Map.of("menuNo", "070000", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms"));
 
         // --- 하위 메뉴 ---
@@ -58,6 +58,9 @@ public class WebController {
         menuData.add(Map.of("menuNo", "050400", "menuNm", "편입자산 세부내역", "upperMenuNo", "050000", "url", "/finops/asset/list"));
         menuData.add(Map.of("menuNo", "050500", "menuNm", "연간 자금계획", "upperMenuNo", "050000", "url", "/finops/plan/list"));
         menuData.add(Map.of("menuNo", "050600", "menuNm", "업무담당자", "upperMenuNo", "050000", "url", "/finops/manager/list"));
+
+        // 6. 세미나/미팅제안
+        menuData.add(Map.of("menuNo", "060100", "menuNm", "제안 목록", "upperMenuNo", "060000", "url", "/investtalk/list"));
     }
 
     // --- [추가] 사이드바 현황 데이터 API ---
@@ -810,13 +813,97 @@ public class WebController {
         return "finops/manager/form";
     }
 
+    // 6. 세미나/미팅제안
+    @GetMapping("/investtalk/list")
+    public String investtalkList(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
+        addCommonAttributes("060100", model, session);
+
+        List<Map<String, String>> sampleList = new ArrayList<>();
+        sampleList.add(Map.of("id", "1", "regDate", "2025-08-25", "status", "요청", "type", "세미나", "title", "AI 기반 투자 전략 세미나", "team", "대체투자1팀", "manager", "김담당"));
+        sampleList.add(Map.of("id", "2", "regDate", "2025-08-22", "status", "승인", "type", "미팅", "title", "2분기 실적 리뷰 미팅", "team", "기업금융1팀", "manager", "이담당"));
+        sampleList.add(Map.of("id", "3", "regDate", "2025-08-20", "status", "반려", "type", "미팅", "title", "신규 투자 건 제안 미팅", "team", "대체투자1팀", "manager", "김담당"));
+        for (int i = 4; i <= 25; i++) {
+            sampleList.add(Map.of("id", String.valueOf(i), "regDate", "2025-08-" + (26 - i), "status", "완료", "type", "세미나", "title", "정기 투자 포럼 " + (i - 3), "team", "기업금융1팀", "manager", "이담당"));
+        }
+
+        addPaginationAttributes(model, page, 10, sampleList);
+        return "investtalk/list";
+    }
+
+    @GetMapping("/investtalk/detail")
+    public String investtalkDetail(Model model, HttpSession session, @RequestParam("id") String id) {
+        addCommonAttributes("060100", model, session);
+        model.addAttribute("pageTitle", "세미나/미팅제안 상세");
+
+        // id 기반 DB 조회 시뮬레이션
+        Map<String, Object> detailData = new HashMap<>();
+        detailData.put("id", id);
+        detailData.put("type", "세미나"); // "세미나" or "미팅"
+        detailData.put("seminarType", "신규 투자 제안"); // 세미나 유형
+        detailData.put("meetingType", "기존 투자 관련"); // 미팅 유형
+        detailData.put("fundCode", "F00123");
+        detailData.put("fundName", "경찰공제회 국내주식형 펀드 1호");
+        detailData.put("team", "대체투자1팀");
+        detailData.put("manager", "김담당");
+        detailData.put("title", "AI 기반 투자 전략 세미나");
+        detailData.put("date", "2025-09-10");
+        detailData.put("startTime", "14:00");
+        detailData.put("endTime", "16:00");
+        detailData.put("locationType", "내부"); // "내부" or "외부"
+        detailData.put("location", "경찰공제회 15층 대회의실");
+        detailData.put("content", "최신 AI 기술을 활용한 투자 포트폴리오 최적화 전략에 대한 심도 깊은 논의를 진행하고자 합니다.");
+        detailData.put("presenter", "홍길동");
+        detailData.put("presenterContact", "010-1234-5678");
+        detailData.put("presenterBio", "ABC 자산운용 AI퀀트팀 팀장 (10년 경력)");
+        detailData.put("files", List.of("AI 투자전략 발표자료.pdf", "참고논문.docx"));
+        
+        model.addAttribute("proposal", detailData);
+
+        return "investtalk/detail";
+    }
+
+    @GetMapping("/investtalk/form")
+    public String investtalkForm(Model model, HttpSession session, @RequestParam(value="id", required=false) String id, @RequestParam("type") String type) {
+        addCommonAttributes("060100", model, session);
+        
+        boolean isNew = (id == null);
+        String typeName = "세미나".equals(type) ? "세미나" : "미팅";
+        model.addAttribute("pageTitle", isNew ? typeName + " 신규 제안 등록" : typeName + " 제안 내용 변경");
+        model.addAttribute("isNew", isNew);
+        model.addAttribute("proposalType", type);
+
+        if (isNew) {
+            model.addAttribute("proposal", new HashMap<String, Object>());
+        } else {
+            // id 기반 DB 조회 시뮬레이션 (상세보기와 동일한 데이터 사용)
+            Map<String, Object> detailData = new HashMap<>();
+            detailData.put("id", id);
+            detailData.put("type", type);
+            detailData.put("seminarType", "신규 투자 제안");
+            detailData.put("meetingType", "기존 투자 관련");
+            detailData.put("fundCode", "F00123");
+            detailData.put("fundName", "경찰공제회 국내주식형 펀드 1호");
+            detailData.put("team", "대체투자1팀");
+            detailData.put("manager", "김담당");
+            detailData.put("title", "AI 기반 투자 전략 세미나");
+            detailData.put("date", "2025-09-10");
+            detailData.put("startTime", "14:00");
+            detailData.put("endTime", "16:00");
+            detailData.put("locationType", "내부");
+            detailData.put("location", "경찰공제회 15층 대회의실");
+            detailData.put("content", "최신 AI 기술을 활용한 투자 포트폴리오 최적화 전략에 대한 심도 깊은 논의를 진행하고자 합니다.");
+            detailData.put("presenter", "홍길동");
+            detailData.put("presenterContact", "010-1234-5678");
+            detailData.put("presenterBio", "ABC 자산운용 AI퀀트팀 팀장 (10년 경력)");
+            model.addAttribute("proposal", detailData);
+        }
+        
+        return "investtalk/form";
+    }
+
 
     // --- 신규 메뉴 페이지 (임시) ---
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
-    @GetMapping("/investtalk")
-    public String investtalk() {
-        return "redirect:/index.do";
-    }
 
     @GetMapping("/dms")
     public String dms() {
