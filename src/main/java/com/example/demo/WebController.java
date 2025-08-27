@@ -398,22 +398,50 @@ public class WebController {
 
         if ("deriv".equals(type)) {
             addCommonAttributes("040200", model, session);
-            // [수정] id 유무에 따라 등록/수정 분기 처리
             pageTitle = "파생결합상품 금리요청 등록";
             viewName = "prorate/form_derivative";
-        } else {
-            addCommonAttributes("040100", model, session);
-            // [수정] id 유무에 따라 등록/수정 분기 처리
-            pageTitle = "단기상품 금리요청 등록";
-            viewName = "prorate/form_short_term";
-        }
+
+            // [추가] JSP로 전달할 동적 유형 데이터 생성 (DB 조회 시뮬레이션)
+            List<Map<String, String>> derivativeTypes = new ArrayList<>();
+            for (int i = 1; i <= 15; i++) {
+                Map<String, String> typeDetail = new HashMap<>();
+                typeDetail.put("typeNumber", String.valueOf(i));
+                if (i == 1) {
+                    typeDetail.put("condition", "1년차 5.2% 고정, 2년차부터(KRW CMS 10년-2년)*19 [CAP 5.2%, FLOOR 0%]");
+                    typeDetail.put("investmentPeriod", "15NC1");
+                } else if (i <= 5) { // 예시로 5개 유형만 데이터를 가진 것으로 가정
+                    typeDetail.put("condition", "예시 조건 " + i);
+                    typeDetail.put("investmentPeriod", (10 + i) + "NC" + i);
+                } else {
+                    // 데이터가 없는 유형은 빈 값으로 전달
+                    typeDetail.put("condition", "");
+                    typeDetail.put("investmentPeriod", "");
+                }
+                derivativeTypes.add(typeDetail);
+            }
+            model.addAttribute("derivativeTypes", derivativeTypes);
+
+        } else { // "short" 타입인 경우
+        addCommonAttributes("040100", model, session);
+        pageTitle = "단기상품 금리요청 등록";
+        viewName = "prorate/form_short_term";
         
-        model.addAttribute("pageTitle", pageTitle);
-        model.addAttribute("isEdit", isEdit);
-        model.addAttribute("id", id);
-        
-        return viewName;
+        // [추가] 단기상품 요청 정보를 JSP로 전달 (DB 조회 시뮬레이션)
+        Map<String, Object> shortTermRequest = new HashMap<>();
+        shortTermRequest.put("productType", "MMT");
+        shortTermRequest.put("interestRate", "1.1%");
+        shortTermRequest.put("period", "수시");
+        shortTermRequest.put("amount", "1,560,000");
+        shortTermRequest.put("asset", "자산입력");
+        model.addAttribute("requestInfo", shortTermRequest);
     }
+    
+    model.addAttribute("pageTitle", pageTitle);
+    model.addAttribute("isEdit", isEdit);
+    model.addAttribute("id", id);
+    
+    return viewName;
+}
 
     // 5. 운용관리
     // 5-1. 잔고증명

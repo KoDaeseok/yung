@@ -57,6 +57,12 @@
     margin-right: 4px;
 }
 
-.form-table .short-input {
+/* .form-table .short-input {
     width: 170px;
+} */
+
+.form-table input:read-only,
+.form-table textarea:read-only {
+    background-color: var(--background-color-light);
+    border: 1px solid var(--border-color-light);
 }

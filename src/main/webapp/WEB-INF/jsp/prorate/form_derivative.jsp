@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,6 @@
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
             
-            <%-- 요청 정보 표시 (상단) --%>
             <div class="section-title" style="margin-top:20px;">
                 <h2>금융상품 금리비딩</h2>
             </div>
@@ -43,8 +43,7 @@
                 </tbody>
             </table>
 
-            <form>
-                <%-- 제안 내용 입력 폼 (하단) --%>
+            <form id="derivative-form" onsubmit="return false;">
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안금리</h2>
                 </div>
@@ -54,7 +53,7 @@
                             <th><span class="required">*</span> 자산규모</th>
                             <td>
                                 <div class="input-with-button">
-                                    <input type="text" name="assetScale" class="short-input">
+                                    <input type="text" name="assetScale" class="short-input numeric-input">
                                     <select name="assetScaleCurrency" style="width: 80px;">
                                         <option>KRW</option>
                                         <option>USD</option>
@@ -64,7 +63,7 @@
                             <th><span class="required">*</span> 자기자본</th>
                             <td>
                                 <div class="input-with-button">
-                                    <input type="text" name="equityCapital" class="short-input">
+                                    <input type="text" name="equityCapital" class="short-input numeric-input">
                                     <select name="equityCapitalCurrency" style="width: 80px;">
                                         <option>KRW</option>
                                         <option>USD</option>
@@ -80,24 +79,31 @@
                 </table>
                 <div class="content-container" style="margin-top:20px;">
                     <table class="data-table">
-                         <thead>
+                        <thead>
                             <tr>
                                 <th style="width:10%">유형</th>
                                 <th style="width:auto">조건</th>
-                                <th style="width:20%">투자기간</th>
-                                <th style="width:20%"><span class="required">*</span> 금리</th>
-                             </tr>
+                                <th style="width:15%">투자기간</th>
+                                <th style="width:15%"><span class="required">*</span> 금리(%)</th>
+                            </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>유형1</td>
-                                <td style="text-align: left;">1년차 5.2% 고정, 2년차부터(KRW CMS 10년-2년)*19 [CAP 5.2%, FLOOR 0%]</td>
-                                <td>15NC1</td>
-                                <td><input type="text" name="rate_1" style="width:100%; text-align:right;" placeholder="0.00"></td>
-                            </tr>
-                            <%-- 필요 시 c:forEach 등으로 반복 --%>
+                            <%-- JSTL을 사용하여 컨트롤러에서 받은 데이터로 행을 동적으로 생성 --%>
+                            <c:forEach var="item" items="${derivativeTypes}">
+                                <%-- [수정] 조건(condition) 또는 투자기간(investmentPeriod)에 값이 있는 경우에만 행을 표시 --%>
+                                <c:if test="${not empty item.condition or not empty item.investmentPeriod}">
+                                    <tr>
+                                        <td>유형${item.typeNumber}</td>
+                                        <td style="text-align: left;">${item.condition}</td>
+                                        <td>${item.investmentPeriod}</td>
+                                        <td>
+                                            <input type="text" name="rate_${item.typeNumber}" class="interest-rate-input" style="width:100%; text-align:right;" placeholder="0.00">
+                                        </td>
+                                    </tr>
+                                </c:if>
+                            </c:forEach>
                         </tbody>
-                     </table>
+                    </table>
                 </div>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
@@ -124,5 +130,6 @@
     </div>
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
+    <script src="/js/prorate_derivative.js"></script>
 </body>
 </html>

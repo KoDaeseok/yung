@@ -2,7 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%-- 공통 사이드바 (LNB) --%>
 <aside class="left-sidebar">
-    <%-- [추가] 메뉴 영역을 div로 감싸줍니다. --%>
     <div class="sidebar-top">
         <h2>${sidebarTitle}</h2>
         <ul>
@@ -17,7 +16,9 @@
     <%-- 현황판 --%>
     <c:if test="${not empty sessionScope.userName}">
         <div class="status-box">
-            <div class="status-header">현황 및 상태</div>
+            <div class="status-header">
+                <i class="fa-solid fa-circle-info"></i> 현황 및 상태
+            </div> 
             <div class="status-item">
                 <span>자료요청</span>
                 <span id="reqCnt" class="status-count">0</span>

@@ -1,3 +1,5 @@
+<%-- 기존 form_short_term.jsp 파일의 전체 내용을 아래 코드로 교체하세요. --%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -18,7 +20,7 @@
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
 
-            <%-- 요청 정보 표시 (상단) --%>
+            <%-- 요청 기관 정보 (상단 고정) --%>
             <div class="section-title" style="margin-top:20px;">
                 <h2>단기상품 금리비딩</h2>
             </div>
@@ -43,6 +45,7 @@
                 </tbody>
             </table>
             
+            <%-- 요청 상세 내용 (컨트롤러에서 전달받은 데이터) --%>
             <div class="section-title" style="margin-top:20px;">
                 <h2>요청내용</h2>
             </div>
@@ -50,25 +53,25 @@
                 <tbody>
                     <tr>
                         <th>상품유형</th>
-                        <td><input type="text" class="short-input" value="MMT" readonly></td>
+                        <td><input type="text" class="short-input" value="${requestInfo.productType}" readonly></td>
                         <th>금리</th>
-                        <td><input type="text" class="short-input" value="1.1%" readonly></td>
+                        <td><input type="text" class="short-input" value="${requestInfo.interestRate}" readonly></td>
                     </tr>
                     <tr>
                         <th>기간</th>
-                        <td><input type="text" class="short-input" value="수시" readonly></td>
+                        <td><input type="text" class="short-input" value="${requestInfo.period}" readonly></td>
                         <th>금액</th>
-                        <td><input type="text" class="short-input" value="1,560,000" readonly></td>
+                        <td><input type="text" class="short-input" value="${requestInfo.amount}" readonly></td>
                     </tr>
                     <tr>
                         <th>자산</th>
-                        <td colspan="3"><input type="text" value="자산입력" readonly></td>
+                        <td colspan="3"><input type="text" value="${requestInfo.asset}" readonly></td>
                     </tr>
                 </tbody>
             </table>
 
-            <form>
-                <%-- 제안 내용 입력 폼 (하단) --%>
+            <form id="short-term-form" onsubmit="return false;">
+                <%-- 제안 내용 입력 폼 --%>
                 <div class="section-title" style="margin-top:20px;">
                     <h2>제안내용</h2>
                 </div>
@@ -76,9 +79,9 @@
                     <tbody>
                         <tr>
                             <th><span class="required">*</span> 상품유형</th>
-                            <td><input type="text" name="productType" class="short-input" value="MMT"></td>
-                            <th><span class="required">*</span> 금리</th>
-                            <td><input type="text" name="interestRate" class="short-input" placeholder="0.00"></td>
+                            <td><input type="text" name="productType" class="short-input" value="${requestInfo.productType}"></td>
+                            <th><span class="required">*</span> 금리(%)</th>
+                            <td><input type="text" name="interestRate" class="short-input interest-rate-input" placeholder="0.00"></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 기간</th>
@@ -86,7 +89,7 @@
                         </tr>
                          <tr>
                             <th>금액</th>
-                            <td colspan="3"><input type="text" name="amount" class="short-input" value="400,000,000"></td>
+                            <td colspan="3"><input type="text" name="amount" class="short-input numeric-input" value="400,000,000"></td>
                         </tr>
                         <tr>
                             <th>자산</th>
@@ -108,7 +111,7 @@
                              <th>담당자 전화번호</th>
                             <td><input type="text" name="managerPhone" class="short-input"></td>
                          </tr>
-                         <tr>
+                        <tr>
                             <th>담당자 HP</th>
                             <td colspan="3"><input type="text" name="managerMobile" class="short-input"></td>
                         </tr>
@@ -124,5 +127,6 @@
     </div>
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
+    <script src="/js/prorate_short_term.js"></script>
 </body>
 </html>
