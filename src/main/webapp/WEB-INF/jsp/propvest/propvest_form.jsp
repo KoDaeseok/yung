@@ -1,3 +1,4 @@
+<!-- js/provest/provest_form.js -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -7,7 +8,6 @@
     <title>경찰공제회 - 신규 투자제안</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <%-- jQuery UI CSS는 더 이상 필요하지 않습니다. --%>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 <body>
@@ -38,41 +38,27 @@
                     <tbody>
                         <tr>
                             <th><span class="required">*</span> 제안제목</th>
-                            <td colspan="3">
-                                <input type="text" id="prpRprtTit" name="prpRprtTit" style="width: 100%;">
-                            </td>
+                            <td colspan="3"><input type="text" id="prpRprtTit" name="prpRprtTit" style="width: 100%;"></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 투자개요</th>
-                            <td colspan="3">
-                                <input type="text" id="ivObj" name="ivObj" style="width: 100%;">
-                            </td>
+                            <td colspan="3"><input type="text" id="ivObj" name="ivObj" style="width: 100%;"></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 공제회 담당팀</th>
-                            <td>
-                                <select id="oprTeamTc" name="oprTeamTc" class="wide-select"><option value="">선택</option></select>
-                            </td>
+                            <td><select id="oprTeamTc" name="oprTeamTc" class="wide-select"><option value="">선택</option></select></td>
                             <th><span class="required">*</span> 공제회 담당자</th>
-                            <td>
-                                <select id="acmn" name="acmn" class="wide-select"><option value="">선택</option></select>
-                            </td>
+                            <td><select id="acmn" name="acmn" class="wide-select"><option value="">선택</option></select></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 투자분야</th>
-                            <td>
-                                <select id="ivFld" name="ivFld" class="wide-select"><option value="">선택</option></select>
-                            </td>
+                            <td><select id="ivFld" name="ivFld" class="wide-select"><option value="">선택</option></select></td>
                             <th><span class="required">*</span> 유형</th>
-                            <td>
-                                <select id="ivKindTc" name="ivKindTc" class="wide-select"><option value="">선택</option></select>
-                            </td>
+                            <td><select id="ivKindTc" name="ivKindTc" class="wide-select"><option value="">선택</option></select></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 투자내용</th>
-                            <td colspan="3">
-                                <textarea id="ivCntn" name="ivCntn" style="width: 100%; height: 120px; resize: vertical;"></textarea>
-                            </td>
+                            <td colspan="3"><textarea id="ivCntn" name="ivCntn" style="width: 100%; height: 120px; resize: vertical;"></textarea></td>
                         </tr>
                         <tr>
                             <th>투자제안서</th>
@@ -82,7 +68,6 @@
                                     <label for="file-upload" class="btn btn-dark">파일찾기</label>
                                     <input type="file" id="file-upload" name="attachment" style="display: none;">
                                 </div>
-                                <div id="file-list-container" style="margin-top: 5px;"></div>
                             </td>
                         </tr>
                         <tr class="investment-details">
@@ -114,7 +99,7 @@
                         <tr class="investment-details">
                             <th>전체모집금액</th>
                             <td><input type="text" id="totRcrtAmt" name="totalAmount" class="short-input" placeholder="(단위 : 제안통화)"></td>
-                           <th><span class="required">*</span> 본회제안금액</th>
+                            <th><span class="required">*</span> 본회제안금액</th>
                             <td><input type="text" id="ivPrpAmt" name="pmaaAmount" class="short-input" placeholder="(단위 : 제안통화)"></td>
                         </tr>
                         <tr class="investment-details">
@@ -140,14 +125,6 @@
                         <tr>
                             <th><span class="required">*</span> 제안사 담당자</th>
                             <td colspan="3"><input type="text" id="prcoChmnNm" name="prcoChmnNm" class="short-input"></td>
-                        </tr>
-                        <tr class="tr-manager" style="display:none;">
-                            <th><span class="required">*</span> 담당 운용역</th>
-                            <td colspan="3"><input type="text" id="chrgOprMn" name="chrgOprMn"></td>
-                        </tr>
-                        <tr class="tr-manager" style="display:none;">
-                            <th><span class="required">*</span> 담당 운용역 경력</th>
-                            <td colspan="3"><textarea id="chrgOprMnCarr" name="chrgOprMnCarr" style="width: 100%; height: 80px; resize: vertical;"></textarea></td>
                         </tr>
                     </tbody>
                 </table>
