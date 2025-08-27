@@ -30,7 +30,7 @@
     /* Layout & Spacing */
     --layout-max-width: 1400px;
     --layout-padding: 40px 120px;
-    --header-footer-padding: 10px 120px;
+    --header-footer-padding: 10px 120px 5px 120px;
 
     /* Border Radius */
     --border-radius-large: 12px;
