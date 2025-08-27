@@ -34,29 +34,30 @@ public class WebController {
         menuData.add(Map.of("menuNo", "070000", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms"));
 
         // --- 하위 메뉴 ---
+        // [수정] upperMenuNo를 상위 메뉴의 menuNo와 일치시킴
         // 1. 자산운용조직
-        menuData.add(Map.of("menuNo", "010100", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/introduce"));
-        menuData.add(Map.of("menuNo", "010200", "menuNm", "조직도", "upperMenuNo", "1", "url", "/organization/chart"));
-        menuData.add(Map.of("menuNo", "010300", "menuNm", "찾아오시는 길", "upperMenuNo", "1", "url", "/organization/location"));
+        menuData.add(Map.of("menuNo", "010100", "menuNm", "자산운용조직 소개", "upperMenuNo", "010000", "url", "/organization/introduce"));
+        menuData.add(Map.of("menuNo", "010200", "menuNm", "조직도", "upperMenuNo", "010000", "url", "/organization/chart"));
+        menuData.add(Map.of("menuNo", "010300", "menuNm", "찾아오시는 길", "upperMenuNo", "010000", "url", "/organization/location"));
 
         // 2. 공지/건의
-        menuData.add(Map.of("menuNo", "020100", "menuNm", "공지사항", "upperMenuNo", "2", "url", "/notice"));
-        menuData.add(Map.of("menuNo", "020200", "menuNm", "건의사항", "upperMenuNo", "2", "url", "/suggestion"));
+        menuData.add(Map.of("menuNo", "020100", "menuNm", "공지사항", "upperMenuNo", "020000", "url", "/notice"));
+        menuData.add(Map.of("menuNo", "020200", "menuNm", "건의사항", "upperMenuNo", "020000", "url", "/suggestion"));
 
         // 3. 투자제안
-        menuData.add(Map.of("menuNo", "030100", "menuNm", "제안요청목록", "upperMenuNo", "3", "url", "/propvest/list"));
+        menuData.add(Map.of("menuNo", "030100", "menuNm", "제안요청목록", "upperMenuNo", "030000", "url", "/propvest/list"));
 
         // 4. 금리제안
-        menuData.add(Map.of("menuNo", "040100", "menuNm", "단기상품 금리요청", "upperMenuNo", "4", "url", "/prorate/short_term/list"));
-        menuData.add(Map.of("menuNo", "040200", "menuNm", "파생결합상품 금리요청", "upperMenuNo", "4", "url", "/prorate/derivative/list"));
+        menuData.add(Map.of("menuNo", "040100", "menuNm", "단기상품 금리요청", "upperMenuNo", "040000", "url", "/prorate/short_term/list"));
+        menuData.add(Map.of("menuNo", "040200", "menuNm", "파생결합상품 금리요청", "upperMenuNo", "040000", "url", "/prorate/derivative/list"));
         
         // 5. 운용관리
-        menuData.add(Map.of("menuNo", "050100", "menuNm", "잔고증명", "upperMenuNo", "5", "url", "/finops/balance_cert/list"));
-        menuData.add(Map.of("menuNo", "050200", "menuNm", "운용실적보고", "upperMenuNo", "5", "url", "/finops/report/list"));
-        menuData.add(Map.of("menuNo", "050300", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
-        menuData.add(Map.of("menuNo", "050400", "menuNm", "편입자산 세부내역", "upperMenuNo", "5", "url", "/finops/asset/list"));
-        menuData.add(Map.of("menuNo", "050500", "menuNm", "연간 자금계획", "upperMenuNo", "5", "url", "/finops/plan/list"));
-        menuData.add(Map.of("menuNo", "050600", "menuNm", "업무담당자", "upperMenuNo", "5", "url", "/finops/manager/list"));
+        menuData.add(Map.of("menuNo", "050100", "menuNm", "잔고증명", "upperMenuNo", "050000", "url", "/finops/balance_cert/list"));
+        menuData.add(Map.of("menuNo", "050200", "menuNm", "운용실적보고", "upperMenuNo", "050000", "url", "/finops/report/list"));
+        menuData.add(Map.of("menuNo", "050300", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "050000", "url", "/finops/request/list"));
+        menuData.add(Map.of("menuNo", "050400", "menuNm", "편입자산 세부내역", "upperMenuNo", "050000", "url", "/finops/asset/list"));
+        menuData.add(Map.of("menuNo", "050500", "menuNm", "연간 자금계획", "upperMenuNo", "050000", "url", "/finops/plan/list"));
+        menuData.add(Map.of("menuNo", "050600", "menuNm", "업무담당자", "upperMenuNo", "050000", "url", "/finops/manager/list"));
     }
 
     // --- [추가] 사이드바 현황 데이터 API ---
@@ -123,7 +124,7 @@ public class WebController {
 
             return "redirect:" + targetMenu.get("url");
         }
-        return "redirect:/";
+        return "redirect:/index.do";
     }
 
     // --- 페이지 컨트롤러 ---
@@ -143,8 +144,8 @@ public class WebController {
         session.removeAttribute("rootMenuNo");
         session.removeAttribute("activeMenuNo");
         return "index";
-    }
-
+    }   
+    
     // 1. 자산운용조직
     @GetMapping("/organization/introduce")
     public String organizationIntro(Model model, HttpSession session) {

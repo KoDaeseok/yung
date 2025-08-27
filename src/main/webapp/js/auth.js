@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // [수정] 메인 페이지이고 로그아웃 상태일 때 팝업 자동 표시
     const showPopupOnIndex = () => {
         // 로그인 버튼이 존재하고(로그아웃 상태), 현재 페이지가 메인('/') 페이지일 때
-        if (loginPopupBtn && window.location.pathname === '/') {
+        if (loginPopupBtn && (window.location.pathname === '/' || window.location.pathname === '/index.do')) {
             initializeForm();
             loginPopupModal.style.display = 'flex';
         }
