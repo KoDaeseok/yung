@@ -46,7 +46,7 @@
                         <c:choose>
                             <c:when test="${not empty propvestList}">
                                 <c:forEach var="item" items="${propvestList}">
-                                    <tr data-href="/propvest/detail?id=${item.id} style="text-decoration:none; color: #333;"">
+                                    <tr data-href="/propvest/detail?id=${item.id}">
                                         <td>${item.date}</td>
                                         <td>${item.id}</td>
                                         <td class="status-cell">

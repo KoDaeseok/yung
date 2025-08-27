@@ -1,29 +1,30 @@
-// js/popup/nation_popup.js
+// js/popup/currency_popup.js
 document.addEventListener('DOMContentLoaded', () => {
-    const nationModal = document.getElementById('nation-search-modal');
-    if (!nationModal) return;
+    const currencyModal = document.getElementById('currency-search-modal');
+    if (!currencyModal) return;
 
-    const openModalBtns = document.querySelectorAll('.btn-nation-search');
-    const closeModalBtn = nationModal.querySelector('.modal-close-btn');
-    const tableBody = nationModal.querySelector('.results-table tbody');
-    const paginationContainer = nationModal.querySelector('.pagination');
-    const itemCounter = nationModal.querySelector('.item-counter');
-    const searchInput = nationModal.querySelector('.search-bar input');
-    const searchButton = nationModal.querySelector('.search-bar button');
-    const searchConditionSelect = nationModal.querySelector('.search-bar select');
+    const openModalBtns = document.querySelectorAll('.btn-currency-search');
+    const closeModalBtn = currencyModal.querySelector('.modal-close-btn');
+    const tableBody = currencyModal.querySelector('.results-table tbody');
+    const paginationContainer = currencyModal.querySelector('.pagination');
+    const itemCounter = currencyModal.querySelector('.item-counter');
+    const searchInput = currencyModal.querySelector('.search-bar input');
+    const searchButton = currencyModal.querySelector('.search-bar button');
+    const searchConditionSelect = currencyModal.querySelector('.search-bar select');
 
-    let parentNatCodeInput = null;
-    let parentNatNameInput = null;
+    let parentCurCodeInput = null;
+    let parentCurNameInput = null;
 
-    // 예시 국가 데이터 (실제로는 서버에서 Ajax로 가져와야 함)
+    // 예시 통화 데이터 (실제로는 서버에서 Ajax로 가져와야 합니다)
     const allData = [
-        { natC: 'KR', natKorNm: '대한민국', natEngNm: 'KOREA, REPUBLIC OF' },
-        { natC: 'US', natKorNm: '미국', natEngNm: 'UNITED STATES' },
-        { natC: 'JP', natKorNm: '일본', natEngNm: 'JAPAN' },
-        { natC: 'CN', natKorNm: '중국', natEngNm: 'CHINA' },
-        { natC: 'GB', natKorNm: '영국', natEngNm: 'UNITED KINGDOM' },
-        { natC: 'DE', natKorNm: '독일', natEngNm: 'GERMANY' },
-        { natC: 'FR', natKorNm: '프랑스', natEngNm: 'FRANCE' },
+        { curC: 'KRW', curNm: '원화', natNm: '대한민국' },
+        { curC: 'USD', curNm: '미국달러', natNm: '미국' },
+        { curC: 'JPY', curNm: '일본엔', natNm: '일본' },
+        { curC: 'CNY', curNm: '중국위안', natNm: '중국' },
+        { curC: 'EUR', curNm: '유로', natNm: '유럽연합' },
+        { curC: 'GBP', curNm: '영국파운드', natNm: '영국' },
+        { curC: 'AUD', curNm: '호주달러', natNm: '호주' },
+        { curC: 'CAD', curNm: '캐나다달러', natNm: '캐나다' }
     ];
     let currentData = [...allData];
     let currentPage = 1;
@@ -43,9 +44,9 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             paginatedItems.forEach(item => {
                 const row = document.createElement('tr');
-                row.dataset.code = item.natC;
-                row.dataset.name = item.natKorNm;
-                row.innerHTML = `<td>${item.natC}</td><td>${item.natKorNm}</td><td>${item.natEngNm}</td>`;
+                row.dataset.code = item.curC;
+                row.dataset.name = item.curNm;
+                row.innerHTML = `<td>${item.curC}</td><td>${item.curNm}</td><td>${item.natNm}</td>`;
                 tableBody.appendChild(row);
             });
         }
@@ -89,19 +90,18 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', (e) => {
             const wrapper = e.currentTarget.closest('.input-with-button');
             // 팝업이 부모 창의 어떤 입력 필드를 채워야 하는지 설정
-            let parentNatCodeInput = wrapper.querySelector('input[name="ivNat"]');
-            let parentNatNameInput = wrapper.querySelector('input[name="ivNatNm"]');
-
+            parentCurCodeInput = wrapper.querySelector('input[name="ivPrpCur"]');
+            parentCurNameInput = wrapper.querySelector('input[name="ivPrpCurNm"]');
             
             searchInput.value = '';
             currentData = [...allData];
             render(1);
-            nationModal.style.display = 'flex';
+            currencyModal.style.display = 'flex';
         });
     });
 
-    closeModalBtn.addEventListener('click', () => nationModal.style.display = 'none');
-    nationModal.addEventListener('click', (e) => e.target === nationModal && (nationModal.style.display = 'none'));
+    closeModalBtn.addEventListener('click', () => currencyModal.style.display = 'none');
+    currencyModal.addEventListener('click', (e) => e.target === currencyModal && (currencyModal.style.display = 'none'));
     
     paginationContainer.addEventListener('click', (e) => {
         e.preventDefault();
@@ -129,9 +129,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const addRowClickListeners = () => {
         tableBody.querySelectorAll('tr').forEach(row => {
             row.addEventListener('click', () => {
-                if (parentNatCodeInput) parentNatCodeInput.value = row.dataset.code;
-                if (parentNatNameInput) parentNatNameInput.value = row.dataset.name;
-                nationModal.style.display = 'none';
+                if (parentCurCodeInput) parentCurCodeInput.value = row.dataset.code;
+                if (parentCurNameInput) parentCurNameInput.value = row.dataset.name;
+                currencyModal.style.display = 'none';
             });
         });
     };

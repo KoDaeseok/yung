@@ -1,4 +1,4 @@
-<!-- js/provest/provest_form.js -->
+<!-- jsp/propvest/form.jsp -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -70,24 +70,33 @@
                                 </div>
                             </td>
                         </tr>
+                        
+                        <%-- 투자 상세 정보 (투자 분야에 따라 숨김/표시) --%>
                         <tr class="investment-details">
                             <th><span class="required">*</span> 투자지역</th>
-                            <td colspan="3">
+                            <td>
+                                <%-- '국내', '해외' 옵션이 포함된 select 태그 --%>
+                                <select id="ivZoneTc" name="ivZoneTc" class="short-input">
+                                    <option value="">선택</option>
+                                    <option value="01">국내</option>
+                                    <option value="02">해외</option>
+                                </select>
+                            </td>
+                            <th><span class="required">*</span> 투자국가</th>
+                            <td>
                                 <div class="input-with-button">
-                                    <select id="ivZoneTc" name="ivZoneTc" class="short-input" style="width:100px;"></select>
                                     <input type="text" id="ivNat" name="ivNat" class="short-input" style="width:100px;" readonly placeholder="국가코드">
-                                    <button type="button" id="btn_NatSrch" class="btn-nation-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <button type="button" class="btn-nation-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     <input type="text" id="ivNatNm" name="ivNatNm" class="wide-input" readonly placeholder="국가명">
                                 </div>
                             </td>
                         </tr>
-
                         <tr class="investment-details">
                             <th><span class="required">*</span> 제안통화</th>
                             <td>
                                 <div class="input-with-button">
                                     <input type="text" id="ivPrpCur" name="ivPrpCur" class="short-input" style="width: 80px;" readonly>
-                                    <button type="button" id="btn_CurSrch" class="btn-currency-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <button type="button" class="btn-currency-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     <input type="text" id="ivPrpCurNm" name="ivPrpCurNm" class="wide-input" readonly>
                                 </div>
                             </td>
@@ -122,6 +131,17 @@
                                 </div>
                             </td>
                         </tr>
+                        
+                        <%-- 담당 운용역 정보 (주식 분야 선택 시 표시) --%>
+                        <tr class="tr-manager" style="display:none;">
+                            <th><span class="required">*</span> 담당 운용역</th>
+                            <td colspan="3"><input type="text" name="chrgOprMn" style="width: 100%;"></td>
+                        </tr>
+                        <tr class="tr-manager" style="display:none;">
+                            <th><span class="required">*</span> 담당 운용역 경력</th>
+                            <td colspan="3"><textarea name="chrgOprMnCarr" style="width: 100%; height: 80px; resize: vertical;"></textarea></td>
+                        </tr>
+                        
                         <tr>
                             <th><span class="required">*</span> 제안사 담당자</th>
                             <td colspan="3"><input type="text" id="prcoChmnNm" name="prcoChmnNm" class="short-input"></td>
@@ -131,14 +151,14 @@
 
                 <div class="form-buttons">
                     <button type="submit" id="btn_reg" class="btn btn-primary"><i class="fa-solid fa-check"></i> 등록</button>
-                    <button type="button" id="btn_reset" class="btn btn-secondary"><i class="fa-solid fa-times"></i> 취소</button>
+                    <button type="button" class="btn btn-secondary" onclick="location.href='/propvest/list'"><i class="fa-solid fa-times"></i> 취소</button>
                 </div>
             </form>
         </main>
     </div>
 
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
-    <script src="/js/provest/propvest_form.js"></script>
+    <script src="/js/propvest.js"></script>
     <jsp:include page="/WEB-INF/jsp/popup/currencySearchPopup.jsp" />
     <jsp:include page="/WEB-INF/jsp/popup/nationSearchPopup.jsp" />
     <script src="/js/popup/currency_popup.js"></script>

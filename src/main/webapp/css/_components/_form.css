@@ -6,3 +6,24 @@ input[type="text"], input[type="password"], select {
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+
+/* [추가] 파일 첨부 공통 스타일 */
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.file-input-wrapper input[type="text"] {
+    flex-grow: 1;
+}
+.file-input-wrapper .btn {
+    flex-shrink: 0;
+    padding: 0 15px;
+    height: 34px;
+}
+
+/* [추가] 모든 '파일찾기' 버튼 호버 스타일 */
+.file-input-wrapper .btn-dark:hover {
+    background-color: var(--background-color-light);
+    border-color: var(--border-color-default);
+}

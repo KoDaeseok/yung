@@ -24,21 +24,6 @@
     width: 120px;
 }
 
-/* 파일 첨부 스타일 */
-.file-input-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-.file-input-wrapper input[type="text"] {
-    flex-grow: 1;
-}
-.file-input-wrapper .btn {
-    flex-shrink: 0;
-    padding: 0 15px;
-    height: 34px;
-}
-
 /* 아이콘 포함된 입력 필드 스타일 */
 .input-with-icon {
     position: relative;

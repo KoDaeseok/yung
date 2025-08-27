@@ -305,26 +305,54 @@ public class WebController {
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("pageSize", pageSize);
 
-        return "propvest/propvest_list";
+        return "propvest/list";
     }
 
+    // [복원] 투자제안 등록 페이지 매핑
     @GetMapping("/propvest/new")
     public String newPropvestForm(Model model, HttpSession session) {
-        // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
         addCommonAttributes("301", model, session);
-        model.addAttribute("menuDetail", Map.of("menuNm", "투자제안 등록")); // 페이지 제목은 개별 설정
-        return "propvest/propvest_form";
+        model.addAttribute("pageTitle", "신규 투자제안");
+        return "propvest/form";
     }
 
+    // [복원] 투자제안 상세 페이지 매핑
     @GetMapping("/propvest/detail")
-    public String propvestDetail(Model model, HttpSession session) {
-        // 상세/등록 페이지에서도 목록 메뉴(301)가 활성화되도록 설정
+    public String propvestDetail(Model model, HttpSession session, @RequestParam("id") String id) {
         addCommonAttributes("301", model, session);
-        model.addAttribute("menuDetail", Map.of("menuNm", "제안요청상세")); // 페이지 제목은 개별 설정
-        return "propvest/propvest_detail";
+        model.addAttribute("pageTitle", "제안요청상세");
+        
+        // id를 기반으로 DB에서 데이터를 조회했다고 가정한 예시 데이터
+        Map<String, Object> propvestData = new HashMap<>();
+        propvestData.put("id", id);
+        propvestData.put("prpRprtTit", "신규 부동산 투자 제안");
+        propvestData.put("ivObj", "서울 중심업무지구 프라임 오피스 투자");
+        propvestData.put("oprTeamTc", "104010");
+        propvestData.put("acmn", "manager1");
+        propvestData.put("ivFld", "C12");
+        propvestData.put("ivKindTc", "C12_1");
+        propvestData.put("ivCntn", "- 서울 중심업무지구(CBD) 프라임 오피스 빌딩\r\n- 안정적인 임대 수익 및 자산 가치 상승 기대");
+        propvestData.put("fileName", "투자제안서.pdf");
+        propvestData.put("ivZoneTc", "01");
+        propvestData.put("ivNat", "KR");
+        propvestData.put("ivNatNm", "대한민국");
+        propvestData.put("ivPrpCur", "KRW");
+        propvestData.put("ivPrpCurNm", "원화");
+        propvestData.put("ivTrm", "24년 1월 ~ 29년 12월");
+        propvestData.put("totalAmount", "1,000,000,000");
+        propvestData.put("pmaaAmount", "500,000,000");
+        propvestData.put("targetReturn", "7.5");
+        propvestData.put("dividendReturn", "5.0");
+        propvestData.put("meetingDate", "2025-09-01"); // yyyy-MM-dd 형식
+        propvestData.put("meetingStartTime", "14:00");
+        propvestData.put("meetingEndTime", "15:00");
+        propvestData.put("prcoChmnNm", "홍길동");
+        
+        model.addAttribute("propvest", propvestData);
+        
+        return "propvest/detail";
     }
 
-    // 4. 금리제안
     // 4. 금리제안
     @GetMapping("/prorate/short_term/list")
     public String prorateShortTermList(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
