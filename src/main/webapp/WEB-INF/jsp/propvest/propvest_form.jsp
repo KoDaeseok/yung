@@ -28,7 +28,7 @@
             
             <h1><i class="fa-solid fa-pen-to-square"></i> 신규 투자제안</h1>
             
-            <form id="propvest-form">
+            <form id="propvest-form" onsubmit="return false;">
                 <div class="propvest-readonly-info">
                     <span>제안기관</span> <input type="text" id="prpOrg" name="prpOrg" readonly>
                     <span>사업자번호</span> <input type="text" id="bsNo" name="bsNo" readonly>
@@ -95,8 +95,9 @@
                             <th><span class="required">*</span> 제안통화</th>
                             <td>
                                  <div class="input-with-button">
-                                    <input type="text" id="ivPrpCur" name="ivPrpCur" class="short-input" readonly>
+                                    <input type="text" id="ivPrpCur" name="ivPrpCur" style="width: 80px;" readonly>
                                     <button type="button" id="btn_CurSrch" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <input type="text" id="ivPrpCurNm" name="ivPrpCurNm" class="wide-input" readonly>
                                 </div>
                             </td>
                         </tr>
