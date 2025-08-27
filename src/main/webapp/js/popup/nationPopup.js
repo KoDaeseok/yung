@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const paginatedItems = currentData.slice(start, end);
 
         if (paginatedItems.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="3" class="no-data"><div class="no-data-content">검색 결과가 없습니다.</div></td></tr>';
+            tableBody.innerHTML = '<tr><td colspan="3" class="no-data"><div class="no-data-content" style="height:150px;">검색 결과가 없습니다.</div></td></tr>';
         } else {
             paginatedItems.forEach(item => {
                 const row = document.createElement('tr');
@@ -55,12 +55,36 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updatePagination = (totalPages) => {
-        // (페이지네이션 UI 업데이트 로직은 펀드 팝업과 동일)
-    };
-    const updateItemCounter = (start, end, totalItems) => {
-        // (아이템 카운터 UI 업데이트 로직은 펀드 팝업과 동일)
+        paginationContainer.innerHTML = '';
+        if (totalPages === 0) return;
+
+        const maxPagesToShow = 5;
+        let startPage = Math.floor((currentPage - 1) / maxPagesToShow) * maxPagesToShow + 1;
+        let endPage = Math.min(startPage + maxPagesToShow - 1, totalPages);
+
+        let paginationHTML = '';
+        paginationHTML += `<a href="#" class="arrow ${currentPage === 1 ? 'disabled' : ''}" data-page="1"><i class="fa-solid fa-angles-left"></i></a>`;
+        paginationHTML += `<a href="#" class="arrow ${currentPage === 1 ? 'disabled' : ''}" data-page="${currentPage - 1}"><i class="fa-solid fa-angle-left"></i></a>`;
+
+        for (let i = startPage; i <= endPage; i++) {
+            paginationHTML += `<a href="#" class="${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</a>`;
+        }
+
+        paginationHTML += `<a href="#" class="arrow ${currentPage === totalPages ? 'disabled' : ''}" data-page="${currentPage + 1}"><i class="fa-solid fa-angle-right"></i></a>`;
+        paginationHTML += `<a href="#" class="arrow ${currentPage === totalPages ? 'disabled' : ''}" data-page="${totalPages}"><i class="fa-solid fa-angles-right"></i></a>`;
+        
+        paginationContainer.innerHTML = paginationHTML;
     };
 
+    const updateItemCounter = (start, end, totalItems) => {
+         if (totalItems === 0) {
+            itemCounter.textContent = '0 - 0 of 0';
+        } else {
+            const endItem = Math.min(end, totalItems);
+            itemCounter.textContent = `${start + 1} - ${endItem} of ${totalItems}`;
+        }
+    };
+    
     openModalBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const wrapper = e.currentTarget.closest('.input-with-button');
@@ -76,6 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     closeModalBtn.addEventListener('click', () => nationModal.style.display = 'none');
     nationModal.addEventListener('click', (e) => e.target === nationModal && (nationModal.style.display = 'none'));
+    
+    paginationContainer.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = e.target.closest('a');
+        if (target && !target.classList.contains('disabled')) {
+            const page = parseInt(target.getAttribute('data-page'));
+            if (page) render(page);
+        }
+    });
 
     const performSearch = () => {
         const condition = searchConditionSelect.value;

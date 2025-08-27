@@ -25,9 +25,9 @@
                 <span>></span>
                 <span>신규 투자제안</span>
             </div>
-            
+
             <h1><i class="fa-solid fa-pen-to-square"></i> 신규 투자제안</h1>
-            
+
             <form id="propvest-form" onsubmit="return false;">
                 <div class="propvest-readonly-info">
                     <span>제안기관</span> <input type="text" id="prpOrg" name="prpOrg" readonly>
@@ -88,44 +88,46 @@
                         </tr>
                         <tr class="investment-details">
                             <th><span class="required">*</span> 투자지역</th>
-                            <td>
-                                <select id="ivZoneTc" name="ivZoneTc" style="width: 100px;"></select>
-                                <select id="ivNat" name="ivNat" style="width: 120px; margin-left: 5px;"></select>
-                            </td>
-                            <th><span class="required">*</span> 제안통화</th>
-                            <td>
-                                 <div class="input-with-button">
-                                    <input type="text" id="ivPrpCur" name="ivPrpCur" style="width: 80px;" readonly>
-                                    <button type="button" id="btn_CurSrch" class="btn-currency-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                    <input type="text" id="ivPrpCurNm" name="ivPrpCurNm" class="wide-input" readonly>
+                             <td colspan="3">
+                                <div class="input-with-button">
+                                    <select id="ivZoneTc" name="ivZoneTc" class="short-input" style="width:100px;"></select>
+                                    <input type="text" id="ivNat" name="ivNat" class="short-input" style="width:100px;" readonly>
+                                    <button type="button" id="btn_NatSrch" class="btn-nation-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <input type="text" id="ivNatNm" name="ivNatNm" class="wide-input" readonly>
                                 </div>
                             </td>
                         </tr>
                         <tr class="investment-details">
+                           <th><span class="required">*</span> 제안통화</th>
+                             <td>
+                                <div class="input-with-button">
+                                    <input type="text" id="ivPrpCur" name="ivPrpCur" class="short-input" style="width: 80px;" readonly>
+                                    <button type="button" id="btn_CurSrch" class="btn-currency-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <input type="text" id="ivPrpCurNm" name="ivPrpCurNm" class="wide-input" readonly>
+                                </div>
+                            </td>
                             <th><span class="required">*</span> 투자기간</th>
                             <td>
                                 <input type="text" id="ivTrm" name="ivTrm" placeholder="예) 25년 1월 ~ 28년 12월">
                             </td>
-                            <th>전체모집금액</th>
-                             <td><input type="text" id="totRcrtAmt" name="totalAmount" placeholder="(단위 : 제안통화)"></td>
-                        </tr>
-                         <tr class="investment-details">
-                            <th><span class="required">*</span> 본회제안금액</th>
-                            <td><input type="text" id="ivPrpAmt" name="pmaaAmount" placeholder="(단위 : 제안통화)"></td>
-                            <th><span class="required">*</span> 목표수익률(IRR)</th>
-                            <td><input type="text" id="objPrrt" name="targetReturn" placeholder="(단위 : %)"></td>
                         </tr>
                         <tr class="investment-details">
-                             <th>목표수익률(배당)</th>
-                            <td><input type="text" id="objAlotPrrt" name="dividendReturn" placeholder="(단위 : %)"></td>
-                            <th></th>
-                            <td></td>
+                            <th>전체모집금액</th>
+                            <td><input type="text" id="totRcrtAmt" name="totalAmount" class="short-input" placeholder="(단위 : 제안통화)"></td>
+                           <th><span class="required">*</span> 본회제안금액</th>
+                            <td><input type="text" id="ivPrpAmt" name="pmaaAmount" class="short-input" placeholder="(단위 : 제안통화)"></td>
+                        </tr>
+                        <tr class="investment-details">
+                            <th><span class="required">*</span> 목표수익률(IRR)</th>
+                            <td><input type="text" id="objPrrt" name="targetReturn" class="short-input" placeholder="(단위 : %)"></td>
+                            <th>목표수익률(배당)</th>
+                            <td><input type="text" id="objAlotPrrt" name="dividendReturn" class="short-input" placeholder="(단위 : %)"></td>
                         </tr>
                         <tr class="investment-details meeting-details">
                             <th>제안미팅 예정일</th>
                             <td>
                                 <div class="input-with-icon">
-                                    <input type="text" name="meetingDate" id="metSchdDate">
+                                    <input type="text" name="meetingDate" id="metSchdDate" class="short-input">
                                     <i id="datepicker-icon" class="fa-solid fa-calendar-days"></i>
                                 </div>
                             </td>
@@ -165,7 +167,7 @@
     <script src="/js/provest/propvest_form.js"></script>
     <jsp:include page="/WEB-INF/jsp/popup/currencySearchPopup.jsp" />
     <jsp:include page="/WEB-INF/jsp/popup/nationSearchPopup.jsp" />
-    <script src="/js/popup/currency_popup.js"></script> 
-    <script src="/js/popup/nation_popup.js"></script> 
+    <script src="/js/popup/currency_popup.js"></script>
+    <script src="/js/popup/nation_popup.js"></script>
 </body>
 </html>

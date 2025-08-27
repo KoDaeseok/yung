@@ -16,14 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const teams = [{ c: '104010', cdNm: '대체투자1팀' }, { c: '103010', cdNm: '기업금융1팀' }];
         const fields = [{ c: 'A13', cdNm: '주식스타일형' }, { c: 'C12', cdNm: '국내부동산' }];
         const investmentZones = [{ c: '01', cdNm: '국내' }, { c: '02', cdNm: '해외' }];
-        const countries = [{c: 'KR', cdNm: '대한민국'}, {c: 'US', cdNm: '미국'}];
 
         populateSelect('oprTeamTc', teams);
         populateSelect('ivFld', fields);
         populateSelect('ivZoneTc', investmentZones);
-        populateSelect('ivNat', countries);
         
-        $('#ivNat').prop('disabled', true);
+        // 초기에는 해외 검색버튼 비활성화
+        $('#btn_NatSrch').prop('disabled', true);
     };
 
     const populateSelect = (elementId, data) => {
@@ -39,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const acmnSelect = $('#acmn');
         acmnSelect.empty().append('<option value="">선택</option>');
         if (teamCode) {
+            // In a real application, this would be an AJAX call
             const managers = [{ usid: 'user1', userNm: '김담당' }, { usid: 'user2', userNm: '박팀장' }];
             managers.forEach(item => {
                 acmnSelect.append(`<option value="${item.usid}">${item.userNm}</option>`);
@@ -59,12 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     $('#ivZoneTc').on('change', function(){
-        const natSelect = $('#ivNat');
+        const natCodeInput = $('#ivNat');
+        const natNameInput = $('#ivNatNm');
+        const natSearchBtn = $('#btn_NatSrch');
+
         if($(this).val() === '02'){ // 해외
-            natSelect.prop('disabled', false);
+            natSearchBtn.prop('disabled', false);
+            natCodeInput.val('');
+            natNameInput.val('');
             $('#ivPrpCur, #ivPrpCurNm').val(''); 
         } else { // 국내
-            natSelect.prop('disabled', true).val('');
+            natSearchBtn.prop('disabled', true);
+            natCodeInput.val('KR');
+            natNameInput.val('대한민국');
             $('#ivPrpCur').val('KRW');
             $('#ivPrpCurNm').val('원화'); 
         }
@@ -84,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
            $('#ivPrpCurNm, #ivNatNm').val(''); 
            $('.investment-details').show();
            $('.tr-manager').hide();
-           $('#ivNat').prop('disabled', true);
+           $('#btn_NatSrch').prop('disabled', true);
        }
     });
 
@@ -94,7 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const requiredFields = [
             { id: 'prpRprtTit', msg: '제안제목을 입력해주세요.' },
             { id: 'ivObj', msg: '투자개요를 입력해주세요.' },
-            // ... (기타 모든 필수 필드 검사) ...
+            { id: 'oprTeamTc', msg: '공제회 담당팀을 선택해주세요.' },
+            { id: 'acmn', msg: '공제회 담당자를 선택해주세요.' },
+            { id: 'ivFld', msg: '투자분야를 선택해주세요.' },
+            { id: 'ivKindTc', msg: '유형을 선택해주세요.' },
+            { id: 'ivCntn', msg: '투자내용을 입력해주세요.' },
+            { id: 'prcoChmnNm', msg: '제안사 담당자를 입력해주세요.' },
         ];
 
         for (const field of requiredFields) {

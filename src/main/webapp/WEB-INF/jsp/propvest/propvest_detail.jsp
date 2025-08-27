@@ -19,15 +19,15 @@
 
         <main class="page-content">
             <div class="breadcrumb">
-                 <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
+                <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
                 <span>></span>
                 <span>투자제안</span>
                 <span>></span>
                 <span>제안요청상세</span>
             </div>
-            
+
             <h1><i class="fa-solid fa-circle-info"></i> 제안요청상세</h1>
-            
+
             <form id="propvest-form">
                 <div class="propvest-readonly-info">
                     <span>제안기관</span> <input type="text" value="KB자산운용" readonly>
@@ -47,15 +47,15 @@
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 공제회 담당팀</th>
-                            <td><input type="text" name="chargeTeam" value="대체투자1팀" readonly></td>
+                            <td><input type="text" name="chargeTeam" value="대체투자1팀" class="short-input" readonly></td>
                             <th><span class="required">*</span> 공제회 담당자</th>
-                            <td><input type="text" name="pmaaManager" value="김담당" readonly></td>
+                            <td><input type="text" name="pmaaManager" value="김담당" class="short-input" readonly></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 투자분야</th>
-                            <td><input type="text" name="investField" value="국내부동산" readonly></td>
+                            <td><input type="text" name="investField" value="국내부동산" class="short-input" readonly></td>
                             <th><span class="required">*</span> 유형</th>
-                            <td><input type="text" name="investType" value="대출" readonly></td>
+                            <td><input type="text" name="investType" value="대출" class="short-input" readonly></td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 투자내용</th>
@@ -73,36 +73,35 @@
                         </tr>
                         <tr class="investment-details">
                             <th><span class="required">*</span> 투자지역</th>
-                             <td><input type="text" name="investZone" value="국내" readonly></td>
+                            <td><input type="text" name="investZone" value="국내" class="short-input" readonly></td>
                             <th><span class="required">*</span> 투자국가</th>
-                            <td><input type="text" name="investCountry" value="대한민국" readonly></td>
+                            <td><input type="text" name="investCountry" value="대한민국" class="short-input" readonly></td>
                         </tr>
                         <tr class="investment-details">
                             <th><span class="required">*</span> 제안통화</th>
-                            <td colspan="3"><input type="text" name="currency" value="KRW" readonly></td>
+                            <td colspan="3"><input type="text" name="currency" value="KRW" class="short-input" readonly></td>
                         </tr>
-                         <tr class="investment-details">
+                        <tr class="investment-details">
                             <th><span class="required">*</span> 투자기간</th>
-                            <td colspan="3"><input type="text" name="investPeriod" value="24년 1월 ~ 29년 12월" readonly></td>
+                            <td colspan="3"><input type="text" name="investPeriod" value="24년 1월 ~ 29년 12월" ></td>
                         </tr>
-                        
                         <tr class="investment-details">
                             <th>전체모집금액</th>
-                            <td><input type="text" name="totalAmount" value="1,000,000,000" readonly></td>
+                            <td><input type="text" name="totalAmount" value="1,000,000,000" class="short-input" readonly></td>
                             <th><span class="required">*</span> 본회제안금액</th>
-                            <td><input type="text" name="pmaaAmount" value="500,000,000" readonly></td>
+                            <td><input type="text" name="pmaaAmount" value="500,000,000" class="short-input" readonly></td>
                         </tr>
                         <tr class="investment-details">
                             <th><span class="required">*</span> 목표수익률(IRR)</th>
-                            <td><input type="text" name="targetReturn" value="7.5" readonly></td>
+                            <td><input type="text" name="targetReturn" value="7.5" class="short-input" readonly></td>
                             <th>목표수익률(배당)</th>
-                            <td><input type="text" name="dividendReturn" value="5.0" readonly></td>
+                            <td><input type="text" name="dividendReturn" value="5.0" class="short-input" readonly></td>
                         </tr>
                         <tr class="investment-details meeting-details">
                             <th>제안미팅 예정일</th>
                             <td>
                                 <div class="input-with-icon">
-                                    <input type="text" name="meetingDate" id="meetingDatepicker" value="2025-09-01" readonly>
+                                    <input type="text" name="meetingDate" id="meetingDatepicker" value="2025-09-01" class="short-input" readonly>
                                     <i id="datepicker-icon" class="fa-solid fa-calendar-days"></i>
                                 </div>
                             </td>
@@ -135,7 +134,7 @@
                         <button type="button" class="btn btn-primary" id="edit-btn"><i class="fa-solid fa-edit"></i> 수정</button>
                         <button type="button" class="btn btn-outline" onclick="location.href='/propvest/list'"><i class="fa-solid fa-list"></i> 목록</button>
                     </div>
-                    <div id="edit-mode-buttons" style="display: none;">
+                    <div id="edit-mode-buttons" style="display: none;" class="form-buttons">
                         <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 저장</button>
                         <button type="button" class="btn btn-secondary" id="cancel-btn"><i class="fa-solid fa-times"></i> 취소</button>
                     </div>
@@ -145,6 +144,6 @@
     </div>
 
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
-    <script src="/js/provest/propvest_detail.js"></script> 
+    <script src="/js/provest/propvest_detail.js"></script>
 </body>
 </html>

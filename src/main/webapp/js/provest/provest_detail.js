@@ -14,8 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const enableEditMode = () => {
                 formFields.forEach(field => {
-                    field.readOnly = false;
-                    field.disabled = false;
+                    // 제안기관, 사업자번호, 제안자는 수정불가로 유지
+                    if (field.id !== 'prpOrg' && field.id !== 'bsNo' && field.id !== 'prpsMnNm') {
+                        field.readOnly = false;
+                        field.disabled = false;
+                    }
                 });
                 fileBtn.classList.remove('btn-disabled');
                 viewModeButtons.style.display = 'none';
