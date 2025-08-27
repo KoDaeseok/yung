@@ -1,12 +1,10 @@
-/* _components/_sidebar.css */
-
 /* 사이드바 하단 현황판 스타일 */
 .status-box {
-    margin-top: 60px;
+    margin-top: 20px;
     border: 1px solid var(--border-color-light);
     border-radius: var(--border-radius-small);
     position: sticky;
-    top: 120px;
+    bottom: 120px;
 }
 
 .status-header {

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%> -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-<!-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +8,6 @@
     <link rel="stylesheet" href="/css/main.css">
     <%-- [추가] Font Awesome 아이콘 라이브러리 --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- <c:if test="${!empty resultMsg}"><script type="text/javascript">alert("<spring:message code="${resultMsg}" />");</script></c:if> -->
 </head>
 <body>
 	<%-- 헤더 영역 포함 --%>

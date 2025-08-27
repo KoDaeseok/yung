@@ -145,30 +145,30 @@ public class WebController {
         session.removeAttribute("activeMenuNo");
         return "index";
     }   
-    
+
     // 1. 자산운용조직
     @GetMapping("/organization/introduce")
     public String organizationIntro(Model model, HttpSession session) {
-        addCommonAttributes("101", model, session);
+        addCommonAttributes("010100", model, session);
         return "org/introduce";
     }
 
     @GetMapping("/organization/chart")
     public String organizationChart(Model model, HttpSession session) {
-        addCommonAttributes("102", model, session);
+        addCommonAttributes("010200", model, session);
         return "org/chart";
     }
 
     @GetMapping("/organization/location")
     public String organizationLocation(Model model, HttpSession session) {
-        addCommonAttributes("103", model, session);
+        addCommonAttributes("010300", model, session);
         return "org/location";
     }
 
     // 2. 공지/건의
     @GetMapping("/notice")
     public String notice(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
-        addCommonAttributes("201", model, session);
+        addCommonAttributes("020100", model, session);
 
         // --- 페이지네이션 데이터 생성 ---
         List<Map<String, String>> noticeList = new ArrayList<>();
@@ -202,7 +202,7 @@ public class WebController {
     @GetMapping("/notice/detail")
     public String noticeDetail(Model model, HttpSession session,
             @RequestParam(value = "id", required = false) String id) {
-        addCommonAttributes("201", model, session);
+        addCommonAttributes("020100", model, session);
         Map<String, Object> noticeDetail = new HashMap<>();
         noticeDetail.put("title", "정보교류시스템 오픈 안내");
         noticeDetail.put("period", "2025-08-20 ~ 2025-12-31");
@@ -216,7 +216,7 @@ public class WebController {
     @GetMapping("/suggestion")
     public String suggestion(Model model, HttpSession session,
             @RequestParam(value = "page", defaultValue = "1") int page) {
-        addCommonAttributes("202", model, session);
+        addCommonAttributes("020200", model, session);
 
         // --- 페이지네이션 데이터 생성 ---
         List<Map<String, String>> suggestions = new ArrayList<>();
@@ -251,14 +251,14 @@ public class WebController {
 
     @GetMapping("/suggestion/new")
     public String newSuggestionForm(Model model, HttpSession session) {
-        addCommonAttributes("202", model, session);
+        addCommonAttributes("020200", model, session);
         return "notice/suggestion_form";
     }
 
     @GetMapping("/suggestion/detail")
     public String suggestionDetail(Model model, HttpSession session,
             @RequestParam(value = "id", required = false) String id) {
-        addCommonAttributes("202", model, session);
+        addCommonAttributes("020200", model, session);
         Map<String, Object> suggestionDetail = new HashMap<>();
         suggestionDetail.put("title", "질문입니다");
         suggestionDetail.put("department", "정보시스템부");
@@ -273,7 +273,7 @@ public class WebController {
     @GetMapping("/propvest/list")
     public String propvestList(Model model, HttpSession session,
             @RequestParam(value = "page", defaultValue = "1") int page) {
-        addCommonAttributes("301", model, session);
+        addCommonAttributes("030100", model, session);
 
         // --- 페이지네이션을 위한 임시 데이터 생성 ---
         List<Map<String, String>> propvestList = new ArrayList<>();
@@ -312,7 +312,7 @@ public class WebController {
     // [복원] 투자제안 등록 페이지 매핑
     @GetMapping("/propvest/new")
     public String newPropvestForm(Model model, HttpSession session) {
-        addCommonAttributes("301", model, session);
+        addCommonAttributes("030100", model, session);
         model.addAttribute("pageTitle", "신규 투자제안");
         return "propvest/form";
     }
@@ -320,7 +320,7 @@ public class WebController {
     // [복원] 투자제안 상세 페이지 매핑
     @GetMapping("/propvest/detail")
     public String propvestDetail(Model model, HttpSession session, @RequestParam("id") String id) {
-        addCommonAttributes("301", model, session);
+        addCommonAttributes("030100", model, session);
         model.addAttribute("pageTitle", "제안요청상세");
         
         // id를 기반으로 DB에서 데이터를 조회했다고 가정한 예시 데이터
@@ -357,7 +357,7 @@ public class WebController {
     // 4. 금리제안
     @GetMapping("/prorate/short_term/list")
     public String prorateShortTermList(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
-        addCommonAttributes("401", model, session);
+        addCommonAttributes("040100", model, session);
         
         List<Map<String, String>> sampleList = new ArrayList<>();
         sampleList.add(Map.of("id", "1", "team", "채권투자팀", "regNum", "20250910_1", "title", "단기자금상품 금리요청", "postDate", "2025-09-03", "endDate", "2025-09-10 17:00", "regStatus", "미등록"));
@@ -371,7 +371,7 @@ public class WebController {
 
     @GetMapping("/prorate/derivative/list")
     public String prorateDerivativeList(Model model, HttpSession session, @RequestParam(value = "page", defaultValue = "1") int page) {
-        addCommonAttributes("402", model, session);
+        addCommonAttributes("040200", model, session);
         
         List<Map<String, String>> sampleList = new ArrayList<>();
         sampleList.add(Map.of("id", "13", "team", "주식투자팀", "regNum", "20250905_13", "title", "파생결합상품 금리요청", "postDate", "2025-09-01", "endDate", "2025-09-05 17:00", "regStatus", "미등록"));
@@ -397,12 +397,12 @@ public class WebController {
         String viewName;
 
         if ("deriv".equals(type)) {
-            addCommonAttributes("402", model, session);
+            addCommonAttributes("040200", model, session);
             // [수정] id 유무에 따라 등록/수정 분기 처리
             pageTitle = "파생결합상품 금리요청 등록";
             viewName = "prorate/form_derivative";
         } else {
-            addCommonAttributes("401", model, session);
+            addCommonAttributes("040100", model, session);
             // [수정] id 유무에 따라 등록/수정 분기 처리
             pageTitle = "단기상품 금리요청 등록";
             viewName = "prorate/form_short_term";
@@ -420,7 +420,7 @@ public class WebController {
     @GetMapping("/finops/balance_cert/list")
     public String balanceCertList(Model model, HttpSession session,
             @RequestParam(value = "page", defaultValue = "1") int page) {
-        addCommonAttributes("501", model, session);
+        addCommonAttributes("050100", model, session);
 
         List<Map<String, String>> sampleList = new ArrayList<>();
         for (int i = 1; i <= 23; i++) {
@@ -438,7 +438,7 @@ public class WebController {
 
     @GetMapping("/finops/balance_cert/detail")
     public String balanceCertDetail(Model model, HttpSession session, @RequestParam("id") String id) {
-        addCommonAttributes("501", model, session);
+        addCommonAttributes("050100", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "잔고증명 상세"));
         
         // id를 기반으로 DB에서 데이터를 조회했다고 가정
@@ -455,7 +455,7 @@ public class WebController {
 
     @GetMapping("/finops/balance_cert/form")
     public String balanceCertForm(Model model, HttpSession session) {
-        addCommonAttributes("501", model, session);
+        addCommonAttributes("050100", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "잔고증명 등록"));
         return "finops/balance_cert/form";
     }
@@ -484,7 +484,7 @@ public class WebController {
     @GetMapping("/finops/report/list")
     public String reportList(Model model, HttpSession session,
             @RequestParam(value = "page", defaultValue = "1") int page) {
-        addCommonAttributes("502", model, session);
+        addCommonAttributes("050200", model, session);
 
         List<Map<String, String>> sampleList = new ArrayList<>();
         for (int i = 1; i <= 28; i++) {
@@ -504,7 +504,7 @@ public class WebController {
     @GetMapping("/finops/report/detail")
     public String reportDetail(Model model, HttpSession session,
             @RequestParam(value = "id", required = false) String id) {
-        addCommonAttributes("502", model, session);
+        addCommonAttributes("050200", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 상세"));
 
         // DB에서 조회한 데이터라고 가정한 예시 데이터
@@ -527,7 +527,7 @@ public class WebController {
 
     @GetMapping("/finops/report/form")
     public String reportForm(Model model, HttpSession session) {
-        addCommonAttributes("502", model, session);
+        addCommonAttributes("050200", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "운용실적보고 등록"));
         model.addAttribute("report", new HashMap<String, Object>());
         return "finops/report/form";
@@ -536,7 +536,7 @@ public class WebController {
     // 5-3. 운용관련 요청 및 보고
     @GetMapping("/finops/request/list")
     public String requestList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
-        addCommonAttributes("503", model, session);
+        addCommonAttributes("050300", model, session);
         
         List<Map<String, String>> sampleList = new ArrayList<>();
         for (int i = 1; i <= 15; i++) {
@@ -557,7 +557,7 @@ public class WebController {
     
     @GetMapping("/finops/request/detail")
     public String requestDetail(Model model, HttpSession session, @RequestParam("id") String id) {
-        addCommonAttributes("503", model, session);
+        addCommonAttributes("050300", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 상세"));
         
         // 실제로는 DB에서 id로 데이터를 조회
@@ -576,7 +576,7 @@ public class WebController {
 
     @GetMapping("/finops/request/form")
     public String requestForm(Model model, HttpSession session) {
-        addCommonAttributes("503", model, session);
+        addCommonAttributes("050300", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "운용관련 요청 및 보고 등록"));
         model.addAttribute("request", new HashMap<String, Object>());
         return "finops/request/form";
@@ -585,7 +585,7 @@ public class WebController {
     // 5-4. 편입자산 세부내역
     @GetMapping("/finops/asset/list")
     public String assetList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
-        addCommonAttributes("504", model, session);
+        addCommonAttributes("050400", model, session);
         
         List<Map<String, String>> sampleList = new ArrayList<>();
         sampleList.add(Map.of("id", "1", "investType", "test", "overview", "test", "category", "주거시설", "detailCategory", "분양아파트", "country", "대한민국"));
@@ -600,7 +600,7 @@ public class WebController {
 
     @GetMapping("/finops/asset/detail")
     public String assetDetail(Model model, HttpSession session, @RequestParam("id") String id) {
-        addCommonAttributes("504", model, session);
+        addCommonAttributes("050400", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "편입자산 세부내역 상세"));
         
         // id를 기반으로 DB에서 데이터를 조회했다고 가정
@@ -658,7 +658,7 @@ public class WebController {
 
     @GetMapping("/finops/asset/form")
     public String assetForm(Model model, HttpSession session) {
-        addCommonAttributes("504", model, session);
+        addCommonAttributes("050400", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "편입자산 세부내역 등록"));
         model.addAttribute("asset", new HashMap<String, Object>()); // 빈 객체 전달
         return "finops/asset/form";
@@ -667,7 +667,7 @@ public class WebController {
     // 5-5. 연간 자금계획
     @GetMapping("/finops/plan/list")
     public String planList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
-        addCommonAttributes("505", model, session);
+        addCommonAttributes("050500", model, session);
         
         List<Map<String, String>> sampleList = new ArrayList<>();
         // [수정] "fundName"을 "title"로 변경하고 내용 수정
@@ -680,7 +680,7 @@ public class WebController {
 
     @GetMapping("/finops/plan/detail")
     public String planDetail(Model model, HttpSession session, @RequestParam("year") String year) {
-        addCommonAttributes("505", model, session);
+        addCommonAttributes("050500", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", "연간 자금계획 상세"));
         
         // 실제로는 year를 기반으로 DB에서 데이터를 조회
@@ -694,7 +694,7 @@ public class WebController {
 
     @GetMapping("/finops/plan/form")
     public String planForm(Model model, HttpSession session, @RequestParam(value="year", required=false) String year) {
-        addCommonAttributes("505", model, session);
+        addCommonAttributes("050500", model, session);
         model.addAttribute("menuDetail", Map.of("menuNm", year != null ? "연간 자금계획 수정" : "연간 자금계획 등록"));
         model.addAttribute("year", year); // 목록에서 클릭 시 년도 전달
         return "finops/plan/form";
@@ -703,7 +703,7 @@ public class WebController {
     // 5-6. 업무담당자
     @GetMapping("/finops/manager/list")
     public String managerList(Model model, HttpSession session, @RequestParam(value="page", defaultValue="1") int page) {
-        addCommonAttributes("506", model, session);
+        addCommonAttributes("050600", model, session);
         
         List<Map<String, String>> sampleList = new ArrayList<>();
         sampleList.add(Map.of("id", "1", "fundName", "KB PG 에너지인프라모특별자산투자", "managerName", "김담당", "position", "팀장", "task", "운용 총괄", "orgType", "운용사", "phone", "02-1234-5678", "mobile", "010-1111-2222"));
@@ -715,7 +715,7 @@ public class WebController {
 
     @GetMapping("/finops/manager/detail")
     public String managerDetail(Model model, HttpSession session, @RequestParam("id") String id) {
-        addCommonAttributes("506", model, session);
+        addCommonAttributes("050600", model, session);
         model.addAttribute("pageTitle", "업무담당자 상세");
         
         // id로 DB에서 데이터를 조회했다고 가정
@@ -745,7 +745,7 @@ public class WebController {
 
     @GetMapping("/finops/manager/form")
     public String managerForm(Model model, HttpSession session, @RequestParam(value="id", required=false) String id) {
-        addCommonAttributes("506", model, session);
+        addCommonAttributes("050600", model, session);
 
         if (id == null) {
             // 등록 페이지

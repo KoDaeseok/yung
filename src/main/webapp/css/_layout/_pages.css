@@ -17,6 +17,12 @@
 .left-sidebar {
     width: 220px;
     flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-top {
+    flex-grow: 1;
 }
 
 .left-sidebar h2 {
