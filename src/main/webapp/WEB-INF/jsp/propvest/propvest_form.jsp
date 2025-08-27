@@ -96,7 +96,7 @@
                             <td>
                                  <div class="input-with-button">
                                     <input type="text" id="ivPrpCur" name="ivPrpCur" style="width: 80px;" readonly>
-                                    <button type="button" id="btn_CurSrch" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                    <button type="button" id="btn_CurSrch" class="btn-currency-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
                                     <input type="text" id="ivPrpCurNm" name="ivPrpCurNm" class="wide-input" readonly>
                                 </div>
                             </td>
@@ -162,6 +162,10 @@
     </div>
 
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
-    <script src="/js/provest/propvest_form.js"></script> 
+    <script src="/js/provest/propvest_form.js"></script>
+    <jsp:include page="/WEB-INF/jsp/popup/currencySearchPopup.jsp" />
+    <jsp:include page="/WEB-INF/jsp/popup/nationSearchPopup.jsp" />
+    <script src="/js/popup/currency_popup.js"></script> 
+    <script src="/js/popup/nation_popup.js"></script> 
 </body>
 </html>
