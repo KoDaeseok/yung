@@ -88,8 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
     openModalBtns.forEach(btn => {
         btn.addEventListener('click', (e) => {
             const wrapper = e.currentTarget.closest('.input-with-button');
-            parentNatCodeInput = wrapper.querySelector('input[name="ivNat"]');
-            parentNatNameInput = wrapper.querySelector('input[name="ivNatNm"]');
+            // 팝업이 부모 창의 어떤 입력 필드를 채워야 하는지 설정
+            let parentNatCodeInput = wrapper.querySelector('input[name="ivNat"]');
+            let parentNatNameInput = wrapper.querySelector('input[name="ivNatNm"]');
+
             
             searchInput.value = '';
             currentData = [...allData];

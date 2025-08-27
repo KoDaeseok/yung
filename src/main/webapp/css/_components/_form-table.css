@@ -26,6 +26,7 @@
 /* 폼 테이블 내부의 input, select 공통 스타일 */
 .form-table input[type="text"],
 .form-table input[type="password"],
+.form-table input[type="date"],
 .form-table select {
     height: 34px;
     padding: 0 8px;
@@ -38,6 +39,7 @@
 
 .form-table input[type="text"]:focus,
 .form-table input[type="password"]:focus,
+.form-table input[type="date"]:focus,
 .form-table select:focus {
     outline: none;
     border-color: var(--primary-color);

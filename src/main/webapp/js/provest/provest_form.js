@@ -2,17 +2,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('propvest-form');
     
     const initForm = () => {
+        // 초기값 설정
         $('#prpOrg').val('KB자산운용'); 
         $('#bsNo').val('116-81-33085'); 
         $('#prpsMnNm').val('정보시스템부');
         
-        $("#metSchdDate").datepicker({ dateFormat: "yy-mm-dd" });
-        $("#datepicker-icon").on("click", () => { $("#metSchdDate").datepicker("show"); });
-
         loadSelectOptions();
     };
 
     const loadSelectOptions = () => {
+        // (실제로는 서버에서 데이터를 받아와야 합니다)
         const teams = [{ c: '104010', cdNm: '대체투자1팀' }, { c: '103010', cdNm: '기업금융1팀' }];
         const fields = [{ c: 'A13', cdNm: '주식스타일형' }, { c: 'C12', cdNm: '국내부동산' }];
         const investmentZones = [{ c: '01', cdNm: '국내' }, { c: '02', cdNm: '해외' }];
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         populateSelect('ivFld', fields);
         populateSelect('ivZoneTc', investmentZones);
         
-        // 초기에는 해외 검색버튼 비활성화
+        // 초기에는 국가 검색 버튼 비활성화
         $('#btn_NatSrch').prop('disabled', true);
     };
 
@@ -33,43 +32,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    $('#oprTeamTc').on('change', function() {
-        const teamCode = $(this).val();
-        const acmnSelect = $('#acmn');
-        acmnSelect.empty().append('<option value="">선택</option>');
-        if (teamCode) {
-            // In a real application, this would be an AJAX call
-            const managers = [{ usid: 'user1', userNm: '김담당' }, { usid: 'user2', userNm: '박팀장' }];
-            managers.forEach(item => {
-                acmnSelect.append(`<option value="${item.usid}">${item.userNm}</option>`);
-            });
-        }
-    });
-
-    $('#ivFld').on('change', function() {
-        const value = $(this).val();
-        if (value === 'A13' || value === 'A21' || value === 'A23') {
-            $('.investment-details').hide();
-            $('.tr-manager').show();
-            if(value === 'A13') $('.meeting-details').show();
-        } else {
-            $('.investment-details').show();
-            $('.tr-manager').hide();
-        }
-    });
-    
+    // '투자지역' 선택 시 이벤트
     $('#ivZoneTc').on('change', function(){
         const natCodeInput = $('#ivNat');
         const natNameInput = $('#ivNatNm');
         const natSearchBtn = $('#btn_NatSrch');
 
-        if($(this).val() === '02'){ // 해외
-            natSearchBtn.prop('disabled', false);
+        if($(this).val() === '02'){ // '해외' 선택 시
+            natSearchBtn.prop('disabled', false); // 국가 검색 버튼 활성화
             natCodeInput.val('');
             natNameInput.val('');
             $('#ivPrpCur, #ivPrpCurNm').val(''); 
-        } else { // 국내
-            natSearchBtn.prop('disabled', true);
+        } else { // '국내' 선택 시
+            natSearchBtn.prop('disabled', true); // 국가 검색 버튼 비활성화
             natCodeInput.val('KR');
             natNameInput.val('대한민국');
             $('#ivPrpCur').val('KRW');
@@ -77,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 파일 업로드 시 파일명 표시
     $('#file-upload').on('change', function() {
         const fileName = this.files[0] ? this.files[0].name : "파일을 첨부해주세요.";
         $('#fileName').val(fileName);

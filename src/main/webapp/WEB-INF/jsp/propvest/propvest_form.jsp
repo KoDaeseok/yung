@@ -7,9 +7,8 @@
     <title>경찰공제회 - 신규 투자제안</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <%-- jQuery UI CSS는 더 이상 필요하지 않습니다. --%>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
 </head>
 <body>
     <c:import url="/header.do" />
@@ -32,7 +31,7 @@
                 <div class="propvest-readonly-info">
                     <span>제안기관</span> <input type="text" id="prpOrg" name="prpOrg" readonly>
                     <span>사업자번호</span> <input type="text" id="bsNo" name="bsNo" readonly>
-                    <span>제안자</span> <input type="text" id="prpsMnNm" name="prpsMnNm" readonly>
+                    <span>제안자</span> <input type="text" id="prpsMnNm" name="prpsNm" readonly>
                 </div>
 
                 <table class="form-table">
@@ -88,18 +87,19 @@
                         </tr>
                         <tr class="investment-details">
                             <th><span class="required">*</span> 투자지역</th>
-                             <td colspan="3">
+                            <td colspan="3">
                                 <div class="input-with-button">
                                     <select id="ivZoneTc" name="ivZoneTc" class="short-input" style="width:100px;"></select>
-                                    <input type="text" id="ivNat" name="ivNat" class="short-input" style="width:100px;" readonly>
+                                    <input type="text" id="ivNat" name="ivNat" class="short-input" style="width:100px;" readonly placeholder="국가코드">
                                     <button type="button" id="btn_NatSrch" class="btn-nation-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                    <input type="text" id="ivNatNm" name="ivNatNm" class="wide-input" readonly>
+                                    <input type="text" id="ivNatNm" name="ivNatNm" class="wide-input" readonly placeholder="국가명">
                                 </div>
                             </td>
                         </tr>
+
                         <tr class="investment-details">
-                           <th><span class="required">*</span> 제안통화</th>
-                             <td>
+                            <th><span class="required">*</span> 제안통화</th>
+                            <td>
                                 <div class="input-with-button">
                                     <input type="text" id="ivPrpCur" name="ivPrpCur" class="short-input" style="width: 80px;" readonly>
                                     <button type="button" id="btn_CurSrch" class="btn-currency-search btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -108,7 +108,7 @@
                             </td>
                             <th><span class="required">*</span> 투자기간</th>
                             <td>
-                                <input type="text" id="ivTrm" name="ivTrm" placeholder="예) 25년 1월 ~ 28년 12월">
+                                <input type="text" id="ivTrm" name="ivTrm" class="wide-input" placeholder="예) 25년 1월 ~ 28년 12월">
                             </td>
                         </tr>
                         <tr class="investment-details">
@@ -126,10 +126,7 @@
                         <tr class="investment-details meeting-details">
                             <th>제안미팅 예정일</th>
                             <td>
-                                <div class="input-with-icon">
-                                    <input type="text" name="meetingDate" id="metSchdDate" class="short-input">
-                                    <i id="datepicker-icon" class="fa-solid fa-calendar-days"></i>
-                                </div>
+                                <input type="date" name="meetingDate" id="metSchdDate" class="short-input">
                             </td>
                             <th>제안미팅 예정시간</th>
                             <td>

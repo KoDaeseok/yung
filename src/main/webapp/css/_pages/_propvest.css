@@ -10,6 +10,7 @@
     background-color: var(--background-color-light);
     margin-bottom: 20px;
     font-size: 14px;
+    justify-content: space-between;
 }
 .propvest-readonly-info span {
     font-weight: 600;
