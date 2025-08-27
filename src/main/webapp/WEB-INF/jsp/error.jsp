@@ -15,7 +15,7 @@
             <%-- JavaScript가 내용을 채울 수 있도록 id를 지정합니다. --%>
             <h1 id="errorTitle"></h1>
             <p id="errorMessage"></p>
-            <a href="/" class="btn btn-primary">메인으로 돌아가기</a>
+            <a href="/index.do" class="btn btn-primary">메인으로 돌아가기</a>
         </div>
     </div>
     <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />

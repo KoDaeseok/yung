@@ -1,3 +1,4 @@
+// [수정 후] kodaeseok/yung/yung-1247a9e17381009495388933c9ab881c17ff66d6/src/main/webapp/js/propvest.js
 // js/propvest.js
 
 // 이 파일은 투자제안 등록(form)과 상세(detail) 페이지의 모든 JavaScript 기능을 담당합니다.
@@ -8,6 +9,38 @@ document.addEventListener('DOMContentLoaded', () => {
     // ========================================================
     // 공통 기능 및 이벤트 핸들러 (등록/상세 페이지 모두 적용)
     // ========================================================
+
+    const fileListContainer = $('#file-list-container');
+
+    // 파일을 목록에 추가하는 함수
+    const addFileToList = (fileName) => {
+        const fileItemHTML = `
+            <div class="file-item" style="margin-top: 5px;">
+                <a href="#" class="text-link">${fileName}</a>
+                <button type="button" class="btn-delete-file" style="display:inline-block;">&times;</button>
+            </div>
+        `;
+        fileListContainer.append(fileItemHTML);
+    };
+
+    // 파일 input 변경 시
+    $('#file-upload').on('change', function() {
+        if (this.files.length > 0) {
+            for (const file of this.files) {
+                addFileToList(file.name);
+            }
+        }
+        // input 초기화하여 같은 파일 다시 선택 가능하게 함
+        $(this).val(''); 
+    });
+
+    // 파일 삭제 버튼 클릭 시 (이벤트 위임)
+    fileListContainer.on('click', '.btn-delete-file', function() {
+        if (confirm("이 파일을 삭제하시겠습니까?")) {
+            $(this).closest('.file-item').remove();
+        }
+    });
+
 
     // Select 태그에 option을 채우는 헬퍼 함수
     const populateSelect = (elementId, data) => {
@@ -81,21 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
             $('#ivZoneTc').trigger('change');
         };
         
-        // [추가] 파일 업로드 시 파일명 표시
-        $('#file-upload').on('change', function() {
-            const fileName = this.files[0] ? this.files[0].name : "파일을 첨부해주세요.";
-            $('#fileName').val(fileName);
-        });
-
-        $('#btn_reset').on('click', () => {
-           if(confirm('작성한 내용을 모두 초기화하시겠습니까?')){
-               form.reset();
-               $('select').val('');
-               $('#fileName').val('파일을 첨부해주세요.');
-               initForm();
-           }
-        });
-
         propvestForm.addEventListener('submit', (e) => {
             e.preventDefault();
             // ... 유효성 검사 로직 ...
@@ -122,8 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         const formFields = propvestForm.querySelectorAll('input, select, textarea');
         const fileAddWrapper = document.getElementById('file-add-wrapper');
-        const deleteFileBtns = propvestForm.querySelectorAll('.btn-delete-file');
-
+        
         const enableEditMode = () => {
             formFields.forEach(field => {
                 if (field.name !== 'prpOrg' && field.name !== 'bsNo' && field.name !== 'prpsNm') {
@@ -138,7 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.btn-currency-search').prop('disabled', false);
 
             if (fileAddWrapper) fileAddWrapper.style.display = 'block';
-            deleteFileBtns.forEach(btn => btn.style.display = 'inline-block');
+            
+            // 수정모드 진입 시 기존 파일 삭제 버튼 표시
+            fileListContainer.find('.btn-delete-file').show();
             
             viewModeButtons.style.display = 'none';
             editModeButtons.style.display = 'flex';
@@ -165,15 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('삭제되었습니다.');
                 location.href = '/propvest/list';
             }
-        });
-        
-        // [추가] 상세 페이지 수정 모드에서 파일 삭제 기능
-        deleteFileBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                if(confirm('파일을 삭제하시겠습니까?')) {
-                    e.target.closest('.file-item').remove();
-                }
-            });
         });
 
         $(function() {

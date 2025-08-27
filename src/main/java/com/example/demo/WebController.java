@@ -25,38 +25,38 @@ public class WebController {
 
     public WebController() {
         // --- 상위 메뉴 ---
-        menuData.add(Map.of("menuNo", "1", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/introduce"));
-        menuData.add(Map.of("menuNo", "2", "menuNm", "공지/건의", "upperMenuNo", "0", "url", "/notice"));
-        menuData.add(Map.of("menuNo", "3", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list"));
-        menuData.add(Map.of("menuNo", "4", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate/short_term/list")); // 기본 진입 페이지
-        menuData.add(Map.of("menuNo", "5", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops/balance_cert/list"));
-        menuData.add(Map.of("menuNo", "6", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk"));
-        menuData.add(Map.of("menuNo", "7", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms"));
+        menuData.add(Map.of("menuNo", "010000", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/introduce"));
+        menuData.add(Map.of("menuNo", "020000", "menuNm", "공지/건의", "upperMenuNo", "0", "url", "/notice"));
+        menuData.add(Map.of("menuNo", "030000", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list"));
+        menuData.add(Map.of("menuNo", "040000", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate/short_term/list")); // 기본 진입 페이지
+        menuData.add(Map.of("menuNo", "050000", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops/balance_cert/list"));
+        menuData.add(Map.of("menuNo", "060000", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk"));
+        menuData.add(Map.of("menuNo", "070000", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms"));
 
         // --- 하위 메뉴 ---
         // 1. 자산운용조직
-        menuData.add(Map.of("menuNo", "101", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/introduce"));
-        menuData.add(Map.of("menuNo", "102", "menuNm", "조직도", "upperMenuNo", "1", "url", "/organization/chart"));
-        menuData.add(Map.of("menuNo", "103", "menuNm", "찾아오시는 길", "upperMenuNo", "1", "url", "/organization/location"));
+        menuData.add(Map.of("menuNo", "010100", "menuNm", "자산운용조직 소개", "upperMenuNo", "1", "url", "/organization/introduce"));
+        menuData.add(Map.of("menuNo", "010200", "menuNm", "조직도", "upperMenuNo", "1", "url", "/organization/chart"));
+        menuData.add(Map.of("menuNo", "010300", "menuNm", "찾아오시는 길", "upperMenuNo", "1", "url", "/organization/location"));
 
         // 2. 공지/건의
-        menuData.add(Map.of("menuNo", "201", "menuNm", "공지사항", "upperMenuNo", "2", "url", "/notice"));
-        menuData.add(Map.of("menuNo", "202", "menuNm", "건의사항", "upperMenuNo", "2", "url", "/suggestion"));
+        menuData.add(Map.of("menuNo", "020100", "menuNm", "공지사항", "upperMenuNo", "2", "url", "/notice"));
+        menuData.add(Map.of("menuNo", "020200", "menuNm", "건의사항", "upperMenuNo", "2", "url", "/suggestion"));
 
         // 3. 투자제안
-        menuData.add(Map.of("menuNo", "301", "menuNm", "제안요청목록", "upperMenuNo", "3", "url", "/propvest/list"));
+        menuData.add(Map.of("menuNo", "030100", "menuNm", "제안요청목록", "upperMenuNo", "3", "url", "/propvest/list"));
 
         // 4. 금리제안
-        menuData.add(Map.of("menuNo", "401", "menuNm", "단기상품 금리요청", "upperMenuNo", "4", "url", "/prorate/short_term/list"));
-        menuData.add(Map.of("menuNo", "402", "menuNm", "파생결합상품 금리요청", "upperMenuNo", "4", "url", "/prorate/derivative/list"));
+        menuData.add(Map.of("menuNo", "040100", "menuNm", "단기상품 금리요청", "upperMenuNo", "4", "url", "/prorate/short_term/list"));
+        menuData.add(Map.of("menuNo", "040200", "menuNm", "파생결합상품 금리요청", "upperMenuNo", "4", "url", "/prorate/derivative/list"));
         
         // 5. 운용관리
-        menuData.add(Map.of("menuNo", "501", "menuNm", "잔고증명", "upperMenuNo", "5", "url", "/finops/balance_cert/list"));
-        menuData.add(Map.of("menuNo", "502", "menuNm", "운용실적보고", "upperMenuNo", "5", "url", "/finops/report/list"));
-        menuData.add(Map.of("menuNo", "503", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
-        menuData.add(Map.of("menuNo", "504", "menuNm", "편입자산 세부내역", "upperMenuNo", "5", "url", "/finops/asset/list"));
-        menuData.add(Map.of("menuNo", "505", "menuNm", "연간 자금계획", "upperMenuNo", "5", "url", "/finops/plan/list"));
-        menuData.add(Map.of("menuNo", "506", "menuNm", "업무담당자", "upperMenuNo", "5", "url", "/finops/manager/list"));
+        menuData.add(Map.of("menuNo", "050100", "menuNm", "잔고증명", "upperMenuNo", "5", "url", "/finops/balance_cert/list"));
+        menuData.add(Map.of("menuNo", "050200", "menuNm", "운용실적보고", "upperMenuNo", "5", "url", "/finops/report/list"));
+        menuData.add(Map.of("menuNo", "050300", "menuNm", "운용관련 요청 및 보고", "upperMenuNo", "5", "url", "/finops/request/list"));
+        menuData.add(Map.of("menuNo", "050400", "menuNm", "편입자산 세부내역", "upperMenuNo", "5", "url", "/finops/asset/list"));
+        menuData.add(Map.of("menuNo", "050500", "menuNm", "연간 자금계획", "upperMenuNo", "5", "url", "/finops/plan/list"));
+        menuData.add(Map.of("menuNo", "050600", "menuNm", "업무담당자", "upperMenuNo", "5", "url", "/finops/manager/list"));
     }
 
     // --- [추가] 사이드바 현황 데이터 API ---
@@ -138,7 +138,7 @@ public class WebController {
         session.setAttribute("rootMenuNo", "0".equals(upperMenuNo) ? menuNo : upperMenuNo);
     }
 
-    @GetMapping("/")
+    @GetMapping("/index.do")
     public String home(Model model, HttpSession session) {
         session.removeAttribute("rootMenuNo");
         session.removeAttribute("activeMenuNo");
@@ -786,12 +786,12 @@ public class WebController {
     // 실제 페이지가 만들어지기 전까지는 임시로 메인 페이지로 이동시킵니다.
     @GetMapping("/investtalk")
     public String investtalk() {
-        return "redirect:/";
+        return "redirect:/index.do";
     }
 
     @GetMapping("/dms")
     public String dms() {
-        return "redirect:/";
+        return "redirect:/index.do";
     }
 
     // --- 로그인/회원가입 ---
@@ -818,13 +818,13 @@ public class WebController {
         return response;
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/logout.do")
     public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
         }
-        return "redirect:/";
+        return "redirect:/index.do";
     }
 
     // --- 에러 페이지 처리 ---

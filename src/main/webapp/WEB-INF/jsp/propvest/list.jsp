@@ -16,7 +16,7 @@
 
         <main class="page-content">
             <div class="breadcrumb">
-                <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
+                <a href="/index.do"><i class="fa-solid fa-house"></i> 홈</a>
                 <span>></span>
                 <span>투자제안</span>
                 <span>></span>

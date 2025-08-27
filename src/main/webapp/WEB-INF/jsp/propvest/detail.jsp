@@ -19,7 +19,7 @@
 
         <main class="page-content">
             <div class="breadcrumb">
-                <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
+                <a href="/index.do"><i class="fa-solid fa-house"></i> 홈</a>
                 <span>></span>
                 <span>투자제안</span>
                 <span>></span>
@@ -87,7 +87,7 @@
                                     <div class="file-input-wrapper">
                                         <input type="text" readonly placeholder="파일을 추가해주세요.">
                                         <label for="file-upload" class="btn btn-dark">파일찾기</label>
-                                        <input type="file" id="file-upload" name="attachment" style="display: none;" multiple>
+                                        <input type="file" id="file-upload" name="attachments" style="display: none;" multiple>
                                     </div>
                                 </div>
                                 <div id="file-list-container">

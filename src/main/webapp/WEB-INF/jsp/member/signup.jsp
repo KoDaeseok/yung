@@ -123,7 +123,7 @@
             <p class="notice">※ 내부규정에 의거 분쟁거래만 가능한점 양지 바랍니다.</p>
             <div class="form-buttons">
                 <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> 등록</button>
-                <button type="button" class="btn btn-secondary" onclick="location.href='/'"><i class="fa-solid fa-times"></i> 취소</button>
+                <button type="button" class="btn btn-secondary" onclick="location.href='/index.do'"><i class="fa-solid fa-times"></i> 취소</button>
             </div>
         </form>
     </main>

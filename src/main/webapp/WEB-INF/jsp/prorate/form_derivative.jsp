@@ -13,7 +13,7 @@
         <c:import url="/lnb.do" />
         <main class="page-content">
             <div class="breadcrumb">
-                <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
+                <a href="/index.do"><i class="fa-solid fa-house"></i> 홈</a>
                 <span>></span><span>금리제안</span><span>></span><span>${pageTitle}</span>
             </div>
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>

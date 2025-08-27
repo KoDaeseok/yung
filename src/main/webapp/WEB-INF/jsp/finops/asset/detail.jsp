@@ -14,7 +14,7 @@
         <c:import url="/lnb.do" />
         <main class="page-content">
             <div class="breadcrumb">
-                <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
+                <a href="/index.do"><i class="fa-solid fa-house"></i> 홈</a>
                 <span>></span><span>운용관리</span><span>></span><span>${menuDetail.menuNm}</span>
             </div>
             <h1><i class="fa-solid fa-circle-info"></i> ${menuDetail.menuNm}</h1>

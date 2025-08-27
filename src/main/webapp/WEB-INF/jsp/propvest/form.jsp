@@ -18,7 +18,7 @@
 
         <main class="page-content">
             <div class="breadcrumb">
-                <a href="/"><i class="fa-solid fa-house"></i> 홈</a>
+                <a href="/index.do"><i class="fa-solid fa-house"></i> 홈</a>
                 <span>></span>
                 <span>투자제안</span>
                 <span>></span>
@@ -61,14 +61,22 @@
                             <td colspan="3"><textarea id="ivCntn" name="ivCntn" style="width: 100%; height: 120px; resize: vertical;"></textarea></td>
                         </tr>
                         <tr>
-                            <th>투자제안서</th>
-                            <td colspan="3">
-                                <div class="file-input-wrapper">
-                                    <input type="text" id="fileName" readonly placeholder="파일을 첨부해주세요.">
-                                    <label for="file-upload" class="btn btn-dark">파일찾기</label>
-                                    <input type="file" id="file-upload" name="attachment" style="display: none;">
-                                </div>
-                            </td>
+                            <tr>
+                                <th>투자제안서</th>
+                                <td colspan="3">
+                                    <%-- 파일 추가 버튼 --%>
+                                    <div class="file-input-wrapper" style="margin-bottom: 10px;">
+                                        <input type="text" readonly placeholder="파일을 첨부해주세요.">
+                                        <label for="file-upload" class="btn btn-dark">파일찾기</label>
+                                        <%-- [수정] multiple 속성 추가 --%>
+                                        <input type="file" id="file-upload" name="attachments" style="display: none;" multiple>
+                                    </div>
+                                    <%-- 파일 목록이 표시될 컨테이너 --%>
+                                    <div id="file-list-container">
+                                        <%-- JS를 통해 파일 목록이 추가됩니다. --%>
+                                    </div>
+                                </td>
+                            </tr>
                         </tr>
                         
                         <%-- 투자 상세 정보 (투자 분야에 따라 숨김/표시) --%>

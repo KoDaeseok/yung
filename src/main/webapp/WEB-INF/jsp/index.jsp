@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%> -->
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<!-- <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%> -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,12 +10,12 @@
     <link rel="stylesheet" href="/css/main.css">
     <%-- [추가] Font Awesome 아이콘 라이브러리 --%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- <c:if test="${!empty resultMsg}"><script type="text/javascript">alert("<spring:message code="${resultMsg}" />");</script></c:if> -->
 </head>
 <body>
-
-    <%-- 헤더 영역 포함 --%>
+	<%-- 헤더 영역 포함 --%>
     <c:import url="/header.do" />
-
+	
     <%-- 메인 콘텐츠 --%>
     <main class="main-container">
         <div class="card-section-container">
@@ -22,7 +24,7 @@
             
             <div class="card-container">
                 <%-- 투자제안 카드 --%>
-                <a href="#" class="service-card">
+                <a href="/moveMenu.do?menuNo=030000" class="service-card">
                     <div class="card-icon">
                         <i class="fa-solid fa-hand-holding-dollar"></i>
                     </div>
@@ -32,7 +34,7 @@
                 </a>
                 
                 <%-- 금리제안 카드 --%>
-                <a href="#" class="service-card">
+                <a href="/moveMenu.do?menuNo=040000" class="service-card">
                     <div class="card-icon">
                         <i class="fa-solid fa-chart-line"></i>
                     </div>
@@ -42,7 +44,7 @@
                 </a>
                 
                 <%-- 세미나/미팅제안 카드 --%>
-                <a href="#" class="service-card">
+                <a href="/moveMenu.do?menuNo=060000" class="service-card">
                     <div class="card-icon">
                         <i class="fa-solid fa-users"></i>
                     </div>
