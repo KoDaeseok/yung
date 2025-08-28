@@ -19,6 +19,7 @@
             <h1><i class="fa-solid fa-pen-to-square"></i> ${pageTitle}</h1>
 
             <form id="investtalk-form">
+                <input type="hidden" name="id" value="${proposal.id}">
                 <input type="hidden" name="type" value="${proposalType}">
                 <table class="form-table">
                      <tbody>
@@ -56,14 +57,15 @@
                                 </select>
                             </td>
                         </tr>
-                        <tr class="meeting-field" <c:if test="${proposalType != '미팅'}">style="display:none;"</c:if>>
+                        <tr class="meeting-field" <c:if test="${proposalType != '미팅' or proposal.meetingType != '기존 투자 관련'}">style="display:none;"</c:if>>
                             <th><span class="required">*</span> 관련 펀드</th>
                             <td colspan="3">
-                                <div class="input-with-button">
-                                    <input type="text" name="fundCode" class="short-input" placeholder="펀드코드" value="${proposal.fundCode}">
-                                    <button type="button" class="btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                    <input type="text" name="fundName" class="wide-input" placeholder="펀드명" value="${proposal.fundName}" readonly>
-                                </div>
+                                <select name="fundCode" class="wide-input">
+                                    <option value="">선택</option>
+                                    <c:forEach var="fund" items="${fundList}">
+                                        <option value="${fund.code}" ${proposal.fundCode == fund.code ? 'selected' : ''}>${fund.name}</option>
+                                    </c:forEach>
+                                </select>
                             </td>
                         </tr>
 
@@ -103,16 +105,21 @@
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 장소구분</th>
-                            <td colspan="3">
+                            <td>
                                 <select name="locationType" class="short-input">
                                     <option value="내부" ${proposal.locationType == '내부' ? 'selected' : ''}>내부</option>
                                     <option value="외부" ${proposal.locationType == '외부' ? 'selected' : ''}>외부</option>
                                 </select>
                             </td>
-                        </tr>
-                        <tr id="location-detail-row" <c:if test="${proposal.locationType != '외부'}">style="display:none;"</c:if>>
-                            <th><span class="required">*</span> 장소</th>
-                            <td colspan="3"><input type="text" name="location" value="${proposal.location}"></td>
+                            <th>
+                                <%-- [수정] id를 추가하고 c:if를 통해 초기 표시 상태를 제어 --%>
+                                <span class="required" id="location-required" <c:if test="${proposal.locationType != '외부'}">style="display:none;"</c:if>>*</span> 장소
+                            </th>
+                            <td>
+                                <input type="text" name="location" class="wide-input" 
+                                       value="${proposal.locationType == '외부' ? proposal.location : ''}" 
+                                       ${proposal.locationType != '외부' ? 'readonly' : ''}>
+                            </td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 주요 내용</th>
@@ -128,7 +135,7 @@
                         </tr>
                          <tr class="seminar-field" <c:if test="${proposalType != '세미나'}">style="display:none;"</c:if>>
                             <th>발표자 경력</th>
-                            <td colspan="3"><textarea name="presenterBio" style="width: 100%; height: 120px; resize: vertical;">${proposal.presenterBio}</textarea></td>
+                            <td colspan="3"><textarea name="presenterBio" style="width: 100%; height: 80px; resize: vertical;">${proposal.presenterBio}</textarea></td>
                         </tr>
 
                         <tr>
@@ -156,7 +163,11 @@
                 </table>
                 <div class="form-buttons">
                     <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> ${isNew ? '등록' : '저장'}</button>
-                    <button type="button" class="btn btn-secondary" onclick="location.href='/investtalk/list'"><i class="fa-solid fa-times"></i> 취소</button>
+                    <%-- [수정] 취소 시 이동할 URL을 data 속성에 추가 --%>
+                    <button type="button" class="btn btn-secondary" id="cancel-btn"
+                            data-cancel-url="${isNew ? '/investtalk/list' : '/investtalk/detail?id='}${proposal.id}">
+                        <i class="fa-solid fa-times"></i> 취소
+                    </button>
                 </div>
             </form>
         </main>

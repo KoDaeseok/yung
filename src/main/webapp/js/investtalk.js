@@ -1,4 +1,3 @@
-// js/investtalk.js
 document.addEventListener('DOMContentLoaded', () => {
     // --- 상세 페이지 스크립트 ---
     const detailForm = document.getElementById('investtalk-detail-form');
@@ -17,16 +16,47 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 등록/수정 폼 스크립트 ---
     const investtalkForm = document.getElementById('investtalk-form');
     if (investtalkForm) {
+        const meetingTypeSelect = investtalkForm.querySelector('[name="meetingType"]');
+        const relatedFundRow = investtalkForm.querySelector('.meeting-field[style*="display"]'); // 관련 펀드 행
         const locationTypeSelect = investtalkForm.querySelector('[name="locationType"]');
-        const locationDetailRow = document.getElementById('location-detail-row');
+        const locationInput = investtalkForm.querySelector('[name="location"]');
+        const locationRequiredSpan = document.getElementById('location-required');
+        const cancelBtn = document.getElementById('cancel-btn');
 
-        // 장소구분 변경 시 외부 장소 입력 필드 표시/숨김 처리
-        if (locationTypeSelect && locationDetailRow) {
+        // [추가] 미팅 유형 변경 시, '관련 펀드' 필드 표시/숨김 처리
+        if (meetingTypeSelect && relatedFundRow) {
+            meetingTypeSelect.addEventListener('change', (e) => {
+                if (e.target.value === '기존 투자 관련') {
+                    relatedFundRow.style.display = '';
+                } else {
+                    relatedFundRow.style.display = 'none';
+                    // 다른 유형 선택 시 선택값 초기화
+                    const fundSelect = relatedFundRow.querySelector('[name="fundCode"]');
+                    if(fundSelect) fundSelect.value = '';
+                }
+            });
+        }
+        
+        // 장소구분 변경 로직
+        if (locationTypeSelect && locationInput && locationRequiredSpan) {
             locationTypeSelect.addEventListener('change', (e) => {
                 if (e.target.value === '외부') {
-                    locationDetailRow.style.display = '';
+                    locationInput.readOnly = false;
+                    locationRequiredSpan.style.display = '';
                 } else {
-                    locationDetailRow.style.display = 'none';
+                    locationInput.readOnly = true;
+                    locationInput.value = '';
+                    locationRequiredSpan.style.display = 'none';
+                }
+            });
+        }
+        
+        // 취소 버튼 이벤트
+        if (cancelBtn) {
+            cancelBtn.addEventListener('click', () => {
+                const cancelUrl = cancelBtn.dataset.cancelUrl;
+                if (cancelUrl) {
+                    location.href = cancelUrl;
                 }
             });
         }
@@ -62,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     fileListContainer.appendChild(fileItem);
                 }
+                event.target.value = '';
             });
             
             fileListContainer.addEventListener('click', (e) => {

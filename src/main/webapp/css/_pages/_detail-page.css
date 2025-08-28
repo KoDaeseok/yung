@@ -17,12 +17,12 @@
     border-bottom: 1px solid var(--border-color-light);
     font-size: 14px;
     text-align: left;
+    vertical-align: middle;
 }
 
 .detail-table th {
     background-color: var(--background-color-light);
     font-weight: 600;
-    width: 120px;
 }
 
 .file-link {
@@ -45,4 +45,40 @@
     border-bottom: 1px solid var(--border-color-light);
     font-size: 15px;
     line-height: 1.8;
+}
+
+.detail-table .content-body {
+    padding: 10px 0;
+    min-height: 80px;
+    border-bottom: none;
+}
+
+/* --- 답변 영역 스타일 추가 --- */
+.answer-section {
+    margin-top: 20px;
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-small);
+}
+
+.answer-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 15px;
+    background-color: var(--background-color-light);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color-dark);
+    border-bottom: 1px solid var(--border-color-light);
+}
+
+.answer-header i {
+    color: var(--primary-color);
+}
+
+.answer-body {
+    padding: 30px 15px;
+    font-size: 15px;
+    line-height: 1.8;
+    background-color: #fff;
 }

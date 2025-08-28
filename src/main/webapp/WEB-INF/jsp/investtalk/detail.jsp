@@ -62,8 +62,19 @@
                             <td colspan="3"><input type="text" value="${proposal.date} ${proposal.startTime} ~ ${proposal.endTime}" readonly></td>
                         </tr>
                         <tr>
-                            <th><span class="required">*</span> 장소</th>
-                            <td colspan="3"><input type="text" value="${proposal.locationType == '외부' ? proposal.location : '경찰공제회 내부'}" readonly></td>
+                            <th><span class="required">*</span> 장소구분</th>
+                            <td><input type="text" class="short-input" value="${proposal.locationType}" readonly></td>
+                            <th>
+                                <%-- '장소구분'이 '외부'일 때만 필수(*) 표시 --%>
+                                <c:if test="${proposal.locationType == '외부'}">
+                                    <span class="required">*</span>
+                                </c:if>
+                                장소
+                            </th>
+                            <td>
+                                <%-- '장소구분' 값에 따라 표시되는 장소 텍스트를 다르게 설정 --%>
+                                <input type="text" class="wide-input" value="<c:choose><c:when test='${proposal.locationType == "외부"}'>${proposal.location}</c:when><c:otherwise>경찰공제회 내부</c:otherwise></c:choose>" readonly>
+                            </td>
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 주요 내용</th>
@@ -78,7 +89,7 @@
                             </tr>
                             <tr>
                                 <th>발표자 경력</th>
-                                <td colspan="3"><textarea readonly style="width: 100%; height: 120px; resize: vertical;">${proposal.presenterBio}</textarea></td>
+                                <td colspan="3"><textarea readonly style="width: 100%; height: 80px; resize: vertical;">${proposal.presenterBio}</textarea></td>
                             </tr>
                         </c:if>
                         <tr>

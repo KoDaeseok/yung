@@ -32,6 +32,12 @@
             
             <div class="content-container">
                 <table class="detail-table">
+                    <colgroup>
+                        <col style="width: 150px;">
+                        <col style="width: auto;">
+                        <col style="width: 150px;">
+                        <col style="width: auto;">
+                    </colgroup>
                     <tbody>
                         <tr>
                             <th>제목</th>

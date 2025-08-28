@@ -32,6 +32,12 @@
             
             <div class="content-container">
                 <table class="detail-table">
+                    <colgroup>
+                        <col style="width: 150px;">
+                        <col style="width: auto;">
+                        <col style="width: 150px;">
+                        <col style="width: auto;">
+                    </colgroup>
                     <tbody>
                         <tr>
                             <th>제목</th>
@@ -53,8 +59,21 @@
                 <div class="content-body">
                     ${suggestion.content}
                 </div>
+
+                <c:if test="${not empty suggestion.answer}">
+                    <div class="answer-section">
+                        <div class="answer-header">
+                            <i class="fa-solid fa-comment-dots"></i>
+                            <span>답변 내용</span>
+                        </div>
+                        <div class="answer-body">
+                            ${suggestion.answer}
+                        </div>
+                    </div>
+                </c:if>
                 
-                <div class="button-container">
+                <div class="button-container" id="suggestion-detail-buttons">
+                    <button type="button" class="btn btn-outline" id="delete-btn"><i class="fa-solid fa-trash"></i> 삭제</button>
                     <button type="button" class="btn btn-outline" onclick="location.href='/suggestion'">
                         <i class="fa-solid fa-list"></i> 목록
                     </button>
@@ -66,5 +85,6 @@
     <c:import url="/WEB-INF/jsp/common/footer.jsp" />
 
     <script src="/js/auth.js"></script>
+    <script src="/js/suggestion.js"></script>
 </body>
 </html>
