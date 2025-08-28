@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
-            window.location.href = '/logout';
+            window.location.href = '/logout.do';
         });
     }
 });

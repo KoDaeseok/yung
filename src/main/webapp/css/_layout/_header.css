@@ -39,6 +39,15 @@
 .login-buttons a {
     color: var(--text-color-light);
     text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.login-buttons a:hover {
+    color: var(--primary-color);
+}
+
+.login-buttons a:active {
+    color: var(--primary-hover-color);
 }
 
 .login-buttons span {

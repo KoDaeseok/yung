@@ -28,13 +28,12 @@ public class WebController {
         menuData.add(Map.of("menuNo", "010000", "menuNm", "자산운용조직소개", "upperMenuNo", "0", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "020000", "menuNm", "공지/건의", "upperMenuNo", "0", "url", "/notice"));
         menuData.add(Map.of("menuNo", "030000", "menuNm", "투자제안", "upperMenuNo", "0", "url", "/propvest/list"));
-        menuData.add(Map.of("menuNo", "040000", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate/short_term/list")); // 기본 진입 페이지
+        menuData.add(Map.of("menuNo", "040000", "menuNm", "금리제안", "upperMenuNo", "0", "url", "/prorate/short_term/list"));
         menuData.add(Map.of("menuNo", "050000", "menuNm", "운용관리", "upperMenuNo", "0", "url", "/finops/balance_cert/list"));
         menuData.add(Map.of("menuNo", "060000", "menuNm", "세미나/미팅제안", "upperMenuNo", "0", "url", "/investtalk/list"));
         menuData.add(Map.of("menuNo", "070000", "menuNm", "요청/리서치자료", "upperMenuNo", "0", "url", "/dms/request/list"));
 
         // --- 하위 메뉴 ---
-        // [수정] upperMenuNo를 상위 메뉴의 menuNo와 일치시킴
         // 1. 자산운용조직
         menuData.add(Map.of("menuNo", "010100", "menuNm", "자산운용조직 소개", "upperMenuNo", "010000", "url", "/organization/introduce"));
         menuData.add(Map.of("menuNo", "010200", "menuNm", "조직도", "upperMenuNo", "010000", "url", "/organization/chart"));
@@ -61,7 +60,7 @@ public class WebController {
 
         // 6. 세미나/미팅제안
         menuData.add(Map.of("menuNo", "060100", "menuNm", "제안 목록", "upperMenuNo", "060000", "url", "/investtalk/list"));
-
+        
         // 7. 요청/리서치자료
         menuData.add(Map.of("menuNo", "070100", "menuNm", "자료요청 목록", "upperMenuNo", "070000", "url", "/dms/request/list"));
         menuData.add(Map.of("menuNo", "070200", "menuNm", "리서치자료 등록", "upperMenuNo", "070000", "url", "/dms/research/form"));
@@ -987,6 +986,44 @@ public class WebController {
         addCommonAttributes("070200", model, session);
         model.addAttribute("pageTitle", "리서치자료 등록");
         return "dms/research_form";
+    }
+
+    // 8. 회원관리
+    @GetMapping("/member/info")
+    public String memberInfo(Model model, HttpSession session, @RequestParam(value="userId", required=false) String userId) {
+        model.addAttribute("pageTitle", "회원정보 변경");
+
+        // 관리자 여부 (임시)
+        model.addAttribute("isAdmin", true);
+
+        // 사용자 목록 데이터 (관리자용)
+        List<Map<String, String>> userList = new ArrayList<>();
+        userList.add(Map.of("id", "testuser1", "dept", "정보시스템부", "name", "홍길동", "team", "대체투자1팀", "status", "정상"));
+        userList.add(Map.of("id", "testuser2", "dept", "준법감시부", "name", "김철수", "team", "기업금융1팀", "status", "승인대기"));
+        model.addAttribute("userList", userList);
+
+        // 상세 정보 조회 (사용자 ID가 파라미터로 넘어오거나, 일반 사용자인 경우)
+        Map<String, Object> userInfo = new HashMap<>();
+        // 실제로는 userId를 기반으로 DB에서 조회
+        userInfo.put("id", "testuser1");
+        userInfo.put("department", "정보시스템부");
+        userInfo.put("name", "홍길동");
+        userInfo.put("duty", "투자 분석");
+        userInfo.put("pmaaTeam", "대체투자1팀");
+        userInfo.put("tel", "02-123-4567");
+        userInfo.put("fax", "02-123-4568");
+        userInfo.put("email", "gildong@pmaa.or.kr");
+        userInfo.put("orgName", "KB자산운용");
+        userInfo.put("status", "정상");
+        model.addAttribute("userInfo", userInfo);
+        
+        return "member/info";
+    }
+
+    @GetMapping("/member/add")
+    public String memberAddForm(Model model, HttpSession session) {
+        model.addAttribute("pageTitle", "신규 아이디 등록");
+        return "member/add_form";
     }
 
     // --- 로그인/회원가입 ---

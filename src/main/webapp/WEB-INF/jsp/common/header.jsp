@@ -9,6 +9,7 @@
                 <c:when test="${not empty sessionScope.userName}">
                     <div class="login-buttons">
                         <span class="user-name">${sessionScope.userName}님</span>
+                        <a href="/member/info" class="top-btn-signup">가입정보변경</a>
                         <button type="button" class="btn-logout">로그아웃</button>
                     </div>
                 </c:when>
