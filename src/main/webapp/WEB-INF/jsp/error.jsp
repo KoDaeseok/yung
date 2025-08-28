@@ -18,7 +18,7 @@
             <a href="/index.do" class="btn btn-primary">메인으로 돌아가기</a>
         </div>
     </div>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
 
     <script>
         // 페이지가 로드되면 바로 스크립트를 실행합니다.

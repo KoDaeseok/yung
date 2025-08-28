@@ -46,4 +46,4 @@
 </header>
 
 <%-- 로그인 팝업 모달 포함 --%>
-<jsp:include page="/WEB-INF/jsp/popup/loginPopup.jsp" />
+<c:import url="/WEB-INF/jsp/popup/loginPopup.jsp" />

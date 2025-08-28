@@ -67,7 +67,7 @@
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 주요 내용</th>
-                            <td colspan="3"><textarea readonly>${proposal.content}</textarea></td>
+                            <td colspan="3"><textarea readonly style="width: 100%; height: 120px; resize: vertical;">${proposal.content}</textarea></td>
                         </tr>
                         <c:if test="${proposal.type == '세미나'}">
                             <tr>
@@ -78,7 +78,7 @@
                             </tr>
                             <tr>
                                 <th>발표자 경력</th>
-                                <td colspan="3"><textarea readonly>${proposal.presenterBio}</textarea></td>
+                                <td colspan="3"><textarea readonly style="width: 100%; height: 120px; resize: vertical;">${proposal.presenterBio}</textarea></td>
                             </tr>
                         </c:if>
                         <tr>
@@ -101,7 +101,7 @@
             </form>
         </main>
     </div>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
     <script src="/js/investtalk.js"></script>
 </body>

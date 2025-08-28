@@ -129,10 +129,10 @@
     </main>
 
     <%-- 기관 검색 팝업 파일 포함 --%>
-    <jsp:include page="/WEB-INF/jsp/popup/orgSearchPopup.jsp" />
+    <c:import url="/WEB-INF/jsp/popup/orgSearchPopup.jsp" />
 
     <%-- 푸터 영역 포함 --%>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
 
     <script src="/js/signup.js"></script>
 </body>

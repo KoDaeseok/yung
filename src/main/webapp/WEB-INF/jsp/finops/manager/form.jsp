@@ -120,8 +120,8 @@
             </form>
         </main>
     </div>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
-    <jsp:include page="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
     <script src="/js/auth.js"></script>
     <script src="/js/finops_popup.js"></script>
     <script src="/js/finops_manager.js"></script>

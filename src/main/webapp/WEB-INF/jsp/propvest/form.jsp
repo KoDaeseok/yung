@@ -165,10 +165,10 @@
         </main>
     </div>
 
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/propvest.js"></script>
-    <jsp:include page="/WEB-INF/jsp/popup/currencySearchPopup.jsp" />
-    <jsp:include page="/WEB-INF/jsp/popup/nationSearchPopup.jsp" />
+    <c:import url="/WEB-INF/jsp/popup/currencySearchPopup.jsp" />
+    <c:import url="/WEB-INF/jsp/popup/nationSearchPopup.jsp" />
     <script src="/js/popup/currency_popup.js"></script>
     <script src="/js/popup/nation_popup.js"></script>
 </body>

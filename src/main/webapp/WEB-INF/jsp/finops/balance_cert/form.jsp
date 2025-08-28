@@ -55,11 +55,11 @@
             </form>
         </main>
     </div>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
 
     <%-- 펀드 검색 팝업 파일 포함 --%>
-    <jsp:include page="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
+    <c:import url="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
     <script src="/js/finops_popup.js"></script>
 </body>
 </html>

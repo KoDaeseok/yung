@@ -116,7 +116,7 @@
                         </tr>
                         <tr>
                             <th><span class="required">*</span> 주요 내용</th>
-                            <td colspan="3"><textarea name="content">${proposal.content}</textarea></td>
+                            <td colspan="3"><textarea name="content" style="width: 100%; height: 120px; resize: vertical;">${proposal.content}</textarea></td>
                         </tr>
                         
                         <%-- 세미나 전용 입력 필드 --%>
@@ -128,7 +128,7 @@
                         </tr>
                          <tr class="seminar-field" <c:if test="${proposalType != '세미나'}">style="display:none;"</c:if>>
                             <th>발표자 경력</th>
-                            <td colspan="3"><textarea name="presenterBio">${proposal.presenterBio}</textarea></td>
+                            <td colspan="3"><textarea name="presenterBio" style="width: 100%; height: 120px; resize: vertical;">${proposal.presenterBio}</textarea></td>
                         </tr>
 
                         <tr>
@@ -161,8 +161,8 @@
             </form>
         </main>
     </div>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
-    <jsp:include page="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/popup/fundSearchPopup.jsp" />
     <script src="/js/auth.js"></script>
     <script src="/js/finops_popup.js"></script>
     <script src="/js/investtalk.js"></script>

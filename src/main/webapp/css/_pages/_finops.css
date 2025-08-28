@@ -57,7 +57,7 @@
     align-items: center;
     gap: 15px;
     margin-bottom: 20px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 .asset-search-bar .search-fields {
     display: flex;
@@ -84,7 +84,9 @@
 .asset-search-bar #target-quarter {
     width: 80px;
 }
-
+.asset-table-container {
+    overflow-x: auto;
+}
 /* ==============================
    plan (연간 자금계획)
    ============================== */

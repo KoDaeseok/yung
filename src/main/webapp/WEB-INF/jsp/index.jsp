@@ -54,7 +54,7 @@
     </main>
 
     <%-- 푸터 영역 포함 --%>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
     
     <%-- 로그인/인증 스크립트만 로드 --%>
     <script src="/js/auth.js"></script>

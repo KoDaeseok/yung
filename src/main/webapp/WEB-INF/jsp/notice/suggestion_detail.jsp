@@ -63,7 +63,7 @@
         </main>
     </div>
 
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
 
     <script src="/js/auth.js"></script>
 </body>

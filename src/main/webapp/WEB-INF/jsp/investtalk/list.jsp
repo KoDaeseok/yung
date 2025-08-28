@@ -21,7 +21,7 @@
             <div class="search-bar-wrapper">
                 <div class="search-fields">
                     <label for="status-filter">상태</label>
-                    <select id="status-filter" name="status" class="short-input">
+                    <select id="status-filter" name="status" class="short-input" style="width: 170px;">
                         <option value="">전체</option>
                         <option value="requested">요청</option>
                         <option value="approved">승인</option>
@@ -97,7 +97,7 @@
             </div>
         </main>
     </div>
-    <jsp:include page="/WEB-INF/jsp/common/footer.jsp" />
+    <c:import url="/WEB-INF/jsp/common/footer.jsp" />
     <script src="/js/auth.js"></script>
     <script src="/js/clickable-rows.js"></script>
 </body>
